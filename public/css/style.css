@@ -102,6 +102,9 @@ header {
 	margin-right: -7px; 
 }
 .search_field {
+	background-image: url(../icons/search_icon.png);
+	background-repeat: no-repeat;
+	background-position: 10px 5px;
 	width: 220px;
 	border-radius: 15px;
 	height: 35px;
@@ -158,9 +161,7 @@ li.nav_item:hover{
 /**************
 *= main_menu
 **************/
-.menu, .groups, .groups_title, .main_hr {
 
-}
 .main_menu {
 	box-shadow: 0 -10px 15px #959595, 0 5px 20px #959595, -7px 0px 20px #959595;
 	padding: 20px 40px;
@@ -188,6 +189,7 @@ li.nav_item:hover{
 .main_icon_a:hover {
 	background-image: url(../icons/vertex_button_1.png);
 	background-repeat: no-repeat;
+	text-decoration: none;
 }
 .free_space {
 	height: 110px;
@@ -394,6 +396,7 @@ li.nav_item:hover{
 ------------------------------------------------*/
 .catalog_sort {
 	background: #f6f6f6;
+	margin-bottom: 15px;
 }
 .catalog_sort_text_ul {
 	display: inline-block;
@@ -406,6 +409,25 @@ li.nav_item:hover{
 	display: inline;
 	margin-left: 10px;
 	color: #414141;
+}
+.icon_tr_dw {
+	background-image: url(../icons/icon_tr_dw.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	background-position: 0px 4px;
+}
+.icon_tr_up {
+	background-image: url(../icons/icon_tr_up.png);
+	background-repeat: no-repeat;
+	height: 15px;
+	width: 15px;
+	display: inline-block;
+	background-position: 0px 4px;
+}
+.icon_tr_dw:hover, .icon_tr_up:hover {
+	cursor: pointer;
 }
 .catalog_sort_titel, .catalog_sort_price, .catalog_sort_brands {
 	cursor: default;
@@ -463,9 +485,11 @@ li.nav_item:hover{
 	font-size: 15px;
 	margin-left: 10px;
 	margin-bottom: 5px;
+	height: 34px;
+	overflow: hidden;
 	text-decoration: underline;
 	cursor: pointer;
-}
+}	/*insert JS*/
 .info_item_page {
 	display: inline-block;
 	margin: 0;
