@@ -38,9 +38,11 @@
 		</div><!-- info_footer -->
 		<div class="footer_copyright">
 			<div class="width_960 footer_width_960">	
-				<a href="index.html">
-					{{ HTML::image('icons/logo_footer.png', 'Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов', ['class'=>'footer_logo']) }} 
-				</a>
+				<div class="footer_logo_div">
+					<a href="index.html">
+						{{ HTML::image('icons/logo_footer.png', 'Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов', ['class'=>'footer_logo']) }} 
+					</a>
+				</div>	
 				<p class="footer_copyright_p">© 2014 «Vertex.ltd. <br /> Оборудование для ресторанов, посуда для кафе и столовых, мебель для общепита,
 				<br/> кухонный инвентарь
 				<br/> made by <a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio </a></p>

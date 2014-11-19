@@ -91,14 +91,13 @@
 				@endforeach
 			</div><!-- menu catalog_menu -->
 			<div class="catalog_bottom_pages">
-				<ul class="catalog_bottom_pages_ul">
-					<li class="catalog_sort_pages catalog_bottom_pages_li">1 </li>
-					<li class="catalog_sort_pages catalog_bottom_pages_li">2 </li>
-					<li class="catalog_sort_pages catalog_bottom_pages_li">3 </li>
-					<li class="catalog_sort_pages catalog_bottom_pages_li">4 </li>
-					<li class="catalog_sort_pages catalog_bottom_pages_li dots">... </li>
-					<li class="catalog_sort_pages catalog_bottom_pages_li" style = "padding-right:7px;">9 </li>
-				</ul>	
+					<a class="catalog_sort_pages catalog_bottom_pages_li">1 </a>
+					<a class="catalog_sort_pages catalog_bottom_pages_li">2 </a>
+					<a class="catalog_sort_pages catalog_bottom_pages_li">3 </a>
+					<a class="catalog_sort_pages catalog_bottom_pages_li">4 </a>
+					<a class="catalog_sort_pages catalog_bottom_pages_li dots">... </a>
+					<a class="catalog_sort_pages catalog_bottom_pages_li" style = "padding-right:7px;">9 </a>
+				
 			</div>
 		</div><!--catalog gen -->
 	</div><!-- width_960 catalog_gen -->
