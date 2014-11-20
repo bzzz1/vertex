@@ -6,7 +6,7 @@
 }
 body, html {
 	cursor: default;
-	min-height: 100% !important;
+	min-height: 100%;
 	position: relative;
 	font-family: 'Century Gothic', sans-serif;
 }
@@ -27,6 +27,9 @@ a {
 }
 a:hover {
 	color:#008ccb;
+}
+a:focus {
+	outline: none;
 }
 /**************
 *= Header
@@ -92,14 +95,14 @@ header {
 	margin-top: 55px;
 	display: inline-block;
 }
- .header_search {
+.header_search {
 	margin-top: 8px;
 	margin-bottom: 0px;
 	border: 1px solid rgba(255, 255, 255, 0);
 	border-radius: 15px;
 	height: 35px;
 	outline: none;
-	margin-right: -7px; 
+	margin-right: -3px; 
 }
 .search_field {
 	background-image: url(../icons/search_icon.png);
@@ -115,7 +118,6 @@ header {
 	text-align: center;
 	font-family: 'Century Gothic', sans-serif;
 	font-size: inherit;
-	-webkit-appearance: none;
 }
 .header_search_icon {
 	margin-left: -215px;
@@ -129,40 +131,48 @@ nav {
 	font-size: 16px;
 	display: inline-block;
 }
-li.nav_item {
+.mask_nav_item {
 	font-weight: bold;
-	padding-bottom: 10px;
-	padding-top: 10px;
-	border-radius: 10px 10px 0px 0px;
-	background: -webkit-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
-	color: black;
+	line-height: 45px;
 	text-align: center;
-}
-.nav_ul a {
-	float: left;
 	width: 200px;
 	text-decoration: none;
 	color: black;
 	margin-right: 5px;
+	float: left;
+	border-radius: 10px 10px 0px 0px;
+	overflow: hidden;
 }
-.selected {
-	background: #008ccb !important;
-	color: white !important;
+a.nav_item {
+	display: inline-block;
+	height: 100%;
+	width: 100%;
+	background: -webkit-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
+	background: -ms-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
+	background: -moz-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f8', endColorstr='#e9eaea');/*For IE7-8-9*/
 }
-li.nav_item:hover{
-	background: #008ccb !important;
-	color: white !important;
+a.nav_item.selected {
+	filter: none;
+	background: #008ccb;
+	color: white;
+}
+.mask_nav_item:hover a.nav_item {
+	cursor: pointer;
+	filter: none;
+	border-radius: 10px 10px 0px 0px;
+	background: #008ccb;
+	color: white;
 }
 .navigation_hr {
 	color: #008ccb;
 	border: 4px solid #008ccb;  
 	margin-top: -8px;
-	margin-bottom: -7px;
+	margin-bottom: -8px;
 }
 /**************
 *= main_menu
 **************/
-
 .main_menu {
 	box-shadow: 0 -10px 15px #959595, 0 5px 20px #959595, -7px 0px 20px #959595;
 	padding: 20px 40px;
@@ -171,7 +181,7 @@ li.nav_item:hover{
 	box-shadow: 0px 0px 10px 5px #c0c0c0;
 }
 .selected_main_menu {
-	color: #008ccb !important;
+	color: #008ccb;
 }
 .main_icon_a {
 	color: #5a5a5a;
@@ -206,12 +216,7 @@ li.nav_item:hover{
 	height: 108px;
 	width: 200px;
 	margin: auto;
-	/*background-image: url(../icons/icon_round_item.png);
-	background-repeat: no-repeat;
-	background-position: center;*/
 }
-
-
 /**************
 *= groups
 **************/
@@ -226,18 +231,15 @@ li.nav_item:hover{
 	color: #008ccb;
 	font-size: 24px;
 }
-/*.types{
-	float: left;
-	width: 40%;
-	margin-left: 30px;
-	width: 250px;
-
-}*/
 .brands_column {
 	-webkit-column-count: 4;
+	-ms-column-count: 4;
 	-moz-column-count: 4;
 	column-count: 4;
 	-webkit-column-gap: 45px; 
+	-ms-column-gap: 45px; 
+	-moz-column-gap: 45px; 
+	column-gap: 45px;
 	padding: 10px; 
 	margin-left: 40px;
 }
@@ -246,7 +248,7 @@ li.nav_item:hover{
 	line-height: 20px;
 	color: #a6b4ba;
 }
-.title_sort {
+.mask_title_sort {
 	font-size: 18px;
 	font-weight: bold;
 	border: 1px solid #d3d3d3;
@@ -254,12 +256,21 @@ li.nav_item:hover{
 	padding-right: 20px;
 	padding-left: 15px;
 	width: 168px;
-	border-radius: 15px;
 	margin-top: 15px;
 	margin-left: 40px;
 	display: inline-block;
 	text-align: center;
+	border-radius: 15px;	
+	overflow: hidden;
+}
+p.title_sort {
+	height: 100%;
+	width: 100%;
+	margin-bottom: 0;
 	background: -webkit-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
+	background: -ms-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
+	background: -moz-linear-gradient(top, #f7f7f8 0%, #eeeff0 50%, #edeeef 51%, #e9eaea 100%);
+	filter: progid:DXImageTransform.Microsoft.gradient(GradientType=0,startColorstr='#f7f7f8', endColorstr='#e9eaea');/*For IE7-8-9*/
 }
 .title_sort img {
 	margin-bottom: 3px;
@@ -473,7 +484,6 @@ li.nav_item:hover{
 	color: #414141;
 }
 .catalog_item {
-	/*margin: 15px 30px 15px 0px;*/
 	padding: 10px 5px 15px 5px;
 	width: 260px;
 	box-shadow: 0 0 15px 3px #c0c0c0;
@@ -485,8 +495,6 @@ li.nav_item:hover{
 .catalog_item:last-child {
 	margin-top: 15px;
 }
-
-
 .catalog_item_header {
 	color: #008ccb;
 	display: inline-block;
@@ -497,17 +505,13 @@ li.nav_item:hover{
 	overflow: hidden;
 	text-decoration: underline;
 	cursor: pointer;
-}	/*insert JS*/
+}
 .info_item_page {
 	display: inline-block;
 	margin: 0;
 }
 .catalog_item_info {
 	display: inline-block;
-	/*-webkit-column-count: 2;
-	-moz-column-count: 2;
-	column-count: 2;
-	-webkit-column-gap: 10px;*/ 
 	float: right;
 	width: 201px;
 }
@@ -531,19 +535,12 @@ li.nav_item:hover{
 	float: right;
 	margin-right: 15px;
 }
-
 .catalog_item_price_number {
 	float: left;
 }
 .catalog_item_price_currency {
 	float: right;
 }
-.catalog_menu {
-/*	-webkit-column-count: 3;
-	-moz-column-count: 3;
-	column-count: 3;
-	-webkit-column-gap: 10px; 
-*/}
 .catalog_geneal_menu {
 	height: 590px;
 	box-shadow: 0px 0px 10px 5px #c0c0c0;
@@ -551,9 +548,6 @@ li.nav_item:hover{
 .catalog_bottom_pages {
 	display: inline-block;
 	margin-left: 346px;
-}
-.catalog_bottom_pages_ul {
-	
 }
 .catalog_bottom_pages_li {
 	display: inline;
@@ -567,7 +561,7 @@ li.nav_item:hover{
 	font-weight: bold;
 	margin-bottom: 10px;
 	margin-top: 10px;
-	text-decoration: none !important;
+	text-decoration: none;
 }
 .catalog_bottom_pages_li:hover {
 	background: #008ccb;
@@ -621,10 +615,15 @@ li.nav_item:hover{
 }
 .admin_2nd_main_menu {
 	-webkit-column-count: 2;
+	-ms-column-count: 2;
 	-moz-column-count: 2;
 	column-count: 2;
 	-webkit-column-gap: 240px; 
+	-ms-column-gap: 240px; 
+	-moz-column-gap: 240px; 
+	column-gap: 240px;
 	-webkit-column-rule: 10px dashed #eeeeee;
+	-ms-column-rule: 10px dashed #eeeeee;
 	-moz-column-rule: 10px dashed #eeeeee;
 	column-rule: 10px dashed #eeeeee;
 	height: 450px;
@@ -635,6 +634,3 @@ li.nav_item:hover{
 .admin_add_change, .admin_preview_item {
 	margin-top: 20px;
 }
-/*------------------------------------------------
-| 586 вместо 689 -> на 14.9% меньше строк
-------------------------------------------------*/

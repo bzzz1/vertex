@@ -9,6 +9,9 @@
 	{{ HTML::style('css/text.css') }}
 	{{ HTML::style('css/960_24_col.css') }}
 	@yield('css')
+	<!--[if lt IE 10]>
+		<!!!!!!!!!!!!!!!script src="{{ asset('js/modernizr_columns.js') }}"></script>
+	<![endif]-->
 </head>
 <body>
 

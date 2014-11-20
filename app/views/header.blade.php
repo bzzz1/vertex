@@ -20,11 +20,15 @@
 		</header>
 		<div class="main_nav">
 			<nav>
-				<ul class="nav_ul">
-					<a href="#"><li class='nav_item selected'>Техника</li></a>
-					<a href="#"><li class='nav_item'>Запчасти</li></a>
-					<a href="#"><li class='nav_item'>Информация</li></a>
-				</ul>
+				<div class="mask_nav_item">
+					<a href="#" class='nav_item selected'>Техника</a>
+				</div>
+				<div class="mask_nav_item">
+					<a href="#" class='nav_item'>Запчасти</a>
+				</div>
+				<div class="mask_nav_item">
+					<a href="#" class='nav_item'>Информация</a>
+				</div>
 			</nav>
 			<div class="header_search">
 				<input  type="search" name="search" placeholder="     Поиск товаров" class='search_field' > 

@@ -44,9 +44,15 @@
 			<hr class = "main_hr" />
 			<div class = "groups">
 				<div class="brands">
-					<p class="brands_sort title_sort">По брендам</p>
+					<div class="mask_title_sort">
+						<p class="brands_sort title_sort">По брендам</p>
+					</div>
 					<div class="brands_column">
 						<ul>
+								<!--[if lt IE 10]>
+									<script src="{{ asset('js/modernizr_columns.js') }}"></script>
+								<![endif]-->
+
 							@foreach ($all_brands as $brand)
 								<li>
 									{{ HTML::link("items/producer/$brand", $brand) }}
