@@ -1,0 +1,30 @@
+UPDATE `items` 
+SET description = "Описание отсутствует"
+WHERE description IS NULL;
+
+UPDATE `items`
+SET producer = 'Другие бренды'
+WHERE producer = ' не определено';
+
+UPDATE `items`
+SET currency = 'РУБ'
+WHERE currency = 'РУБЛЬ';
+
+UPDATE `items`
+SET price = '0.00'
+WHERE price IS NULL;
+
+DELETE FROM `items`
+WHERE procurement = 'не возим';
+
+------------------------------------
+SELECT DISTINCT producer
+FROM `items`
+WHERE type='оборудование'
+
+SELECT DISTINCT category, subcategory
+FROM `items`
+WHERE type='оборудование'
+ORDER BY category;
+-----------------------------------
+$('.brands_column ul li')

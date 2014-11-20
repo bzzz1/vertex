@@ -2,6 +2,7 @@
 	<footer>
 		<div class = "info_footer">
 			<div class="width_960 footer_960">
+
 				<div class="info_footer_catalog ">
 					<p class = "footer_p_catalog">Каталог товаров</p>
 					<ul class = "footer_ul_catalog">
@@ -39,13 +40,13 @@
 		<div class="footer_copyright">
 			<div class="width_960 footer_width_960">	
 				<div class="footer_logo_div">
-					<a href="index.html">
+					<a href="{{ URL::to('/') }}">
 						{{ HTML::image('icons/logo_footer.png', 'Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов', ['class'=>'footer_logo']) }} 
 					</a>
 				</div>	
-				<p class="footer_copyright_p">© 2014 «Vertex.ltd. <br /> Оборудование для ресторанов, посуда для кафе и столовых, мебель для общепита,
+				<p class="footer_copyright_p">© 2014 «Vertex.ltd&#187 <br/>Оборудование для ресторанов, посуда для кафе и столовых, мебель для общепита,
 				<br/> кухонный инвентарь
-				<br/> made by <a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio </a></p>
+				<br/> made by <a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio</a></p>
 			</div><!-- width_960 -->
 		</div><!-- footer_copyright -->
 	</footer>

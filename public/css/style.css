@@ -1,9 +1,6 @@
 /**************
 *= General
 **************/
-.center {
-	text-align: center;
-}
 body, html {
 	cursor: default;
 	min-height: 100%;
@@ -163,6 +160,7 @@ a.nav_item.selected {
 	border-radius: 10px 10px 0px 0px;
 	background: #008ccb;
 	color: white;
+	text-decoration: none;
 }
 .navigation_hr {
 	color: #008ccb;
@@ -183,7 +181,7 @@ a.nav_item.selected {
 .selected_main_menu {
 	color: #008ccb;
 }
-.main_icon_a {
+.category_icon_block {
 	color: #5a5a5a;
 	text-decoration: none;
 	font-weight: bold;
@@ -197,7 +195,9 @@ a.nav_item.selected {
 	background-repeat: no-repeat;
 	background-position: top center;
 }
-.main_icon_a:hover {
+.category_icon_block:hover {
+	color: #008ccb;
+	cursor: pointer;
 	background-image: url(../icons/vertex_button_1.png);
 	background-repeat: no-repeat;
 	text-decoration: none;
@@ -253,8 +253,6 @@ a.nav_item.selected {
 	font-weight: bold;
 	border: 1px solid #d3d3d3;
 	background: #edeeef;
-	padding-right: 20px;
-	padding-left: 15px;
 	width: 168px;
 	margin-top: 15px;
 	margin-left: 40px;
@@ -367,14 +365,18 @@ p.title_sort {
 	margin-left: 25px;
 	margin-bottom: 0px;
 }
-
-.info_page_item_p_field, .item_price_p {
+.item_price_p {
 	margin-bottom: 0px;
 }
 .item_page_right_div {
 	float: right;
 	width: 266px;
 	height: 190px;
+}
+.item_photo {
+	width: 100px;
+	float: left;
+	margin-right: 5px;
 }
 .item_price {
 	width: 90px;
@@ -470,7 +472,7 @@ p.title_sort {
 	margin-right: 10px;
 }
 .catalog_gen {
-	padding: 20px 40px;
+	padding: 25px 40px;
 	box-shadow: 0 -10px 15px #959595, 0 5px 20px #959595, -7px 0px 20px #959595;
 }
 .catalog_main_menu {
@@ -486,11 +488,16 @@ p.title_sort {
 .catalog_item {
 	padding: 10px 5px 15px 5px;
 	width: 260px;
+	height: 180px;
 	box-shadow: 0 0 15px 3px #c0c0c0;
 	display: inline-block;
+	margin-top: 15px;
+	margin-bottom: 15px;
+	vertical-align: top;
 }
 .catalog_item:nth-child(3n+2) {
-	margin: 15px 45px;
+	margin-left: 45px;
+	margin-right: 45px;
 }
 .catalog_item:last-child {
 	margin-top: 15px;
@@ -501,19 +508,48 @@ p.title_sort {
 	font-size: 15px;
 	margin-left: 10px;
 	margin-bottom: 5px;
-	height: 34px;
+	height: 16px;
+	width: 237px;
 	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+	/*max-height: 34px*/
 	text-decoration: underline;
 	cursor: pointer;
 }
 .info_item_page {
 	display: inline-block;
 	margin: 0;
+	vertical-align: top;
 }
 .catalog_item_info {
 	display: inline-block;
 	float: right;
 	width: 201px;
+}
+.info_page_item_text {
+	display: inline-block;
+	height: 19px;
+	width: 94px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.info_page_item_text:hover {
+	position: absolute;
+	background: white;
+	border: 1px solid #cecece;
+	box-shadow: inset 1px 1px 3px #cecece;
+	height: auto;
+	width: auto;
+	white-space: normal;
+	padding: 0px 10px;
+	border-radius: 10px;
+}
+.info_page_item_procurement {
+	display: block;
+	font-weight: bold;
+	font-size: 16px;
 }
 .catalog_item img {
 	display: inline-block;
@@ -529,11 +565,14 @@ p.title_sort {
 }
 .catalog_item_price {
 	background: #eeeeee;
-	border-radius: 9px;
-	padding: 3px 23px;
-	font-size: 20px;
+	border-radius: 10px;
+	padding: 3px 11px;
+	font-size: 17px;
+	font-weight: bold;
 	float: right;
-	margin-right: 15px;
+	margin-right: 10px;
+	vertical-align: bottom;
+	clear: left;
 }
 .catalog_item_price_number {
 	float: left;
@@ -547,26 +586,28 @@ p.title_sort {
 }
 .catalog_bottom_pages {
 	display: inline-block;
-	margin-left: 346px;
-}
-.catalog_bottom_pages_li {
-	display: inline;
-	margin-right: 10px;
-	border-radius: 100px;
-	background: #cbcbcb;
-	padding: 3px;
-	padding-left: 7px;
-	color: #646464;
-	font-size: 15px;
-	font-weight: bold;
-	margin-bottom: 10px;
+	margin-left: 330px;
 	margin-top: 10px;
 	text-decoration: none;
 }
-.catalog_bottom_pages_li:hover {
+.catalog_bottom_pages_item {
+	display: inline-block;
+	width: 25px;
+	height: 25px;
+	line-height: 25px;
+	margin-right: 10px;
+	border-radius: 100px;
+	background: #cbcbcb;
+	color: #646464;
+	font-size: 15px;
+	font-weight: bold;
+	text-align: center;
+}
+.catalog_bottom_pages_item:hover {
 	background: #008ccb;
 	color: white;
 	cursor: pointer;
+	text-decoration: none;
 }
 .dots, .dots:hover, .dots a {
 	background: none;
