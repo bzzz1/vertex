@@ -195,19 +195,67 @@ a.nav_item.selected {
 	background-repeat: no-repeat;
 	background-position: top center;
 }
+.bar_icon_block {
+	background-image: url(../icons/ico_bar_0.png);
+}
+.neutral_icon_block {
+	background-image: url(../icons/ico_neutr_0.png);
+}
+.inventory_icon_block {
+	background-image: url(../icons/ico_kuch_0.png);
+}
+.wash_icon_block {
+	background-image: url(../icons/ico_wash_0.png);
+}
+.tech_icon_block {
+	background-image: url(../icons/ico_tech_0.png);
+}
+.packing_icon_block {
+	background-image: url(../icons/ico_pack_0.png);
+}
+.bread_icon_block {
+	background-image: url(../icons/ico_bread_0.png);
+}
+.freez_icon_block {
+	background-image: url(../icons/ico_frost_0.png);
+}
+/*icons_backgroung_image_hover*/
 .category_icon_block:hover {
 	color: #008ccb;
 	cursor: pointer;
-	background-image: url(../icons/vertex_button_1.png);
 	background-repeat: no-repeat;
 	text-decoration: none;
+}
+.bar_icon_block:hover {
+	background-image: url(../icons/ico_bar_1.png);
+}
+.neutral_icon_block:hover {
+	background-image: url(../icons/ico_neutr_1.png);
+}
+.inventory_icon_block:hover {
+	background-image: url(../icons/ico_kuch_1.png);
+}
+.wash_icon_block:hover {
+	background-image: url(../icons/ico_wash_1.png);
+}
+.tech_icon_block:hover {
+	background-image: url(../icons/ico_tech_1.png);
+}
+.packing_icon_block:hover {
+	background-image: url(../icons/ico_pack_1.png);
+}
+.bread_icon_block:hover {
+	background-image: url(../icons/ico_bread_1.png);
+}
+.freez_icon_block:hover {
+	background-image: url(../icons/ico_frost_1.png);
 }
 .free_space {
 	height: 110px;
 }
 .subcategory_block{
 	width: 880px;
-	background-color: #008ccb;
+	background: #e3f0f7;
 	color: white;
 	margin-top: -23px;
 }
@@ -223,8 +271,9 @@ a.nav_item.selected {
 	column-gap: 45px;
 	padding: 10px; 
 }
-.sucatgory_column a{
-	color: white;
+.subcategory_column a {
+	text-decoration: none;
+	font-weight: normal;
 }
 .category_item {
 	display: inline-block;
@@ -242,7 +291,7 @@ a.nav_item.selected {
 *= groups
 **************/
 .groups {
-	background: rgba(0, 140, 203, 0.14);
+	background: #e3f0f7;
 	border-radius: 15px;
 }
 .groups a {
@@ -752,62 +801,4 @@ p.title_sort {
 }
 .admin_add_change, .admin_preview_item {
 	margin-top: 20px;
-}
-
-/*fdsfsdfsdf*/
-.bar_icon_block {
-	background-image: url(../icons/ico_bar_0.png);
-}
-.neutral_icon_block {
-	background-image: url(../icons/ico_neutr_0.png);
-}
-.inventory_icon_block {
-	background-image: url(../icons/ico_kuch_0.png);
-}
-.wash_icon_block {
-	background-image: url(../icons/ico_wash_0.png);
-}
-.tech_icon_block {
-	background-image: url(../icons/ico_tech_0.png);
-}
-.packing_icon_block {
-	background-image: url(../icons/ico_pack_0.png);
-}
-.bread_icon_block {
-	background-image: url(../icons/ico_bread_0.png);
-}
-.freez_icon_block {
-	background-image: url(../icons/ico_frost_0.png);
-}
-
-/*icons_backgroung_image_hover*/
-.category_icon_block:hover {
-	color: #008ccb;
-	cursor: pointer;
-	background-repeat: no-repeat;
-	text-decoration: none;
-}
-.bar_icon_block:hover {
-	background-image: url(../icons/ico_bar_1.png);
-}
-.neutral_icon_block:hover {
-	background-image: url(../icons/ico_neutr_1.png);
-}
-.inventory_icon_block:hover {
-	background-image: url(../icons/ico_kuch_1.png);
-}
-.wash_icon_block:hover {
-	background-image: url(../icons/ico_wash_1.png);
-}
-.tech_icon_block:hover {
-	background-image: url(../icons/ico_tech_1.png);
-}
-.packing_icon_block:hover {
-	background-image: url(../icons/ico_pack_1.png);
-}
-.bread_icon_block:hover {
-	background-image: url(../icons/ico_bread_1.png);
-}
-.freez_icon_block:hover {
-	background-image: url(../icons/ico_frost_1.png);
 }

@@ -9,56 +9,66 @@
 @section('body')
 	<div class="width_960">
 		<div class="main_menu">
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block bar_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Барное</br>оборудование</p>
 				<div class="subcategory_block">
-					<!-- #subcategory -->
+					<div class="subcategory_block">
+						<div class="subcategory_column">
+							<ul>
+								@foreach ($brands as $brand)
+									<li>
+										{{ HTML::link("$env/$brand", $brand) }}
+									</li>
+								@endforeach
+							</ul>
+						</div><!-- brands_column -->
+					</div><!-- subcategory block -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block neutral_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Нейтральное оборудование</p>
 				<div class="subcategory_block">
 					<!-- #subcategory -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block inventory_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Посуда и</br>инвентарь</p>
 				<div class="subcategory_block">
 					<!-- #subcategory -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block wash_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Посудомоечное оборудование</p>
 				<div class="subcategory_block">
 					<!-- #subcategory -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block tech_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Технологическое оборудование</p>
 				<div class="subcategory_block">
 					<!-- #subcategory -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block packing_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Упаковочное оборудование</p>
 				<div class="subcategory_block">
 					<!-- #subcategory -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block bread_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Хлебопекарское оборудование</p>
 				<div class="subcategory_block">
 					<!-- #subcategory -->
 				</div>
 			</div>
-			<div class="category_icon_block" href="index.html">
+			<div class="category_icon_block freez_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Холодильное оборудование</p>
 				<div class="subcategory_block">

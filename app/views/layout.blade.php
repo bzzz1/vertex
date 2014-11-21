@@ -3,7 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов</title>
-	<link rel="shortcut icon" href="{{ asset('favicon.ico') }}">
+	<link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
 	{{ HTML::style('css/bootstrap.css') }}
 	{{ HTML::style('css/reset.css') }}
 	{{ HTML::style('css/text.css') }}
