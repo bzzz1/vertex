@@ -11,9 +11,9 @@ class MainController extends BaseController {
 		$brands = DB::table('items')->distinct()->whereType($type)->lists('producer');
 
 		return View::make('index')->with([
-			'brands' => $brands,
+			'brands' 		=> $brands,
 			'subcategories' => $subcategories,
-			'env' => $env
+			'env' 			=> $env
 		]);	
 	}
 
@@ -21,12 +21,19 @@ class MainController extends BaseController {
 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
 		$items = DB::table('items')->whereType($type)->whereProducer($brand)->get();
 		return View::make('catalog')->with([
-			'items' => $items,
+			'items' 		=> $items,
 			'current_brand' => $brand,
-			'env' => $env
+			'env' 			=> $env
 		]);
 	}
 
+	public function info() {
+		$env = 'info';
+		return View::make('info')->with([
+			'env' 		=> $env,
+			'articles'  => []
+		]);	
+	}
 	/*
 	public function categorization($type, $groupby, $param) {
 		$items = DB::table($type)->where($groupby, $param)->get();
