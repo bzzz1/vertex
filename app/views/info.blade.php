@@ -8,7 +8,7 @@
 
 @section('body')
 	<div class="width_960">
-		@foreach($article as $article)	
+		@foreach($articles as $article)	
 			<!-- article_prewiew -->
 			<div class="article_area">
 				<div class="article_preview">
