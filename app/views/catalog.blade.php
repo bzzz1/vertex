@@ -88,6 +88,7 @@
 					</div>
 				@endforeach
 			</div><!-- menu catalog_menu -->
+			{{ $items->appends(Request::except('page'))->links() }}
 			<div class="catalog_bottom_pages">
 				<a class="catalog_sort_pages catalog_bottom_pages_item">1</a>
 				<a class="catalog_sort_pages catalog_bottom_pages_item">2</a>

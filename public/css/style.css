@@ -673,6 +673,9 @@ p.title_sort {
 	font-weight: bold;
 	text-align: center;
 }
+ul.pagination {
+	
+}
 .catalog_bottom_pages_item:hover {
 	background: #008ccb;
 	color: white;

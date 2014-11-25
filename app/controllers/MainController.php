@@ -19,7 +19,7 @@ class MainController extends BaseController {
 
 	public function catalog($env, $brand) {
 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
-		$items = DB::table('items')->whereType($type)->whereProducer($brand)->get();
+		$items = DB::table('items')->whereType($type)->whereProducer($brand)->paginate(12);
 		return View::make('catalog')->with([
 			'items' 		=> $items,
 			'current_brand' => $brand,
