@@ -29,9 +29,10 @@ class MainController extends BaseController {
 
 	public function info() {
 		$env = 'info';
+		$articles = DB::table('articles')->orderBy('priority', 'ASC')->get();
 		return View::make('info')->with([
 			'env' 		=> $env,
-			'articles'  => []
+			'articles'  => $articles
 		]);	
 	}
 	/*

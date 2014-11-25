@@ -12,10 +12,10 @@
 			<!-- article_prewiew -->
 			<div class="article_area">
 				<div class="article_preview">
-					<h2 class="article_preview_header">{{ $article->header }}</h2>
+					<h2 class="article_preview_header">{{ $article->title }}</h2>
 					<p class="article_preview_text">
-						{{ HTML::image("photos/$article->photo", 'article', ['class'=>'article_photo_preview']) }}
-						{{ $article->text }}
+						{{ HTML::image("photos/$article->image", 'article', ['class'=>'article_photo_preview']) }}
+						{{ $article->body }}
 					</p>
 					<div class="article_button">
 						<p class="article_button_p">Далее...</p>
@@ -23,10 +23,10 @@
 				</div> <!-- article_preview -->
 				<!-- article_full -->
 				<div class="article_block">
-					<h2 class="article_header"> {{ $article->header }} </h2>
+					<h2 class="article_header"> {{ $article->title }} </h2>
 					<p class="article_text">
-						{{ HTML::image("photos/$article->photo", 'article', ['class'=>'article_photo']) }}
-						{{ $article->text }}
+						{{ HTML::image("photos/$article->image", 'article', ['class'=>'article_photo']) }}
+						{{ $article->body }}
 					</p>
 					<div class="article_button">
 						<p class="article_button_p">К списку</p>

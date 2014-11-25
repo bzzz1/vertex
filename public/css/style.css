@@ -683,10 +683,14 @@ p.title_sort {
 	box-shadow: 0px 0px 10px 5px #c0c0c0;
 }
 .catalog_bottom_pages {
-	display: inline-block;
-	margin-left: 330px;
+	display: table;
+	margin: auto;
 	margin-top: 10px;
 	text-decoration: none;
+}
+ul.pagination {
+	margin-top: 0;
+	margin-bottom: 0;
 }
 .catalog_bottom_pages_item {
 	display: inline-block;
