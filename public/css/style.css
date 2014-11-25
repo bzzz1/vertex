@@ -557,6 +557,39 @@ p.title_sort {
 }
 .catalog_sort_pages_div {
 	float: right;
+	display: inline-block;
+}
+.catalog_sort_pages_div li a{
+	position: relative;
+	float: left;
+	padding: 6px 12px;
+	margin-left: 0; 
+	line-height: inherit; 
+	color: #008ccb;
+	text-decoration: none;
+	background-color: inherit; 
+	border: 0px solid #ddd; 
+	font-weight: bold;
+	margin-left: 5px;
+}
+.catalog_sort_pages_div li a:hover{
+	border-radius: 21px;
+}
+.pagination {
+	margin-bottom: 0;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+.catalog_sort_pages_div li.current a {
+	color: #fff;
+	background-color: #008ccb;
+	border-color: #ddd;
+	border-radius: 21px;
+}
+.catalog_sort_pages_div li.unavailable a {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
 }
 .catalog_sort_pages_ul {
 	color: #646464;
@@ -683,9 +716,9 @@ p.title_sort {
 	box-shadow: 0px 0px 10px 5px #c0c0c0;
 }
 .catalog_bottom_pages {
-	display: inline-block;
-	margin-left: 330px;
+	display: table;
 	margin-top: 10px;
+	margin: auto;
 	text-decoration: none;
 }
 .catalog_bottom_pages_item {
@@ -701,8 +734,39 @@ p.title_sort {
 	font-weight: bold;
 	text-align: center;
 }
-ul.pagination {
-	
+.catalog_bottom_pages li a{
+	position: relative;
+	float: left;
+	padding: 9px 12px;
+	margin-left: 0; 
+	line-height: inherit; 
+	color: #008ccb;
+	text-decoration: none;
+	background-color: inherit; 
+	border: 0px solid #ddd; 
+	font-weight: bold;
+	min-width: 37px;
+	text-align: center;
+	margin-left: 5px;
+}
+.catalog_bottom_pages li a:hover{
+	border-radius: 21px;
+}
+.pagination {
+	margin-bottom: 0;
+	margin-top: 5px;
+	margin-right: 5px;
+}
+.catalog_bottom_pages li.current a {
+	color: #fff;
+	background-color: #008ccb;
+	border-color: #ddd;
+	border-radius: 21px;
+}
+.catalog_bottom_pages li.unavailable a {
+    pointer-events: none; /* делаем ссылку некликабельной */
+    cursor: default;  /* устанавливаем курсор в виде стрелки */
+    color: #999; /* цвет текста для нективной ссылки */
 }
 .catalog_bottom_pages_item:hover {
 	background: #008ccb;
