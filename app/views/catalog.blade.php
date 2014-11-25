@@ -17,16 +17,7 @@
 					<li class="catalog_sort_price catalog_sort_text_li">цене <div class="icon_tr_dw"></div><div class="icon_tr_up"></div></li>
 				</ul>
 				<div class="catalog_sort_pages_div">
-					<ul class="catalog_sort_pages_ul">
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">1 </a></li>
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">2 </a></li>
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">3 </a></li>
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">4 </a></li>
-						<li class="catalog_sort_pages catalog_sort_pages_li dots">...</li>
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">9 </a></li>
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">след</a></li>
-						<li class="catalog_sort_pages catalog_sort_pages_li"><a href="#">>></a></li>
-					</ul>	
+					{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
 				</div>
 			</div><!-- catalog_sort -->
 			<div class="menu catalog_menu">
@@ -89,13 +80,7 @@
 			</div><!-- menu catalog_menu -->
 			<div class="catalog_bottom_pages">
 				{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
-<!-- 				<a class="catalog_sort_pages catalog_bottom_pages_item">1</a>
-				<a class="catalog_sort_pages catalog_bottom_pages_item">2</a>
-				<a class="catalog_sort_pages catalog_bottom_pages_item">3</a>
-				<a class="catalog_sort_pages catalog_bottom_pages_item">4</a>
-				<a class="catalog_sort_pages catalog_bottom_pages_item dots">...</a>
-				<a class="catalog_sort_pages catalog_bottom_pages_item">9</a>
- -->			</div>
+			</div>
 		</div><!--catalog gen -->
 	</div><!-- width_960 catalog_gen -->
 @stop

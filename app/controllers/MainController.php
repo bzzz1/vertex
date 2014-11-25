@@ -50,7 +50,6 @@ class MainController extends BaseController {
 	------------------------------------------------*/
 	public function login() {
 		if (true) {
-
 			// $purchases = Purchase::orderBy('created_at', 'desc')->get();
 			// $items = Item::all();
 			return View::make('admin.admin')->with([
