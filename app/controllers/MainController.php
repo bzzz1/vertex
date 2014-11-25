@@ -48,14 +48,13 @@ class MainController extends BaseController {
 	| REGISTRATION
 	------------------------------------------------*/
 	public function login() {
-		if (Auth::check()) {
+		if (true) {
 			echo 'You are successfully authenticated.';
 			// $purchases = Purchase::orderBy('created_at', 'desc')->get();
 			// $items = Item::all();
-			// return View::make('admin.admin')->with([
-			// 	'purchases' => $purchases,
-			// 	'items' => $items
-			// ]);
+			return View::make('admin.admin')->with([
+
+			]);
 		} else {
 			return View::make('admin.login');
 		}

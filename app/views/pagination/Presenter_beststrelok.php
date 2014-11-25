@@ -279,5 +279,4 @@ abstract class Presenter {
 	{
 		$this->lastPage = $page;
 	}
-
 }
