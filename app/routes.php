@@ -1,6 +1,7 @@
 <?php
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
+Route::get('/admin', 'MainController@login');
 Route::get('/{env}', 'MainController@index');
 Route::get('/{env}/{brand}', 'MainController@catalog');
 

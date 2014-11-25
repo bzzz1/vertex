@@ -1,11 +1,35 @@
 /**************
 *= General
 **************/
+/* regular face of Century_Gothic */
+@font-face {
+  font-family: Century_Gothic;
+  src: url(../fonts/Century_Gothic_TTF/GOTHIC.TTF); 
+}
+/* bold face of Century_Gothic */
+@font-face {
+  font-family: Century_Gothic;
+  src: url(../fonts/Century_Gothic_TTF/GOTHICB.TTF);
+  font-weight: bold;
+}
+/* italic face of Century_Gothic */
+@font-face {
+  font-family: Century_Gothic;
+  src: url(../fonts/Century_Gothic_TTF/GOTHICI.TTF);
+  font-style: italic;
+}
+/* bold italic face of Century_Gothic */
+@font-face {
+  font-family: Century_Gothic;
+  src: url(../fonts/Century_Gothic_TTF/GOTHICIB.TTF);
+  font-style: italic;
+  font-weight: bold;
+}
 body, html {
 	cursor: default;
 	min-height: 100%;
 	position: relative;
-	font-family: 'Century Gothic', sans-serif;
+	font-family: 'Century_Gothic', sans-serif;
 }
 ul {
  	list-style-type: none;
@@ -55,7 +79,8 @@ header {
 }
 .header_discription {
 	line-height: 17px;
-	margin-top: 15px;  
+	margin-top: 15px; 
+	font-weight: bold; 
 }
 .header_callback {
 	margin-top: 24px;
@@ -383,6 +408,9 @@ p.title_sort {
 	font-size:18.6px;
 	font-weight: bold;
 	text-transform: uppercase;
+}
+.footer_p_catalog {
+	margin-bottom: 10px;
 }
 .info_footer_catalog a, .info_footer_services a {
 	text-decoration: none;

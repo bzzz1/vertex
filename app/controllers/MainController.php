@@ -49,11 +49,10 @@ class MainController extends BaseController {
 	------------------------------------------------*/
 	public function login() {
 		if (true) {
-			echo 'You are successfully authenticated.';
+
 			// $purchases = Purchase::orderBy('created_at', 'desc')->get();
 			// $items = Item::all();
 			return View::make('admin.admin')->with([
-
 			]);
 		} else {
 			return View::make('admin.login');

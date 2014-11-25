@@ -15,7 +15,6 @@
 					<li class="catalog_sort_text catalog_sort_text_li">Сортировать по: </li>
 					<li class="catalog_sort_titel catalog_sort_text_li">наименованию <div class="icon_tr_dw"></div><div class="icon_tr_up"></div></li>
 					<li class="catalog_sort_price catalog_sort_text_li">цене <div class="icon_tr_dw"></div><div class="icon_tr_up"></div></li>
-					<li class="catalog_sort_brands catalog_sort_text_li">брендам <div class="icon_tr_dw"></div><div class="icon_tr_up"></div></li>
 				</ul>
 				<div class="catalog_sort_pages_div">
 					<ul class="catalog_sort_pages_ul">
