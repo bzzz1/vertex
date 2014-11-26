@@ -3,7 +3,10 @@ Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
 Route::get('/admin', 'MainController@login');
 Route::get('/{env}', 'MainController@index');
-Route::get('/{env}/{brand}', 'MainController@catalog');
+Route::get('/{env}/{brand}', 'MainController@catalogBrand');
+Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
+Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory');
+
 
 
 Route::get('/technics', ['as'=>'index', 'uses'=>'MainController@index']);

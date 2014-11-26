@@ -6,7 +6,8 @@
 	"require": {
 		"laravel/framework": "4.2.*",
 		"phpmailer/phpmailer": "dev-master",
-		"raveren/kint": "v0.9"
+		"raveren/kint": "v0.9",
+		"phpunit/phpunit": "4.3.*@dev"
 	},
 	"autoload": {
 		"classmap": [

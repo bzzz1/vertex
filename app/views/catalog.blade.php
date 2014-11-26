@@ -9,12 +9,18 @@
 @section('body')
 	<div class="width_960">
 		<div class = "catalog_gen">
-			<h2 class = "groups_title">{{ $current_brand }}</h2>
+			<h2 class = "groups_title">{{ $current }}</h2>
 			<div class="catalog_sort">
 				<ul class="catalog_sort_text_ul">
 					<li class="catalog_sort_text catalog_sort_text_li">Сортировать по: </li>
-					<li class="catalog_sort_titel catalog_sort_text_li">наименованию <div class="icon_tr_dw"></div><div class="icon_tr_up"></div></li>
-					<li class="catalog_sort_price catalog_sort_text_li">цене <div class="icon_tr_dw"></div><div class="icon_tr_up"></div></li>
+					<li class="catalog_sort_titel catalog_sort_text_li">наименованию 
+						{{ HTML::link(URL::current().'?sort=item&order=desc', '', ['class'=>"icon_tr_dw"]) }}
+						{{ HTML::link(URL::current().'?sort=item&order=asc', '', ['class'=>"icon_tr_up"]) }}
+					</li>
+					<li class="catalog_sort_price catalog_sort_text_li">цене 
+						{{ HTML::link(URL::current().'?sort=price&order=desc', '', ['class'=>"icon_tr_dw"]) }}
+						{{ HTML::link(URL::current().'?sort=price&order=asc', '', ['class'=>"icon_tr_up"]) }}
+					</li>
 				</ul>
 				<div class="catalog_sort_pages_div">
 					{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
@@ -33,6 +39,14 @@
 							<tr>
 								<td>Код:&nbsp</td>
 								<td>{{ $item->code }}</td>
+							</tr>
+							<tr>
+								<td>Тип:&nbsp</td>
+								<td class='info_page_item_text'>{{ $item->category }}</td>
+							</tr>
+							<tr>
+								<td>Вид:&nbsp</td>
+								<td class='info_page_item_text'>{{ $item->subcategory }}</td>
 							</tr>
 						</table>
 						<div class='info_page_item_procurement'>
@@ -59,6 +73,14 @@
 											<td>Код:</td>
 											<td>{{ $item->code }}</td>
 										</tr>
+										<tr>
+											<td>Тип:&nbsp</td>
+											<td class='info_page_item_text'>{{ $item->category }}</td>
+										</tr>
+										<tr>
+											<td>Вид:&nbsp</td>
+											<td class='info_page_item_text'>{{ $item->subcategory }}</td>
+										</tr>											
 									</table>
 									<div class='info_page_item_procurement'>
 										@if ($item->procurement == 'МРП') В наличии @else Под заказ @endif 
