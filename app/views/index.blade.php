@@ -107,7 +107,7 @@
 							{{ HTML::link("$env/Технологическое/Всё", 'Показать всё') }}
 						</li>						
 						@foreach ($subcategories['Технологическое'] as $subcategory)
-							<li style="display:none">
+							<li>
 								{{ HTML::link("$env/Технологическое/$subcategory", $subcategory) }}
 							</li>
 						@endforeach
@@ -149,7 +149,7 @@
 							{{ HTML::link("$env/Холодильное/Всё", 'Показать всё') }}
 						</li>						
 						@foreach ($subcategories['Холодильное'] as $subcategory)
-							<li style="display:none">
+							<li>
 								{{ HTML::link("$env/Холодильное/$subcategory", $subcategory) }}
 							</li>
 						@endforeach

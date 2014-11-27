@@ -307,6 +307,8 @@ a.nav_item.selected {
 	font-size: 16px;
 	line-height: 20px;
 	color: #a6b4ba;
+	border: 1px solid #e3f0f7;
+	border-radius: 10px;
 
 }
 .subcategory_block ul {
@@ -349,6 +351,7 @@ a.nav_item.selected {
 .groups {
 	background: #e3f0f7;
 	border-radius: 15px;
+	overflow: hidden;
 }
 .groups a {
 	display: inline-block;
@@ -372,6 +375,7 @@ a.nav_item.selected {
 .groups_title {
 	color: #008ccb;
 	font-size: 24px;
+	font-weight: bold;
 }
 .groups_title a {
 	color: #008ccb;
@@ -382,10 +386,10 @@ a.nav_item.selected {
 	-ms-column-count: 4;
 	-moz-column-count: 4;
 	column-count: 4;
-	-webkit-column-gap: 45px; 
-	-ms-column-gap: 45px; 
-	-moz-column-gap: 45px; 
-	column-gap: 45px;
+	-webkit-column-gap: 0px; 
+	-ms-column-gap: 0px; 
+	-moz-column-gap: 0px; 
+	column-gap: 0px;
 	padding: 10px; 
 	margin-left: 40px;
 }
@@ -496,7 +500,9 @@ p.title_sort {
 | item page
 ------------------------------------------------*/
 .item {
-	background-color: #e4e4e4;
+	background-color: #fff;
+	border: 3px solid #cecece; 
+	border-radius: 10px;
 }
 .item_main {
 	padding: 10px 30px;
@@ -504,7 +510,7 @@ p.title_sort {
 }
 .item {
 	overflow: hidden;
-	width: 600px;
+	width: 527px;
 	margin: auto;
 }
 .item_page_header {
@@ -512,7 +518,7 @@ p.title_sort {
 	display: inline-block;
 	font-size: 18px;
 	margin-left: 25px;
-	margin-bottom: 0px;
+	margin-bottom: 14px;
 }
 .item_price_p {
 	margin-bottom: 0px;
@@ -523,6 +529,8 @@ p.title_sort {
 	padding: 10px;
 	border: 1px solid #e3f0f7;
 	border-radius: 10px;
+	width: 253px;
+	height: 130px;
 }
 .item_photo {
 	width: 100px;
@@ -542,9 +550,9 @@ p.title_sort {
 	padding-bottom: 11px;
 	font-size: 15px;
 	float: right;
-	margin-right: 50px;
 	position: relative;
-	margin-top: -15px;
+	top: 30px;
+	margin-right: 15px;
 }
 .item_price_number {
 	float: left;
@@ -556,14 +564,7 @@ p.title_sort {
 	color: white;
 	font-weight: bold;
 }
-.info_page_item_text {
-	display: inline-block;
-	height: 19px;
-	width: 94px;
-	overflow: hidden;
-	white-space: nowrap;
-	text-overflow: ellipsis;
-}
+
 .info_page_item_text:hover {
 	position: absolute;
 	background: white;
@@ -581,19 +582,27 @@ p.title_sort {
 	clear: left;
 	display: block;
 	font-weight: bold;
-	font-size: 16px;
 	float: left;
+	font-size: 16px;
 }
 .description_item {
 	background: #eeeeee;
 	border-radius: 15px;
 	padding: 15px;
 	margin-top: 10px;
+	clear: both;
 }
 .info_good {
 	background: #c6c6c6;
 	width: 200px;
 	height: 100px;
+}
+.item img {
+	display: inline-block;
+	margin-bottom: 10px;
+}
+.description_item p {
+	margin-bottom: 0;
 }
 /*------------------------------------------------
 | catalog
@@ -744,10 +753,6 @@ p.title_sort {
 	width: 201px;
 }
 
-.catalog_item img {
-	display: inline-block;
-	margin-top: -3px;
-}
 .catalog_item_info_p, .catalog_item_info_p_field, .catalog_item_price_p {
 	margin-bottom: 0px;
 }
@@ -845,6 +850,22 @@ ul.pagination {
 	color: inherit;
 	cursor: default;
 }
+.info_page_item_text {
+	display: inline-block;
+	height: 19px;
+	width: 94px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}
+.win_item_text {
+	display: inline-block;
+	height: 19px;
+	width: 172px;
+	overflow: hidden;
+	white-space: nowrap;
+	text-overflow: ellipsis;
+}s
 /*------------------------------------------------
 | article
 ------------------------------------------------*/
@@ -880,9 +901,12 @@ ul.pagination {
 .article_preview_header, .article_header {
 	display: inline-block;
 	color: #008ccb;
-	font-size: 18px;
+	font-size: 20px;
 	margin-left: 20px;
-	margin-bottom: 15px;
+	margin-bottom: 0px;
+}
+.article_header {
+	display: block;
 }
 .article_photo_preview, .article_photo {
 	float: left;
@@ -918,7 +942,7 @@ ul.pagination {
 }
 /*article_full*/
 .article_block {
-	padding: 10px 5px 15px 5px;
+	padding: 15px 30px 15px 40px;
 	width: 880px;
 	box-shadow: 0 0 15px 3px #c0c0c0;
 	margin-top: 15px;
@@ -927,10 +951,11 @@ ul.pagination {
 	display: inline-block;
 }
 .article_header {
-	font-size: 21px;
+	font-size: 25px;
 	text-align: center;
 }
 .article_text {
+	white-space: pre-line;
 	margin-bottom: 0;
 }
 /*------------------------------------------------

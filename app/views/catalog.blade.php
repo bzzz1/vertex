@@ -57,20 +57,18 @@
 							<p class="catalog_item_price_p catalog_item_price_number">{{ $item->price }}&nbsp</p>
 							<p class="catalog_item_price_p catalog_item_price_currency">{{ $item->currency }}</p>
 						</div>
-						
-				@endforeach
-				<!--****************************************************
+						<!--****************************************************
 						| ITEM PAGE
 						*****************************************************-->
-						<div class="item">
-							<h1 class="item_page_header">{{ $item->item }}</h1>
+						<div class="item" style="display:none" >
 							<div class="item_main clearfix">
+								<h1 class="item_page_header">{{ $item->item }}</h1>
 								{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
 								<div class="item_page_right_div">
 									<table class="info_item_page">
 										<tr>
-											<td>Бренд:</td>
-											<td class='info_page_item_text'>{{ $item->producer }}</td>
+											<td>Бренд:&nbsp&nbsp&nbsp&nbsp</td>
+											<td class='info_page_item_text win_item_text'>{{ $item->producer }}</td>
 										</tr>
 										<tr>
 											<td>Код:</td>
@@ -78,11 +76,11 @@
 										</tr>
 										<tr>
 											<td>Тип:&nbsp</td>
-											<td class='info_page_item_text'>{{ $item->category }}</td>
+											<td class='info_page_item_text win_item_text'>{{ $item->category }}</td>
 										</tr>
 										<tr>
 											<td>Вид:&nbsp</td>
-											<td class='info_page_item_text'>{{ $item->subcategory }}</td>
+											<td class='info_page_item_text win_item_text'>{{ $item->subcategory }}</td>
 										</tr>											
 									</table>
 									<div class='info_page_item_procurement'>
@@ -99,6 +97,7 @@
 							</div><!-- item_main clearfix -->
 						</div><!-- item -->	
 					</div>
+				@endforeach	
 			</div><!-- menu catalog_menu -->
 			<div class="catalog_bottom_pages">
 				{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
