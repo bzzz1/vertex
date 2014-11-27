@@ -299,17 +299,22 @@ a.nav_item.selected {
 	top: 788px;
 	right: 273px;
 }*/
-.subcategory_block{
+.subcategory_block {
 	width: 880px;
 	background: #e3f0f7;
-	color: white;
-	margin-top: -23px;
-	display: inline-block;
+	margin-top: 0px;
+	display: block;
+	font-size: 16px;
+	line-height: 20px;
+	color: #a6b4ba;
+
 }
 .subcategory_block ul {
 	height: 10px;
 }
-
+.subcategory_block a:hover {
+	text-decoration: underline;
+}
 .subcategory_column {
 	width: 880px;
 	-webkit-column-count: 4;
