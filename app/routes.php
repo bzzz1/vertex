@@ -2,6 +2,9 @@
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
 Route::get('/admin', 'MainController@login');
+Route::get('/admin/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearch']);
+Route::get('/admin/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearch']);
+Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
 Route::get('/{env}', 'MainController@index');
 Route::get('/{env}/{brand}', 'MainController@catalogBrand');
 Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
@@ -20,7 +23,6 @@ Route::get('/{type}/{groupby}/{param}', 'MainController@categorization');
 
 Route::get('/admin', 'MainController@login');
 Route::get('/category', 'MainController@index');
-
 Route::get('/test', 'MainController@get_producers');
 
 

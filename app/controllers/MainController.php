@@ -50,14 +50,37 @@ class MainController extends BaseController {
 		]);	
 	}
 	
-	public function login() {
+	/*------------------------------------------------
+	| ADMIN AREA
+	------------------------------------------------*/
+	public function login($env='items') {
 		if (true) {
 			return View::make('admin.admin')->with([
-
+				'env' 	=> $env
 			]);
 		} else {
-			return View::make('admin.login');
+			return View::make('admin.login')->with([
+				'env' 	=> $env
+			]);
 		}
+	}
+
+	public function codeSearch() {
+		$code = Input::get('code');
+
+		return View::make('admin/admin_catalog')->with([
+			'current' 		=> $code,
+			'items' 		=> Item::giveItemByCode($code)
+		]);
+	}
+
+	public function itemSearch() {
+		$param = Input::get('param');
+
+		return View::make('admin/admin_catalog')->with([
+			'current' 		=> $param,
+			'items' 		=> Item::giveItemsBySearch($param)
+		]);
 	}
 
 	// public function category($category) {

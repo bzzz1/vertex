@@ -1,5 +1,5 @@
 @extends('layout')
-@extends('header')
+@extends('admin/admin_header')
 @extends('footer')
 
 @section('css')

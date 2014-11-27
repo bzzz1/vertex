@@ -19,18 +19,10 @@
 			</h1>
 		</header>
 		<div class="main_nav">
-			<nav>
-				<div class="mask_nav_item">
-					<a href="/items" class="nav_item @if ($env == 'items') selected @endif">Техника</a>
-				</div>
-				<div class="mask_nav_item">
-					<a href="/spares" class="nav_item @if ($env == 'spares') selected @endif">Запчасти</a>
-				</div>
-				<div class="mask_nav_item">
-					<a href="/info" class="nav_item @if ($env == 'info') selected @endif">Информация</a>
-				</div>
-			</nav>
-			{{ Form::open(array('route' => "itemSearch", 'method' => 'GET', 'class'=>'header_search')) }}
+			{{ Form::open(array('route' => "codeSearchAdmin", 'method' => 'GET', 'class'=>'code_search')) }}
+				{{ Form::text('code', null, ['placeholder'=>"     Поиск по коду", 'class'=>'search_field']) }} 
+			{{ Form::close() }}
+			{{ Form::open(array('route' => "itemSearchAdmin", 'method' => 'GET', 'class'=>'header_search')) }}
 				{{ Form::text('param', null, ['placeholder'=>"     Поиск товаров", 'class'=>'search_field']) }} 
 			{{ Form::close() }}
 		</div><!-- main_nav -->

@@ -126,6 +126,10 @@ header {
 	outline: none;
 	margin-right: -3px; 
 }
+.code_search {
+	float: left;
+	margin-top: 8px;
+}
 .search_field {
 	background-image: url(../icons/search_icon.png);
 	background-repeat: no-repeat;
