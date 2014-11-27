@@ -367,6 +367,7 @@ a.nav_item.selected {
 .groups_title {
 	color: #008ccb;
 	font-size: 24px;
+	font-weight: bold;
 }
 .groups_title a {
 	color: #008ccb;
@@ -987,4 +988,53 @@ ul.pagination {
 }
 .admin_add_change, .admin_preview_item {
 	margin-top: 20px;
+}
+.change_item {
+	width: 880px;
+	border: 1px solid #cecece;
+	border-radius: 5px;
+	margin: auto;
+	margin-top: 10px;
+}
+.item_form {
+	display: inline-block;
+	width: 590px;
+	border: 1px solid #cecece;
+	vertical-align: top;
+	padding: 15px;
+}
+.item_preview {
+	display: inline-block;
+	width: 284px;
+	border: 1px solid #cecece;
+	vertical-align: top;
+}
+.change_item .groups_title {
+	margin-top: 10px;
+	margin-bottom: 10px;
+	margin-left: 40px;
+}
+.change_item .main_label {
+	font-family: 'Century_Gothic', sans-serif;
+	color: black;
+	margin-right: 20px;
+}
+.item_form td {
+	height: 30px;
+}
+.item_form textarea {
+	width: 400px;
+}
+.item_form input[type=text] {
+	width: 400px;
+}
+input.input_file {
+	display: inline-block;
+}
+.item_preview .catalog_item {
+	margin-left: 10px;
+}
+input.change_radio {
+	margin-top: 5px;
+	margin-right: 10px;
 }
