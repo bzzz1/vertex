@@ -10,11 +10,24 @@
 	<div class="width_960">
 		<div class="main_menu">
 
-			<div class="category_icon_block bar_icon_block" href="index.html">
+			<div class="category_icon_block bar_icon_block" data-category='Барное'>
 				<div class="free_space"></div>
 				<p class="category_icon_title">Барное</br>оборудование</p>
 			</div>
-			<div class="subcategory_block first_line">
+			<div class="category_icon_block neutral_icon_block" data-category='Нейтральное'>
+				<div class="free_space"></div>
+				<p class="category_icon_title">Нейтральное оборудование</p>
+			</div>			
+			<div class="category_icon_block inventory_icon_block" data-category='Посуда и инвентарь'>
+				<div class="free_space"></div>
+				<p class="category_icon_title">Посуда и</br>инвентарь</p>
+			</div>
+			<div class="category_icon_block wash_icon_block" data-category='Посудомоечное'>
+				<div class="free_space"></div>
+				<p class="category_icon_title">Посудомоечное оборудование</p>
+			</div>
+			
+			<div class="subcategory_block first_line" data-category='Барное'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
@@ -28,11 +41,7 @@
 					</ul>
 				</div><!-- brands_column -->
 			</div><!-- subcategory block -->
-			<div class="category_icon_block neutral_icon_block" href="index.html">
-				<div class="free_space"></div>
-				<p class="category_icon_title">Нейтральное оборудование</p>
-			</div>
-			<div class="subcategory_block first_line">
+			<div class="subcategory_block first_line" data-category='Нейтральное'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
@@ -46,11 +55,7 @@
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-			<div class="category_icon_block inventory_icon_block" href="index.html">
-				<div class="free_space"></div>
-				<p class="category_icon_title">Посуда и</br>инвентарь</p>
-			</div>
-			<div class="subcategory_block first_line">
+			<div class="subcategory_block first_line" data-category='Посуда и инвентарь'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
@@ -64,11 +69,7 @@
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-			<div class="category_icon_block wash_icon_block" href="index.html">
-				<div class="free_space"></div>
-				<p class="category_icon_title">Посудомоечное оборудование</p>
-				</div>
-				<div class="subcategory_block first_line">
+			<div class="subcategory_block first_line" data-category='Посудомоечное'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
@@ -82,29 +83,38 @@
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-			<div class="category_icon_block tech_icon_block" href="index.html">
+
+			<div class="category_icon_block tech_icon_block" data-category='Технологическое'>
 				<div class="free_space"></div>
 				<p class="category_icon_title">Технологическое оборудование</p>
 			</div>
-			<div class="subcategory_block second_line">
+			<div class="category_icon_block packing_icon_block" data-category='Упаковочное'>
+				<div class="free_space"></div>
+				<p class="category_icon_title">Упаковочное оборудование</p>
+			</div>
+			<div class="category_icon_block bread_icon_block" data-category='Хлебопекарное'>
+				<div class="free_space"></div>
+				<p class="category_icon_title">Хлебопекарное оборудование</p>
+			</div>
+			<div class="category_icon_block freez_icon_block" data-category='Холодильное'>
+				<div class="free_space"></div>
+				<p class="category_icon_title">Холодильное оборудование</p>
+			</div>
+			<div class="subcategory_block second_line" data-category='Технологическое'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
 							{{ HTML::link("$env/Технологическое/Всё", 'Показать всё') }}
 						</li>						
 						@foreach ($subcategories['Технологическое'] as $subcategory)
-							<li style="display:none">
+							<li>
 								{{ HTML::link("$env/Технологическое/$subcategory", $subcategory) }}
 							</li>
 						@endforeach
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-			<div class="category_icon_block packing_icon_block" href="index.html">
-				<div class="free_space"></div>
-				<p class="category_icon_title">Упаковочное оборудование</p>
-			</div>
-			<div class="subcategory_block second_line">
+			<div class="subcategory_block second_line" data-category='Упаковочное'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
@@ -118,11 +128,7 @@
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-			<div class="category_icon_block bread_icon_block" href="index.html">
-				<div class="free_space"></div>
-				<p class="category_icon_title">Хлебопекарное оборудование</p>
-			</div>
-			<div class="subcategory_block second_line">
+			<div class="subcategory_block second_line" data-category='Хлебопекарное'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
@@ -136,25 +142,20 @@
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-			<div class="category_icon_block freez_icon_block" href="index.html">
-				<div class="free_space"></div>
-				<p class="category_icon_title">Холодильное оборудование</p>
-			</div>
-			<div class="subcategory_block second_line">
+			<div class="subcategory_block second_line" data-category='Холодильное'>
 				<div class="subcategory_column">
 					<ul>
 						<li>
 							{{ HTML::link("$env/Холодильное/Всё", 'Показать всё') }}
 						</li>						
 						@foreach ($subcategories['Холодильное'] as $subcategory)
-							<li style="display:none">
+							<li>
 								{{ HTML::link("$env/Холодильное/$subcategory", $subcategory) }}
 							</li>
 						@endforeach
 					</ul>
 				</div><!-- brands_column -->
 			</div>
-
 			<hr class = "main_hr" />
 			<div class = "groups">
 				<div class="brands">
