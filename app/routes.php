@@ -2,8 +2,8 @@
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
 Route::get('/admin', 'MainController@login');
-Route::get('/admin/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearch']);
-Route::get('/admin/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearch']);
+Route::get('/admin/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearchAdmin']);
+Route::get('/admin/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearchAdmin']);
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
 Route::get('/{env}', 'MainController@index');
 Route::get('/{env}/{brand}', 'MainController@catalogBrand');

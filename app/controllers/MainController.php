@@ -65,7 +65,7 @@ class MainController extends BaseController {
 		}
 	}
 
-	public function codeSearch() {
+	public function codeSearchAdmin() {
 		$code = Input::get('code');
 
 		return View::make('admin/admin_catalog')->with([
@@ -74,12 +74,23 @@ class MainController extends BaseController {
 		]);
 	}
 
-	public function itemSearch() {
+	public function itemSearchAdmin() {
 		$param = Input::get('param');
 
 		return View::make('admin/admin_catalog')->with([
 			'current' 		=> $param,
 			'items' 		=> Item::giveItemsBySearch($param)
+		]);
+	}
+
+	public function itemSearch() {
+		$param = Input::get('param');
+		$env = null;
+
+		return View::make('catalog')->with([
+			'current' 		=> $param,
+			'items' 		=> Item::giveItemsBySearch($param),
+			'env'			=> $env
 		]);
 	}
 
