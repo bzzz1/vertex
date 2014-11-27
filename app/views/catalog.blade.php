@@ -57,13 +57,15 @@
 							<p class="catalog_item_price_p catalog_item_price_number">{{ $item->price }}&nbsp</p>
 							<p class="catalog_item_price_p catalog_item_price_currency">{{ $item->currency }}</p>
 						</div>
-						<!--****************************************************
+						
+				@endforeach
+				<!--****************************************************
 						| ITEM PAGE
 						*****************************************************-->
-						<div class="item" style='display: none; position: absolute'>
+						<div class="item">
 							<h1 class="item_page_header">{{ $item->item }}</h1>
 							<div class="item_main clearfix">
-								{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}
+								{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
 								<div class="item_page_right_div">
 									<table class="info_item_page">
 										<tr>
@@ -92,14 +94,11 @@
 									</div>
 								</div><!-- item_page_right_div -->
 								<div class="description_item">
-									<p>Холодильный шкаф TM 40 G предназначен для размещения на прилавках или монтирования на стену за стойкой бара. Холодильный шкаф помогает оптимизировать рабочее пространство внутри бара. В таком холодильном шкафу удобно хранить различные охлажденные продукты, которые бармен использует в процессе работы. Для удобства демонстрации хранимых в таком холодильнике продуктов предусмотрена стеклянная дверь и внутренняя подсветка.
-									Материал корпуса - крашенный метал. Внутренний объем шкафа выполнен из пластика.
-									Холодильный шкаф TM 40 G имеет электромеханическую систему управления.</p>
+									<p>{{ $item->description }}</p>
 								</div><!-- description_item -->
 							</div><!-- item_main clearfix -->
 						</div><!-- item -->	
 					</div>
-				@endforeach
 			</div><!-- menu catalog_menu -->
 			<div class="catalog_bottom_pages">
 				{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}

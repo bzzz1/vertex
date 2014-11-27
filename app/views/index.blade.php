@@ -13,27 +13,25 @@
 			<div class="category_icon_block bar_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Барное</br>оборудование</p>
-				<div class="subcategory_block">
-					<div class="subcategory_block">
-						<div class="subcategory_column">
-							<ul>
+				<div class="subcategory_block first_line">
+					<div class="subcategory_column">
+						<ul>
+							<li>
+								{{ HTML::link("$env/Барное/Всё", 'Показать всё') }}
+							</li>
+							@foreach ($subcategories['Барное'] as $subcategory)
 								<li>
-									{{ HTML::link("$env/Барное/Всё", 'Показать всё') }}
+									{{ HTML::link("$env/Барное/$subcategory", $subcategory) }}
 								</li>
-								@foreach ($subcategories['Барное'] as $subcategory)
-									<li>
-										{{ HTML::link("$env/Барное/$subcategory", $subcategory) }}
-									</li>
-								@endforeach
-							</ul>
-						</div><!-- brands_column -->
-					</div><!-- subcategory block -->
-				</div>
+							@endforeach
+						</ul>
+					</div><!-- brands_column -->
+				</div><!-- subcategory block -->
 			</div>
 			<div class="category_icon_block neutral_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Нейтральное оборудование</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block first_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
@@ -51,7 +49,7 @@
 			<div class="category_icon_block inventory_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Посуда и</br>инвентарь</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block first_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
@@ -69,7 +67,7 @@
 			<div class="category_icon_block wash_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Посудомоечное оборудование</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block first_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
@@ -87,14 +85,14 @@
 			<div class="category_icon_block tech_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Технологическое оборудование</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block second_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
 								{{ HTML::link("$env/Технологическое/Всё", 'Показать всё') }}
 							</li>						
 							@foreach ($subcategories['Технологическое'] as $subcategory)
-								<li>
+								<li style="display:none">
 									{{ HTML::link("$env/Технологическое/$subcategory", $subcategory) }}
 								</li>
 							@endforeach
@@ -105,7 +103,7 @@
 			<div class="category_icon_block packing_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Упаковочное оборудование</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block second_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
@@ -123,7 +121,7 @@
 			<div class="category_icon_block bread_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Хлебопекарное оборудование</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block second_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
@@ -141,14 +139,14 @@
 			<div class="category_icon_block freez_icon_block" href="index.html">
 				<div class="free_space"></div>
 				<p class="category_icon_title">Холодильное оборудование</p>
-				<div class="subcategory_block">
+				<div class="subcategory_block second_line">
 					<div class="subcategory_column">
 						<ul>
 							<li>
 								{{ HTML::link("$env/Холодильное/Всё", 'Показать всё') }}
 							</li>						
 							@foreach ($subcategories['Холодильное'] as $subcategory)
-								<li>
+								<li style="display:none">
 									{{ HTML::link("$env/Холодильное/$subcategory", $subcategory) }}
 								</li>
 							@endforeach
