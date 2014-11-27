@@ -285,7 +285,7 @@ a.nav_item.selected {
 .free_space {
 	height: 110px;
 }
-.first_line {
+/*.first_line {
 	position: absolute;
 	top: 408px;
 	right: 272px;
@@ -298,7 +298,7 @@ a.nav_item.selected {
 	position: absolute;
 	top: 788px;
 	right: 273px;
-}
+}*/
 .subcategory_block{
 	width: 880px;
 	background: #e3f0f7;
