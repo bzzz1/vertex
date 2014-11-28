@@ -531,6 +531,7 @@ clear
 }
 h2.catalog_item_header:hover + .item, .item:hover {
 	display: block;
+	margin-right: 300px;
 }
 .item_page_header {
 	color: #008ccb;
@@ -1116,3 +1117,19 @@ input.submit_field {
 form.submit_form {
 	width: 60px;
 }
+.info_page_admin_button {
+	margin: 40px;
+	background: #cecece;
+	color: #008ccb;
+	border: 1px solid #cecece;
+	border-radius: 10px;
+	padding: 10px;
+	outline: none;
+	font-size: 16px;
+}
+.info_page_admin_button:hover {
+	background: #008ccb;
+	color: #fff;
+	border: 1px solid #008ccb;
+	outline: none;
+}	

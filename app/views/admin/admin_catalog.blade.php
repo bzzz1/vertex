@@ -262,12 +262,12 @@
 								<p class="catalog_item_price_p catalog_item_price_number">{{ $element->price }}&nbsp</p>
 								<p class="catalog_item_price_p catalog_item_price_currency">{{ $element->currency }}</p>
 							</div>
+							<button class="info_page_admin_button">Перейти к редактированию информации</button>	
 						</div>
 					</div>
 				</div>
 			@endif
 			{{-- @if (isset($element)) --}}
-
 		</div><!--catalog gen -->
 	</div><!-- width_960 catalog_gen -->
 @stop

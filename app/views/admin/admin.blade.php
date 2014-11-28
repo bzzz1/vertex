@@ -7,9 +7,11 @@
 @stop
 
 @section('body')
-	<!-- <div class="width_960">
-		<div class='change_item'>
+	<div class="width_960">
+		<!-- <div class='change_item'> -->
 		
-		</div>
-	</div> -->
+		<!-- </div> -->
+		<button class="info_page_admin_button">Перейти к редактированию информации</button>	
+	</div>
+
 @stop
