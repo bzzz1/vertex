@@ -41,18 +41,26 @@ class MainController extends BaseController {
 		]);
 	}
 
-	public function info() {
-		$env = 'info';
+	public function itemSearch() {
+		$param = Input::get('param');
 
+		return View::make('catalog')->with([
+			'current' 		=> $param,
+			'items' 		=> Item::giveItemsBySearch($param),
+			'env'			=> null
+		]);
+	}
+
+	public function info() {
 		return View::make('info')->with([
 			'articles'  => Article::giveArticles(),
-			'env' 		=> $env
+			'env' 		=> 'info'
 		]);	
 	}
 	
-	/*------------------------------------------------
-	| ADMIN AREA
-	------------------------------------------------*/
+/*------------------------------------------------
+| ADMIN AREA
+------------------------------------------------*/
 	public function login($env='items') {
 		if (true) {
 			return View::make('admin.admin')->with([
@@ -65,12 +73,16 @@ class MainController extends BaseController {
 		}
 	}
 
+/*------------------------------------------------
+| admin/admin_catalog
+------------------------------------------------*/
 	public function codeSearchAdmin() {
 		$code = Input::get('code');
 
 		return View::make('admin/admin_catalog')->with([
 			'current' 		=> $code,
-			'items' 		=> Item::giveItemByCode($code)
+			'items' 		=> Item::giveItemByCode($code),
+			'element'		=> null
 		]);
 	}
 
@@ -79,19 +91,25 @@ class MainController extends BaseController {
 
 		return View::make('admin/admin_catalog')->with([
 			'current' 		=> $param,
-			'items' 		=> Item::giveItemsBySearch($param)
+			'items' 		=> Item::giveItemsBySearch($param),
+			'element'		=> null
 		]);
 	}
 
-	public function itemSearch() {
-		$param = Input::get('param');
-		$env = null;
+	public function changeItem() {
+		$code = Input::get('code');
+		$param = null;
 
-		return View::make('catalog')->with([
+		return View::make('admin/admin_catalog')->with([
 			'current' 		=> $param,
-			'items' 		=> Item::giveItemsBySearch($param),
-			'env'			=> $env
+			'items' 		=> null,
+			'element'		=> Item::giveElementByCode($code)
 		]);
+	}
+
+	public function deleteItem() {
+		$code = Input::get('code');
+		dd($code);
 	}
 
 	// public function category($category) {

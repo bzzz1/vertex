@@ -499,26 +499,46 @@ p.title_sort {
 /*------------------------------------------------
 | item page
 ------------------------------------------------*/
+/*
+ ::first-line 
+font properties
+color properties
+background properties
+word-spacing
+letter-spacing
+text-decoration
+vertical-align
+text-transform
+line-height
+clear
+*/
 .item {
-	background-color: #fff;
+	position: absolute;
+	top: 25px;
+	left: -130px;
+	z-index: 10;
+	background: #fff;
 	border: 3px solid #cecece; 
 	border-radius: 10px;
-}
-.item_main {
-	padding: 10px 30px;
-	margin-top: 0px;
-}
-.item {
 	overflow: hidden;
-	width: 527px;
+	width: 505px;
 	margin: auto;
+	padding: 10px;
+	display: none;
+}
+.item .info_item_page {
+	width: 165px;
+}
+h2.catalog_item_header:hover + .item, .item:hover {
+	display: block;
 }
 .item_page_header {
 	color: #008ccb;
 	display: inline-block;
 	font-size: 18px;
-	margin-left: 25px;
 	margin-bottom: 14px;
+	width: 100%;
+	text-align: center;
 }
 .item_price_p {
 	margin-bottom: 0px;
@@ -529,8 +549,8 @@ p.title_sort {
 	padding: 10px;
 	border: 1px solid #e3f0f7;
 	border-radius: 10px;
-	width: 253px;
-	height: 130px;
+	width: 265px;
+	height: 150px;
 }
 .item_photo {
 	width: 100px;
@@ -584,6 +604,9 @@ p.title_sort {
 	font-weight: bold;
 	float: left;
 	font-size: 16px;
+}
+.item .info_page_item_procurement {
+	margin-left: 0;
 }
 .description_item {
 	background: #eeeeee;
@@ -719,6 +742,7 @@ p.title_sort {
 	margin-top: 15px;
 	margin-bottom: 15px;
 	vertical-align: top;
+	position: relative;
 }
 .catalog_item:nth-child(3n+2) {
 	margin-left: 45px;
@@ -746,6 +770,7 @@ p.title_sort {
 	display: inline-block;
 	margin: 0;
 	vertical-align: top;
+	width: 145px;
 }
 .catalog_item_info {
 	display: inline-block;
@@ -853,7 +878,7 @@ ul.pagination {
 .info_page_item_text {
 	display: inline-block;
 	height: 19px;
-	width: 94px;
+	width: 84px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -1057,6 +1082,18 @@ ul.pagination {
 .item_form input[type=text] {
 	width: 400px;
 }
+.item_form input[type=number], .item_form input[type=text] {
+	padding: 0px 5px;
+}
+.item_form textarea {
+	padding: 5px;
+}
+input[type=text].change_input_code, input[type=number].change_input_code{
+	width: 100px;
+}
+input[type=text].change_input_short {
+	width: 160px;
+}
 input.input_file {
 	display: inline-block;
 }
@@ -1065,5 +1102,17 @@ input.input_file {
 }
 input.change_radio {
 	margin-top: 5px;
-	margin-right: 10px;
+}
+label.small_label {
+	margin-right: 15px;
+}
+input.submit_field {
+	width: 55px;
+	height: 20px;
+	padding: 0px 0px;
+	font-size: 10px;
+	font-weight: bold;
+}
+form.submit_form {
+	width: 60px;
 }

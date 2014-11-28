@@ -10,6 +10,9 @@ Route::get('/{env}/{brand}', 'MainController@catalogBrand');
 Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
 Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory');
 
+// apply auth filter:
+Route::post('/admin/changeItem', 'MainController@changeItem');
+Route::post('/admin/deleteItem', 'MainController@deleteItem');
 
 
 Route::get('/technics', ['as'=>'index', 'uses'=>'MainController@index']);

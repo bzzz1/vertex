@@ -84,6 +84,13 @@ class Item extends Eloquent {
 		return $item;
 	}
 
+	public static function giveElementByCode($code) {
+		$element = new Item;
+		$element = $element->where('code', $code);
+		$element = $element->first();
+		return $element;
+	}
+
 	public static function giveItemsBySearch($param) {
 		$sort = Input::get('sort', 'item');
 		$order = Input::get('order', 'ASC');
