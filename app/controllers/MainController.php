@@ -61,21 +61,16 @@ class MainController extends BaseController {
 /*------------------------------------------------
 | ADMIN AREA
 ------------------------------------------------*/
-	public function login($env='items') {
+	public function login() {
 		if (true) {
 			return View::make('admin.admin')->with([
-				'env' 	=> $env
+				'element'	=> new Item
 			]);
 		} else {
-			return View::make('admin.login')->with([
-				'env' 	=> $env
-			]);
+			return View::make('admin.login');
 		}
 	}
 
-/*------------------------------------------------
-| admin/admin_catalog
-------------------------------------------------*/
 	public function codeSearchAdmin() {
 		$code = Input::get('code');
 
@@ -113,7 +108,9 @@ class MainController extends BaseController {
 	}
 
 	public function adminInfo() {
-		return View::make('admin/info');
+		return View::make('admin/admin_info')->with([
+			'articles' 		=> Article::giveArticles()
+		]);;
 	}
 
 	// public function category($category) {

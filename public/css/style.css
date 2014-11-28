@@ -1108,6 +1108,9 @@ form.submit_form {
 	width: 60px;
 }
 .info_page_admin_button {
+	display: inline-block;
+	text-align: center;
+	text-decoration: none;
 	margin: 40px;
 	background: #cecece;
 	color: #008ccb;
@@ -1121,5 +1124,6 @@ form.submit_form {
 	background: #008ccb;
 	color: #fff;
 	border: 1px solid #008ccb;
+	text-decoration: none;
 	outline: none;
 }	

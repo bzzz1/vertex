@@ -11,29 +11,21 @@
 		<div class="article_area">
 			@foreach($articles as $article)	
 				<!-- article_prewiew -->
-				<div class="article_preview" style="display:none">
+				<div class="article_preview">
 					<h2 class="article_preview_header">{{ $article->title }}</h2>
+					{{ HTML::image("photos/$article->image", 'article', ['class'=>'article_photo_preview']) }}
 					<p class="article_preview_text">
-						{{ HTML::image("photos/$article->image", 'article', ['class'=>'article_photo_preview']) }}
 						{{ $article->body }}
 					</p>
 					<div class="article_button">
-						<p class="article_button_p">Полная статья</p>
+						<p class="article_button_p">Читать</p>
 					</div>	
 				</div> <!-- article_preview -->
 				<!-- article_full -->
-				<div class="article_block">
-					<h2 class="article_header"> {{ $article->title }} </h2>
-					<p class="article_text">
-						{{ HTML::image("photos/$article->image", 'article', ['class'=>'article_photo']) }}
-						{{ $article->body }}
-					</p>
-					<div class="article_button">
-						<p class="article_button_p">Превью</p>
-					</div>
-				</div><!-- article_block -->
 			@endforeach
 	 	</div>
+
+
 		@if (isset($element))	
 			<div class='change_item'>
 				<h2 class="groups_title">Заголовок: {{ $article->title }} </h2>
@@ -89,5 +81,6 @@
 			</div>
 		@endif
 		{{-- @if (isset($element)) --}}
+		
 	</div>	
 @stop
