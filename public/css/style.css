@@ -128,7 +128,7 @@ header {
 }
 .code_search {
 	float: left;
-	margin-top: 8px;
+	margin-top: 9px;
 }
 .search_field {
 	background-image: url(../icons/search_icon.png);
@@ -153,7 +153,7 @@ header {
 *= navigaion
 **************/
 nav {
-	padding-bottom: 2px;
+	padding-bottom: 3px;
 	font-size: 16px;
 	display: inline-block;
 }
@@ -368,7 +368,7 @@ a.nav_item.selected {
 	height: 20px;
 	line-height: 18px;
 	width: auto;
-	white-space: normal;
+	white-space: nowrap;
 	padding: 0px 6px;
 	border-radius: 10px;
 }
@@ -551,7 +551,6 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	border: 1px solid #e3f0f7;
 	border-radius: 10px;
 	width: 265px;
-	height: 150px;
 }
 .item_photo {
 	width: 100px;
@@ -588,6 +587,7 @@ h2.catalog_item_header:hover + .item, .item:hover {
 
 .info_page_item_text:hover {
 	position: absolute;
+	z-index: 10;
 	background: white;
 	border: 1px solid #cecece;
 	box-shadow: inset 1px 1px 3px #cecece;
@@ -608,6 +608,7 @@ h2.catalog_item_header:hover + .item, .item:hover {
 }
 .item .info_page_item_procurement {
 	margin-left: 0;
+	margin-top: 15px;
 }
 .description_item {
 	background: #eeeeee;
@@ -900,52 +901,40 @@ ul.pagination {
 	box-shadow: 0 -10px 15px #959595, 0 5px 20px #959595, -7px 0px 20px #959595;
 }
 /*preview*/
-.article_preview, .atricle_blog {
+.article_preview {
 	display: inline-block;
 }
 .article_preview {
-	padding: 10px 5px 15px 5px;
-	height: 359px;
-	width: 880px;
+	padding: 15px 15px 15px 30px;
 	box-shadow: 0 0 15px 3px #c0c0c0;
-	margin-top: 15px;
+	margin-top: 9px;
 	margin-bottom: 15px;
 	vertical-align: top;
 	overflow: hidden;
 }
-/*.groups a:hover {
-	background: white;
-	border: 1px solid #cecece;
-	box-shadow: inset 1px 1px 3px #cecece;
-	height: 20px;
-	line-height: 18px;
-	width: auto;
-	white-space: normal;
-	padding: 0px 6px;
-	border-radius: 10px;
-}*/
-.article_preview_header, .article_header {
-	display: inline-block;
+.article_preview_header {
 	color: #008ccb;
-	font-size: 20px;
+	font-size: 24px;
 	margin-left: 20px;
 	margin-bottom: 0px;
+	text-align: center;
+	font-weight: bold;
 }
 .article_header {
 	display: block;
 }
-.article_photo_preview, .article_photo {
+.article_photo_preview {
 	float: left;
 	margin: 3px;
 	vertical-align: top;
 	margin-right: 5px;
 }
 .article_preview_text {
-	overflow-y: hidden;
+	overflow-y: hidden; /*JS*/
 	white-space: pre-line;
-	text-overflow: ellipsis;
-	height: 270px;
+	height: 290px; /*JS*/
 	margin-bottom: 0;
+	font-size: 15px;
 
 }
 .article_button {
@@ -961,6 +950,7 @@ ul.pagination {
 }
 .article_button_p {
 	margin: 0;
+	cursor: pointer;
 }
 .article_button:hover{
 	color: #fff;

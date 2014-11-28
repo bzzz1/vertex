@@ -112,6 +112,10 @@ class MainController extends BaseController {
 		dd($code);
 	}
 
+	public function adminInfo() {
+		return View::make('admin/info');
+	}
+
 	// public function category($category) {
 	// 	// $categories = DB::table('products')->where('subcategory', $category)->get();
 	// 	return View::make('catalog')->with([

@@ -2,6 +2,7 @@
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
 Route::get('/admin', 'MainController@login');
+Route::get('/admin/info', 'MainController@adminInfo');
 Route::get('/admin/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearchAdmin']);
 Route::get('/admin/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearchAdmin']);
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);

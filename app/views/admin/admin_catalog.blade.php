@@ -50,7 +50,7 @@
 										</tr>
 										<tr>
 											<td>Код:</td>
-											<td>{{ $item->code }}</td>
+											<td class='info_page_item_text win_item_text'>{{ $item->code }}</td>
 										</tr>
 										<tr>
 											<td>Тип:&nbsp</td>
@@ -82,7 +82,7 @@
 								</tr>
 								<tr>
 									<td>Код:&nbsp</td>
-									<td>{{ $item->code }}</td>
+									<td  class='info_page_item_text'>{{ $item->code }}</td>
 								</tr>
 								<tr>
 									<td>Тип:&nbsp</td>
@@ -212,7 +212,7 @@
 										</tr>
 										<tr>
 											<td>Код:</td>
-											<td>{{ $element->code }}</td>
+											<td class='info_page_item_text win_item_text'>{{ $element->code }}</td>
 										</tr>
 										<tr>
 											<td>Тип:&nbsp</td>
@@ -244,7 +244,7 @@
 								</tr>
 								<tr>
 									<td>Код:&nbsp</td>
-									<td>{{ $element->code }}</td>
+									<td class='info_page_item_text'>{{ $element->code }}</td>
 								</tr>
 								<tr>
 									<td>Тип:&nbsp</td>
