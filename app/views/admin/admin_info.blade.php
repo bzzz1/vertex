@@ -20,6 +20,12 @@
 					<div class="article_button">
 						<p class="article_button_p">Читать</p>
 					</div>	
+					<div class="article_button article_button_admin">
+						<p class="article_button_p article_button_p_admin">Изменить</p>
+					</div>
+					<div class="article_button article_button_admin">
+						<p class="article_button_p article_button_p_admin">Удалить</p>
+					</div>
 				</div> <!-- article_preview -->
 				<!-- article_full -->
 			@endforeach

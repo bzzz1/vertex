@@ -10,7 +10,7 @@
 	<div class="width_960">
 		<div class="catalog_gen">
 			<div class='change_item'>
-				<h2 class="groups_title">Код: {{ $element->code }} </h2>
+				<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
 				{{ Form::model($element, ['route' => "codeSearchAdmin", 'method' => 'POST', 'class'=>'item_form']) }}
 					<table>
 						<tr>

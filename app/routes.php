@@ -13,7 +13,7 @@ Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory
 
 // apply auth filter:
 Route::post('/admin/changeItem', 'MainController@changeItem');
-Route::post('/admin/deleteItem', 'MainController@deleteItem');
+Route::post('/admin/!!!!!!deleteItem', 'MainController@ajaxDeleteItem');
 
 
 Route::get('/technics', ['as'=>'index', 'uses'=>'MainController@index']);

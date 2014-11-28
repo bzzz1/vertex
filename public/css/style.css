@@ -309,7 +309,7 @@ a.nav_item.selected {
 	color: #a6b4ba;
 	border: 1px solid #e3f0f7;
 	border-radius: 10px;
-
+	display: none;
 }
 .subcategory_block ul {
 	height: 10px;
