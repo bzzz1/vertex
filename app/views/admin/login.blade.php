@@ -1,7 +1,4 @@
 @extends('layout')
-@section('css')
-	{{ HTML::style('css/login.css') }}
-@stop
 
 @section('body')
 	{{ Form::open(array('url' => '/validate', 'method' => 'post')) }}

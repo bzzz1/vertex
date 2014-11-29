@@ -309,7 +309,7 @@ a.nav_item.selected {
 	color: #a6b4ba;
 	border: 1px solid #e3f0f7;
 	border-radius: 10px;
-
+	display: none;
 }
 .subcategory_block ul {
 	height: 10px;
@@ -1057,7 +1057,7 @@ ul.pagination {
 .change_item .groups_title {
 	margin-top: 10px;
 	margin-bottom: 10px;
-	margin-left: 40px;
+	margin-left: 10px;
 }
 .change_item .main_label {
 	font-family: 'Century_Gothic', sans-serif;

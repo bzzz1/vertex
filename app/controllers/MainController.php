@@ -93,18 +93,16 @@ class MainController extends BaseController {
 
 	public function changeItem() {
 		$code = Input::get('code');
-		$param = null;
 
-		return View::make('admin/admin_catalog')->with([
-			'current' 		=> $param,
-			'items' 		=> null,
+		return View::make('admin/admin')->with([
+			'current' 		=> null,
 			'element'		=> Item::giveElementByCode($code)
 		]);
 	}
 
-	public function deleteItem() {
+	public function ajaxDeleteItem() {
 		$code = Input::get('code');
-		dd($code);
+		Item::deleteItemByCode($code);
 	}
 
 	public function adminInfo() {

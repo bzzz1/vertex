@@ -84,6 +84,11 @@ class Item extends Eloquent {
 		return $item;
 	}
 
+	public function deleteItemByCode($code) {
+		$status = Item::where('code', $code)->delete();
+		return $status;
+	}
+
 	public static function giveElementByCode($code) {
 		$element = new Item;
 		$element = $element->where('code', $code);

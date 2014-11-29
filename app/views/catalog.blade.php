@@ -2,10 +2,6 @@
 @extends('header')
 @extends('footer')
 
-@section('css')
-	{{ HTML::style('css/style.css') }}
-@stop
-
 @section('body')
 	<div class="width_960">
 		<div class = "catalog_gen">
