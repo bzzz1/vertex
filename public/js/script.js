@@ -68,6 +68,22 @@
 		});
 	}
 
+	function run_angular_preview() {
+		var app = angular.module('preview', []);
+
+		app.controller('PreviewController', function() {
+			// this.localization = localization;
+			// this.lang = this.localization.eng; 
+		});
+
+		// app.controller('MyController', function($scope, $http) {
+		// 	$http.get('/getCardInfo.php', function(data) {
+		// 		$scope.card = data;
+		// 	});
+		// });
+	}
+
+	run_angular_preview();
 	run_subcategories();
 	run_article_button_read();
 
