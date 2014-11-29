@@ -7,18 +7,12 @@
 		<div class='catalog_gen'>
 			<div class="article_area">
 				@foreach($articles as $article)	
-					<!-- article_prewiew -->
 					<div class="article_preview">
 						<h2 class="article_preview_header">{{ $article->title }}</h2>
 						{{ HTML::image("photos/$article->image", 'article', ['class'=>'article_photo_preview']) }}
-						<p class="article_preview_text">
-							{{ $article->body }}
-						</p>
-						<div class="article_button">
-							<p class="article_button_p">Читать</p>
-						</div>	
-					</div> <!-- article_preview -->
-					<!-- article_full -->
+						<p class="article_preview_text">{{ $article->body }}</p>
+						{{ Form::button('Читать', ['class'=>'article_button article_button_read']) }}
+					</div>
 				@endforeach
 			</div>	
 		</div><!-- catalog_gen -->

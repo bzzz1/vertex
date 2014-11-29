@@ -14,6 +14,7 @@ Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory
 // apply auth filter:
 Route::post('/admin/changeItem', 'MainController@changeItem');
 Route::post('/admin/!!!!!!deleteItem', 'MainController@ajaxDeleteItem');
+Route::post('/admin/info/changeArticle', 'MainController@changeArticle');
 
 
 Route::get('/technics', ['as'=>'index', 'uses'=>'MainController@index']);

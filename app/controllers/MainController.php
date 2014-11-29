@@ -111,6 +111,15 @@ class MainController extends BaseController {
 		]);;
 	}
 
+	public function changeArticle() {
+		$id = Input::get('id');
+
+		return View::make('admin/admin_info_change')->with([
+			'current' 		=> $id,
+			'article'		=> Article::giveArticleById($id)
+		]);
+	}
+
 	// public function category($category) {
 	// 	// $categories = DB::table('products')->where('subcategory', $category)->get();
 	// 	return View::make('catalog')->with([

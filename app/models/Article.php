@@ -9,4 +9,10 @@ class Article extends Eloquent {
 		$articles = $articles->get();
 		return $articles;
 	}
+
+	public static function giveArticleById($id) {
+		$article = new Article;
+		$article = $article->find($id);
+		return $article;
+	}
 }

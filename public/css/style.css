@@ -253,34 +253,41 @@ a.nav_item.selected {
 }
 /*icons_backgroung_image_hover*/
 .category_icon_block:hover {
-	color: #008ccb;
 	cursor: pointer;
 	background-repeat: no-repeat;
 	text-decoration: none;
 }
-.bar_icon_block:hover {
+.bar_icon_block_hover, .bar_icon_block:hover {
 	background-image: url(../icons/ico_bar_1.png);
+	color: #008ccb;
 }
-.neutral_icon_block:hover {
+.neutral_icon_block_hover, .neutral_icon_block:hover {
 	background-image: url(../icons/ico_neutr_1.png);
+	color: #008ccb;
 }
-.inventory_icon_block:hover {
+.inventory_icon_block_hover, .inventory_icon_block:hover {
 	background-image: url(../icons/ico_kuch_1.png);
+	color: #008ccb;
 }
-.wash_icon_block:hover {
+.wash_icon_block_hover, .wash_icon_block:hover {
 	background-image: url(../icons/ico_wash_1.png);
+	color: #008ccb;
 }
-.tech_icon_block:hover {
+.tech_icon_block_hover, .tech_icon_block:hover {
 	background-image: url(../icons/ico_tech_1.png);
+	color: #008ccb;
 }
-.packing_icon_block:hover {
+.packing_icon_block_hover, .packing_icon_block:hover {
 	background-image: url(../icons/ico_pack_1.png);
+	color: #008ccb;
 }
-.bread_icon_block:hover {
+.bread_icon_block_hover, .bread_icon_block:hover {
 	background-image: url(../icons/ico_bread_1.png);
+	color: #008ccb;
 }
-.freez_icon_block:hover {
+.freez_icon_block_hover, .freez_icon_block:hover {
 	background-image: url(../icons/ico_frost_1.png);
+	color: #008ccb;
 }
 .free_space {
 	height: 110px;
@@ -1104,26 +1111,35 @@ input.submit_field {
 	font-size: 10px;
 	font-weight: bold;
 }
+input[type=text].input_file_name {
+	margin-bottom: 5px;
+}
 form.submit_form {
 	width: 60px;
 }
-.info_page_admin_button {
+.article_button {
 	display: inline-block;
 	text-align: center;
 	text-decoration: none;
-	margin: 40px;
 	background: #cecece;
 	color: #008ccb;
 	border: 1px solid #cecece;
 	border-radius: 10px;
-	padding: 10px;
+	padding: 5px 10px;
 	outline: none;
 	font-size: 16px;
 }
-.info_page_admin_button:hover {
+.article_button:hover {
 	background: #008ccb;
 	color: #fff;
 	border: 1px solid #008ccb;
 	text-decoration: none;
 	outline: none;
-}	
+}
+.admin_button_link {
+	display: inline-block;
+	background: #cecece;
+	padding: 5px;
+	font-size: 14px;
+	margin-top: 10px;
+}
