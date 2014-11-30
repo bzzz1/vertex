@@ -90,8 +90,8 @@
 								{{ HTML::link("/admin/changeItem/$item->code", 'Изменить', ['class'=>'submit_field']) }}
 							</td>
 							<td>
-								{{ Form::open(['url'=>['/admin/deleteItem', $item->code], 'method'=>'POST', 'class'=>'submit_form']) }}
-									{{ Form::submit('Удалить', ['class'=>'submit_field']) }} 
+								{{ Form::open(['url'=>['/admin/deleteItem', $item->code], 'method'=>'POST', 'class'=>'submit_form confirm_form']) }}
+									{{ Form::submit('Удалить', ['class'=>'submit_field confirm_delete']) }} 
 								{{ Form::close() }}
 							</td>
 						</tr>

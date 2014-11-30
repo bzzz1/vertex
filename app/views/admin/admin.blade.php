@@ -6,11 +6,11 @@
 	<div class="width_960 catalog_gen">
 		<div class='change_item'  ng-app='preview'  ng-controller='PreviewController as previewCtrl'>
 			<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
-			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
+			{{ Form::open(['/admin/updateItem', 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
 						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('item', null, ['placeholder'=>"", 'class'=>'change_input', 'ng-model'=>'element.item', 'ng-init'=>"element.item="."'"."$element->item"."'"]) }}</td>
+						<td>{{ Form::text('item', null, ['placeholder'=>"", 'class'=>'change_input', 'ng-model'=>'element.item']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('description', 'Описание: ', ['class'=>'main_label']) }}</td>
@@ -22,7 +22,7 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('price', 'Цена: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::number('price', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.price']) }}</td>
+						<td>{{ Form::text('price', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.price']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('currency', 'Валюта: ', ['class'=>'main_label']) }}</td>
@@ -55,7 +55,7 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('category', 'Категория (тип): ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::select('category', ['Барное'=>'Барное', 'Нейтральное'=>'Нейтральное', 'Посуда и инвентарь'=>'Посуда и инвентарь', 'Посудомоечное'=>'Посудомоечное', 'Технологическое'=>'Технологическое', 'Упаковочное'=>'Упаковочное', 'Хлебопекарное'=>'Хлебопекарное', 'Холодильное'=>'Холодильное'], ['ng-model'=>'element.category']) }}</td>
+						<td>{{ Form::select('category', ['Барное'=>'Барное', 'Нейтральное'=>'Нейтральное', 'Посуда и инвентарь'=>'Посуда и инвентарь', 'Посудомоечное'=>'Посудомоечное', 'Технологическое'=>'Технологическое', 'Упаковочное'=>'Упаковочное', 'Хлебопекарное'=>'Хлебопекарное', 'Холодильное'=>'Холодильное'], ['ng-model'=>'element.category', 'ng-options'=>'category for category']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('subcategory', 'Подкатегория (вид): ', ['class'=>'main_label']) }}</td>
@@ -82,46 +82,47 @@
 
 			<div class='item_preview'>
 				<div class="catalog_item">
-					<h2 class="catalog_item_header">@{{ element.item }}</h2>
+					<h2 class="catalog_item_header">[[ element.item ]]</h2>
 					<!--****************************************************
 					| ITEM PAGE
 					*****************************************************-->
 					<div class="item">
-						<h1 class="item_page_header">@{{ element.item }}</h1>
-						<img ng-show='@{{element.photo}}' ng-src="photos/@{{element.photo}}" alt="item" class='item_page_photo'/>
-						<img ng-hide='@{{element.photo}}' ng-src="photos/no_image.png" alt="item" class='item_page_photo'/>
+						<h1 class="item_page_header">[[ element.item ]]</h1>
+						<img ng-src="[[ origin ]]/photos/[[ element.photo ]]" alt="item" class='item_page_photo'/>
 						<div class="item_page_right_div">
 							<table class="info_item_page">
 								<tr>
-									<td colspan='2'> @if ($element->type == 'ЗИП') Запчасти @else Техника @endif </td>
+									<td colspan='2'>
+										[[ (element.type === 'оборудование') ? 'Техника' : 'Запчасти' ]]
+									</td>
 								</tr>
 								<tr>
 									<td>Бренд:&nbsp&nbsp&nbsp&nbsp</td>
-									<td class='info_page_item_text win_item_text'>@{{ element.producer }}</td>
+									<td class='info_page_item_text win_item_text'>[[ element.producer ]]</td>
 								</tr>
 								<tr>
 									<td>Код:</td>
-									<td class='info_page_item_text win_item_text'>@{{ element.code }}</td>
+									<td class='info_page_item_text win_item_text'>[[ element.code ]]</td>
 								</tr>
 								<tr>
 									<td>Тип:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>@{{ element.category }}</td>
+									<td class='info_page_item_text win_item_text'>[[ element.category ]]</td>
 								</tr>
 								<tr>
 									<td>Вид:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>@{{ element.subcategory }}</td>
+									<td class='info_page_item_text win_item_text'>[[ element.subcategory ]]</td>
 								</tr>											
 							</table>
 							<div class='info_page_item_procurement'>
-								@if ($element->procurement == 'МРП') В наличии @else Под заказ @endif 
+								[[ (element.procurement === 'ТВС') ? 'Под заказ' : 'В наличии' ]]
 							</div>
 							<div class="item_price">
-								<p class="item_price_p item_price_number">@{{ element.price }}&nbsp</p>
-								<p class="item_price_p item_price_currency">@{{ element.currency }}</p>
+								<p class="item_price_p item_price_number">[[ element.price ]]&nbsp</p>
+								<p class="item_price_p item_price_currency">[[ element.currency ]]</p>
 							</div>
 						</div><!-- item_page_right_div -->
 						<div class="description_item">
-							<p>@{{ element.description }}</p>
+							<p>[[ element.description ]]</p>
 						</div><!-- description_item -->
 					</div><!-- item -->	
 					<!--****************************************************-->
@@ -133,27 +134,27 @@
 					<table class="info_item_page">
 						<tr>
 							<td>Бренд:&nbsp</td>
-							<td class='info_page_item_text'>@{{ element.producer }}</td>
+							<td class='info_page_item_text'>[[ element.producer ]]</td>
 						</tr>
 						<tr>
 							<td>Код:&nbsp</td>
-							<td class='info_page_item_text'>@{{ element.code }}</td>
+							<td class='info_page_item_text'>[[ element.code ]]</td>
 						</tr>
 						<tr>
 							<td>Тип:&nbsp</td>
-							<td class='info_page_item_text'>@{{ element.category }}</td>
+							<td class='info_page_item_text'>[[ element.category ]]</td>
 						</tr>
 						<tr>
 							<td>Вид:&nbsp</td>
-							<td class='info_page_item_text'>@{{ element.subcategory }}</td>
+							<td class='info_page_item_text'>[[ element.subcategory ]]</td>
 						</tr>
 					</table>
 					<div class='info_page_item_procurement'>
-						@if ($element->procurement == 'МРП') В наличии @else Под заказ @endif 
+						[[ (element.procurement === 'ТВС') ? 'Под заказ' : 'В наличии' ]]
 					</div>
 					<div class="catalog_item_price">
-						<p class="catalog_item_price_p catalog_item_price_number">@{{ element.price }}&nbsp</p>
-						<p class="catalog_item_price_p catalog_item_price_currency">@{{ element.currency }}</p>
+						<p class="catalog_item_price_p catalog_item_price_number">[[ element.price ]]&nbsp</p>
+						<p class="catalog_item_price_p catalog_item_price_currency">[[ element.currency ]]</p>
 					</div>
 				</div>
 			</div>

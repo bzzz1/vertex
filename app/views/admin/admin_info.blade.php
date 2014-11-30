@@ -13,8 +13,8 @@
 				</p>
 				{{ Form::button('Читать', ['class'=>'article_button article_button_read']) }}
 				{{ HTML::link("/admin/info/changeArticle/$article->id", 'Изменить', ['class'=>'article_button']) }}
-				{{ Form::open(['url'=>['/admin/info/deleteArticle', $article->id], 'method'=>'POST', 'class'=>'article_form']) }}
-					{{ Form::submit('Удалить', ['class'=>'article_button']) }} 
+				{{ Form::open(['url'=>['/admin/info/deleteArticle', $article->id], 'method'=>'POST', 'class'=>'article_form confirm_form']) }}
+					{{ Form::submit('Удалить', ['class'=>'article_button confirm_delete']) }} 
 				{{ Form::close() }}
 			</div> <!-- article_preview -->
 		@endforeach

@@ -106,6 +106,11 @@ class MainController extends BaseController {
 		]);
 	}
 
+	public function changeItemJson($code=null) {
+		$data = $code ? Item::readElementByCode($code) : new Item;
+		return Response::json($data);
+	}
+
 	public function updateOrCreateItem($code=null) {
 		Item::updateOrCreateItemByCode($code, Input::all());
 		return Redirect::to('admin');

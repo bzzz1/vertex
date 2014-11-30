@@ -13,6 +13,7 @@ Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearc
 ------------------------------------------------*/
 Route::post('/admin/createItem', 'MainController@createItem');
 Route::get('/admin/changeItem/{code?}', 'MainController@changeItem');
+Route::post('/admin/changeItem/{code?}', 'MainController@changeItemJson');
 Route::post('/admin/updateItem/{code?}', 'MainController@updateOrCreateItem');
 Route::post('/admin/deleteItem/{code}', 'MainController@deleteItem');
 /*------------------------------------------------

@@ -70,19 +70,36 @@
 
 	function run_angular_preview() {
 		var app = angular.module('preview', []);
-
-		app.controller('PreviewController', function() {
-			// this.localization = localization;
-			// this.lang = this.localization.eng; 
+		/*------------------------------------------------
+		| CHANGE TEMPLATE BRACKETS
+		------------------------------------------------*/
+		app.config(function($interpolateProvider) {
+			$interpolateProvider.startSymbol('[[');
+			$interpolateProvider.endSymbol(']]');
 		});
+		/*----------------------------------------------*/
 
-		// app.controller('MyController', function($scope, $http) {
-		// 	$http.get('/getCardInfo.php', function(data) {
-		// 		$scope.card = data;
-		// 	});
-		// });
+		app.controller('PreviewController', function($scope, $http) {
+
+			$scope.origin = location.origin;
+			$http.post(location.href).success(function(data) {
+				$scope.element = data;
+			});
+		});
 	}
 
+	function run_deleting_confirm() {
+		$('.confirm_delete').on('click', function() {
+			if (confirm('Подтвердить удаление')) {
+				$form = $(this).closest('.confirm_form');
+				$form.trigger('sumbmit');
+			} else {
+				return false;
+			}
+		});
+	}
+
+	run_deleting_confirm();
 	run_angular_preview();
 	run_subcategories();
 	run_article_button_read();

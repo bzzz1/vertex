@@ -3,6 +3,7 @@
 <head>
 	<meta charset="UTF-8">
 	<title>Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов</title>
+	{{ HTML::script('js/angular.min.js') }}
 	<link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
 	{{ HTML::style('css/bootstrap.css') }}
 	{{ HTML::style('css/reset.css') }}
@@ -21,7 +22,6 @@
 	@yield('footer')
 	
 	{{ HTML::script('js/jquery.js') }}
-	{{ HTML::script('js/angular.min.js') }}
 	{{ HTML::script('js/script.js') }}
 	@yield('js')
 </body>
