@@ -6,7 +6,7 @@
 	<div class="width_960 catalog_gen">
 		<div class='change_item'  ng-app='preview'  ng-controller='PreviewController as previewCtrl'>
 			<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
-			{{ Form::model($element, ['route' => "codeSearchAdmin", 'method' => 'POST', 'class'=>'item_form']) }}
+			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
 						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
@@ -77,6 +77,7 @@
 						</td>
 					</tr>
 				</table>
+				{{ Form::submit('Сохранить', ['class'=>'submit_field save_button']) }}
 			{{ Form::close() }}
 
 			<div class='item_preview'>
@@ -157,7 +158,7 @@
 				</div>
 			</div>
 		</div><!-- change_item -->
-		{{ HTML::link('/admin', 'Добавить товар', ['class'=>"admin_button_link"]) }}
+		{{ HTML::link('/admin/changeItem', 'Добавить товар', ['class'=>"admin_button_link"]) }}
 		{{ HTML::link('/admin/info', 'Панель информации', ['class'=>"admin_button_link"]) }}
 	</div><!-- width_960 catalog_gen -->
 @stop

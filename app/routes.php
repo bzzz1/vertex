@@ -1,4 +1,5 @@
 <?php
+
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
 Route::get('/admin', 'MainController@login');
@@ -6,32 +7,29 @@ Route::get('/admin/info', 'MainController@adminInfo');
 Route::get('/admin/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearchAdmin']);
 Route::get('/admin/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearchAdmin']);
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
+// apply auth filter:
+/*------------------------------------------------
+| ITEM
+------------------------------------------------*/
+Route::post('/admin/createItem', 'MainController@createItem');
+Route::get('/admin/changeItem/{code?}', 'MainController@changeItem');
+Route::post('/admin/updateItem/{code?}', 'MainController@updateOrCreateItem');
+Route::post('/admin/deleteItem/{code}', 'MainController@deleteItem');
+/*------------------------------------------------
+| ARTICLE
+------------------------------------------------*/
+Route::post('/admin/info/createArticle', 'MainController@createArticle');
+Route::get('/admin/info/changeArticle/{id?}', 'MainController@changeArticle');
+Route::post('/admin/info/updateArticle/{id?}', 'MainController@updateOrCreateArticle');
+Route::post('/admin/info/deleteArticle/{id}', 'MainController@deleteArticle');
+
+
 Route::get('/{env}', 'MainController@index');
 Route::get('/{env}/{brand}', 'MainController@catalogBrand');
 Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
 Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory');
 
-// apply auth filter:
-Route::post('/admin/changeItem', 'MainController@changeItem');
-Route::post('/admin/!!!!!!deleteItem', 'MainController@ajaxDeleteItem');
-Route::post('/admin/info/changeArticle', 'MainController@changeArticle');
-
-
-Route::get('/technics', ['as'=>'index', 'uses'=>'MainController@index']);
-// Route::get('{any?}', ['as'=>'any', 'uses'=>'MainController@index']);
-Route::get('/{type}/{groupby}/{param}', 'MainController@categorization');
-	// ->where('category', '[1-8]');
-// Route::get('/technics/{any}', function() { 
-// 	return Redirect::route('index');
-// });
-
-
-Route::get('/admin', 'MainController@login');
-Route::get('/category', 'MainController@index');
-Route::get('/test', 'MainController@get_producers');
-
-
-
+/*----------------------------------------------*/
 // Route::group(['before' => 'auth'], function() {
 // 	Route::get('/', function() {
 // 		// Has Auth Filter
@@ -41,10 +39,6 @@ Route::get('/test', 'MainController@get_producers');
 // 		// Has Auth Filter
 // 	});
 // });
-
-
-
-
 
 // Route::get('/', 'MainController@index');
 // Route::get('/ajaxItems', 'MainController@ajaxItems');

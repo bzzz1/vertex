@@ -87,14 +87,10 @@
 						</tr>
 						<tr>
 							<td>
-								{{ Form::open(['url' => "/admin/changeItem", 'method' => 'POST', 'class'=>'submit_form']) }}
-									{{ Form::hidden('code', "$item->code") }}
-									{{ Form::submit('Изменить', ['class'=>'submit_field']) }}&nbsp 
-								{{ Form::close() }}
+								{{ HTML::link("/admin/changeItem/$item->code", 'Изменить', ['class'=>'submit_field']) }}
 							</td>
 							<td>
-								{{ Form::open(['url' => "/admin/deleteItem", 'method' => 'POST', 'class'=>'submit_form']) }}
-									{{ Form::hidden('code', "$item->code") }}
+								{{ Form::open(['url'=>['/admin/deleteItem', $item->code], 'method'=>'POST', 'class'=>'submit_form']) }}
 									{{ Form::submit('Удалить', ['class'=>'submit_field']) }} 
 								{{ Form::close() }}
 							</td>
@@ -113,6 +109,7 @@
 		<div class="catalog_bottom_pages">
 			{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
 		</div>
+		{{ HTML::link('/admin', 'Добавить товар', ['class'=>"admin_button_link"]) }}
 		{{ HTML::link('/admin/info', 'Панель информации', ['class'=>"admin_button_link"]) }}
 	</div><!-- width_960 catalog_gen -->
 @stop

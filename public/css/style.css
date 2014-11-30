@@ -907,17 +907,15 @@ ul.pagination {
 	padding: 25px 40px;
 	box-shadow: 0 -10px 15px #959595, 0 5px 20px #959595, -7px 0px 20px #959595;
 }
-/*preview*/
 .article_preview {
 	display: inline-block;
-}
-.article_preview {
 	padding: 15px 15px 15px 30px;
 	box-shadow: 0 0 15px 3px #c0c0c0;
 	margin-top: 9px;
 	margin-bottom: 15px;
 	vertical-align: top;
 	overflow: hidden;
+	width: 835px;
 }
 .article_preview_header {
 	color: #008ccb;
@@ -942,7 +940,6 @@ ul.pagination {
 	height: 290px; /*JS*/
 	margin-bottom: 0;
 	font-size: 15px;
-
 }
 .article_button {
 	background: #eeeeee;
@@ -1104,12 +1101,13 @@ input.change_radio {
 label.small_label {
 	margin-right: 15px;
 }
-input.submit_field {
+.submit_field {
 	width: 55px;
 	height: 20px;
 	padding: 0px 0px;
 	font-size: 10px;
 	font-weight: bold;
+	-webkit-appearance: button;
 }
 input[type=text].input_file_name {
 	margin-bottom: 5px;
@@ -1137,9 +1135,23 @@ form.submit_form {
 	outline: none;
 }
 .admin_button_link {
+	border: none;
 	display: inline-block;
 	background: #cecece;
 	padding: 5px;
 	font-size: 14px;
 	margin-top: 10px;
+}
+.button_form {
+	display: inline-block;
+}
+.admin_button_link:hover {
+	text-decoration: underline;
+	color: #008ccb;
+}
+input[type=submit].save_button {
+	padding: 5px 10px;
+	width: auto;
+	height: auto;
+	font-size: 14px;
 }

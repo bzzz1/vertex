@@ -19,10 +19,10 @@
 			</h1>
 		</header>
 		<div class="main_nav">
-			{{ Form::open(array('route' => "codeSearchAdmin", 'method' => 'GET', 'class'=>'code_search')) }}
+			{{ Form::open(array('route'=>'codeSearchAdmin', 'method'=>'GET', 'class'=>'code_search')) }}
 				{{ Form::text('code', null, ['placeholder'=>"     Поиск по коду", 'class'=>'search_field']) }} 
 			{{ Form::close() }}
-			{{ Form::open(array('route' => "itemSearchAdmin", 'method' => 'GET', 'class'=>'header_search')) }}
+			{{ Form::open(array('route'=>'itemSearchAdmin', 'method'=>'GET', 'class'=>'header_search')) }}
 				{{ Form::text('param', null, ['placeholder'=>"     Поиск товаров", 'class'=>'search_field']) }} 
 			{{ Form::close() }}
 		</div><!-- main_nav -->

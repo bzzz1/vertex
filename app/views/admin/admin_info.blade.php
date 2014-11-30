@@ -12,13 +12,13 @@
 					{{ $article->body }}
 				</p>
 				{{ Form::button('Читать', ['class'=>'article_button article_button_read']) }}
-				{{ Form::open(['url' => "/admin/info/changeArticle", 'method' => 'POST']) }}
-					{{ Form::hidden('id', "$article->id") }}
-					{{ Form::submit('Изменить', ['class'=>'article_button']) }} 
+				{{ HTML::link("/admin/info/changeArticle/$article->id", 'Изменить', ['class'=>'article_button']) }}
+				{{ Form::open(['url'=>['/admin/info/deleteArticle', $article->id], 'method'=>'POST', 'class'=>'article_form']) }}
+					{{ Form::submit('Удалить', ['class'=>'article_button']) }} 
 				{{ Form::close() }}
-				{{ Form::button('Удалить', ['class'=>'article_button']) }}
 			</div> <!-- article_preview -->
 		@endforeach
-		{{ HTML::link('/admin', 'Панель товаров', ['class'=>"admin_button_link"]) }}
+		{{ HTML::link('/admin/info/changeArticle', 'Добавить статью', ['class'=>'admin_button_link']) }}
+		{{ HTML::link('/admin/changeItem', 'Панель товаров', ['class'=>'admin_button_link']) }}
 	</div><!--width_960 catalog_gen -->
 @stop
