@@ -6,7 +6,7 @@
 	<div class="width_960 catalog_gen">
 		<div class='change_item'>
 			<h2 class="groups_title">Заголовок: {{ $article->title }} </h2>
-			{{ Form::model($article, ['url'=>['admin/info/updateArticle', $article->id], 'method'=>'POST', 'class'=>'item_form']) }}
+			{{ Form::model($article, ['url'=>['admin/info/updateArticle', $article->id], 'method'=>'POST', 'class'=>'item_form admin_info_form']) }}
 				<table>
 					<tr>
 						<td>{{ Form::label('title', 'Заголовок: ', ['class'=>'main_label']) }}</td>

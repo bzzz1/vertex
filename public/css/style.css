@@ -984,6 +984,10 @@ ul.pagination {
 .admin_title {
 	display: inline-block;
 	color: #008ccb;
+	margin-left: 85px;
+	font-weight: bold;
+	margin-bottom: 0px;
+	font-size: 27px;
 }
 .nav_admin {
 	margin-left: 530px;
@@ -1052,6 +1056,9 @@ ul.pagination {
 	vertical-align: top;
 	padding: 15px;
 }
+.admin_info_form {
+	width: 100%;
+}
 .item_preview {
 	display: inline-block;
 	width: 284px;
@@ -1107,7 +1114,13 @@ label.small_label {
 	padding: 0px 0px;
 	font-size: 10px;
 	font-weight: bold;
+	text-decoration: none;
+	padding: 3px;
 	-webkit-appearance: button;
+}
+.submit_field:hover {
+	text-decoration: none;
+	color: inherit;
 }
 input[type=text].input_file_name {
 	margin-bottom: 5px;
