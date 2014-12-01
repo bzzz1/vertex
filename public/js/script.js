@@ -82,6 +82,17 @@
 		app.controller('PreviewController', function($scope, $http) {
 
 			$scope.origin = location.origin;
+			$scope.categories = [
+				'Барное',
+				'Нейтральное',
+				'Посуда и инвентарь',
+				'Посудомоечное',
+				'Технологическое',
+				'Упаковочное',
+				'Хлебопекарное',
+				'Холодильное'
+			];
+
 			$http.post(location.href).success(function(data) {
 				$scope.element = data;
 			});

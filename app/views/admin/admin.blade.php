@@ -10,15 +10,15 @@
 				<table>
 					<tr>
 						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('item', null, ['placeholder'=>"", 'class'=>'change_input', 'ng-model'=>'element.item']) }}</td>
+						<td>{{ Form::text('item', null, ['class'=>'change_input', 'ng-model'=>'element.item']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('description', 'Описание: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::textarea('description', null, ['placeholder'=>"", 'class'=>'change_input', 'ng-model'=>'element.description']) }}</td>
+						<td>{{ Form::textarea('description', null, ['class'=>'change_input', 'ng-model'=>'element.description']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('producer', 'Бренд: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('producer', null, ['placeholder'=>"", 'class'=>'change_input change_input_short', 'ng-model'=>'element.producer']) }}</td>
+						<td>{{ Form::text('producer', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.producer']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('price', 'Цена: ', ['class'=>'main_label']) }}</td>
@@ -55,15 +55,15 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('category', 'Категория (тип): ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::select('category', ['Барное'=>'Барное', 'Нейтральное'=>'Нейтральное', 'Посуда и инвентарь'=>'Посуда и инвентарь', 'Посудомоечное'=>'Посудомоечное', 'Технологическое'=>'Технологическое', 'Упаковочное'=>'Упаковочное', 'Хлебопекарное'=>'Хлебопекарное', 'Холодильное'=>'Холодильное'], ['ng-model'=>'element.category', 'ng-options'=>'category for category']) }}</td>
+						<td>{{ Form::select('category', [], null, ['ng-model'=>'element.category', 'ng-options'=>'category for category in categories']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('subcategory', 'Подкатегория (вид): ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('subcategory', null, ['placeholder'=>"", 'class'=>'change_input change_input_short', 'ng-model'=>'element.subcategory']) }}</td>
+						<td>{{ Form::text('subcategory', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.subcategory']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('code', 'Код: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('code', null, ['placeholder'=>"", 'class'=>'change_input change_input_code', 'ng-model'=>'element.code']) }}</td>
+						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.code']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('photo', 'Изображение: 255px*255px', ['class'=>'main_label']) }}</td>
