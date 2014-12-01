@@ -22,6 +22,7 @@
 			{{ Form::open(array('route'=>'codeSearchAdmin', 'method'=>'GET', 'class'=>'code_search')) }}
 				{{ Form::text('code', null, ['placeholder'=>"     Поиск по коду", 'class'=>'search_field']) }} 
 			{{ Form::close() }}
+			<h2 class="admin_title">Административная панель</h2>
 			{{ Form::open(array('route'=>'itemSearchAdmin', 'method'=>'GET', 'class'=>'header_search')) }}
 				{{ Form::text('param', null, ['placeholder'=>"     Поиск товаров", 'class'=>'search_field']) }} 
 			{{ Form::close() }}
