@@ -79,6 +79,7 @@ class MainController extends BaseController {
 
 	public function codeSearchAdmin() {
 		$code = Input::get('code');
+		// dd(Item::readItemByCode($code)->getCollection());
 
 		return View::make('admin/admin_catalog')->with([
 			'current' 		=> $code,
@@ -113,13 +114,12 @@ class MainController extends BaseController {
 
 	public function updateOrCreateItem($code=null) {
 		Item::updateOrCreateItemByCode($code, Input::all());
-		return Redirect::to('admin');
-		// return Redirect::action('FooController@itemSearchAdmin');
+		return Redirect::back()->with('msg', 'Изменения сохранены');
 	}
 
 	public function deleteItem($code) {
 		Item::deleteItemByCode($code);
-		return Redirect::to('admin');
+		return Redirect::back()->with('msg', 'Товар #'.$code.' удален');
 	}
 /*------------------------------------------------
 | ARTICLE

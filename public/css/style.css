@@ -379,10 +379,22 @@ a.nav_item.selected {
 	padding: 0px 6px;
 	border-radius: 10px;
 }
+.headers {
+	height: 46px;
+}
 .groups_title {
+	display: inline-block;
 	color: #008ccb;
 	font-size: 24px;
 	font-weight: bold;
+}
+.msg {
+	display: inline-block;
+	color: green;
+	font-size: 24px;
+	font-weight: bold;	
+	line-height: 46px;
+	margin-left: 20px;
 }
 .groups_title a {
 	color: #008ccb;

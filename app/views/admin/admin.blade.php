@@ -5,7 +5,10 @@
 @section('body')
 	<div class="width_960 catalog_gen">
 		<div class='change_item'  ng-app='preview'  ng-controller='PreviewController as previewCtrl'>
-			<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
+			<div class="headers">
+				<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
+				<h2 class='msg'> @if (Session::get('msg')) {{ Session::get('msg') }} @endif</h2>
+			</div>
 			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
@@ -27,7 +30,7 @@
 					<tr>
 						<td>{{ Form::label('currency', 'Валюта: ', ['class'=>'main_label']) }}</td>
 						<td>
-							{{ Form::radio('currency', 'РУБ', true, ['checked', 'class'=>'change_radio', 'ng-model'=>'element.currency']) }}
+							{{ Form::radio('currency', 'РУБ', true, ['class'=>'change_radio', 'ng-model'=>'element.currency']) }}
 							{{ Form::label('currency', 'РУБ', ['class'=>'small_label']) }}
 							{{ Form::radio('currency', 'USD', false, ['class'=>'change_radio', 'ng-model'=>'element.currency']) }}
 							{{ Form::label('currency', 'USD', ['class'=>'small_label']) }}
@@ -55,7 +58,12 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('category', 'Категория (тип): ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::select('category', [], null, ['ng-model'=>'element.category', 'ng-options'=>'category for category in categories']) }}</td>
+						<td>
+							<select name='category' ng-model='element.category'>
+								<option ng-repeat="category in categories" value="[[category]]">[[category]]</option>
+							</select>
+						</td>
+						{{-- Form::select('category', [], null, ['ng-model'=>'element.category', 'ng-options'=>'element.name as category.value for category in categories']) --}}
 					</tr>
 					<tr>
 						<td>{{ Form::label('subcategory', 'Подкатегория (вид): ', ['class'=>'main_label']) }}</td>
@@ -71,7 +79,7 @@
 							@if (isset($element->photo))
 								{{ Form::text('photo', null, ['disabled', 'class'=>'change_input input_file_name', 'ng-model'=>'element.photo']) }}
 						 	@else 
-								{{ Form::text('photo', 'no_image.png', ['disabled', 'class'=>'change_input input_file_name', 'ng-model'=>'element.photo']) }}
+								{{ Form::text('photo', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name', 'ng-model'=>'element.photo']) }}
 							@endif
 							{{ Form::file('photo', ['class'=>'change_input']) }}
 						</td>
