@@ -6,15 +6,16 @@
 	<div class="width_960 catalog_gen">
 		<div class='change_item'  ng-app='preview'  ng-controller='PreviewController as previewCtrl'>
 			<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
+			{{--<h2 class='groups_title'>[[ ::((element.code) ? element.code : 'Добавить товар') ]]</h2> --}}
 			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
-						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('item', null, ['class'=>'change_input', 'ng-model'=>'element.item']) }}</td>
+						<td><label for='item' class='main_label'>Название</label></td>
+						<td><input type='text' name='item' id='item' class='change_input', ng-model='element.item'></td>
 					</tr>
 					<tr>
-						<td>{{ Form::label('description', 'Описание: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::textarea('description', null, ['class'=>'change_input', 'ng-model'=>'element.description']) }}</td>
+						<td><label for='description' class='main_label'>Описание</label></td>
+						<td><textarea name='description' id='description' class='change_input textarea_input', ng-model='element.description'></textarea></td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('producer', 'Бренд: ', ['class'=>'main_label']) }}</td>
@@ -88,7 +89,7 @@
 					*****************************************************-->
 					<div class="item">
 						<h1 class="item_page_header">[[ element.item ]]</h1>
-						<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_page_photo'/>
+						<img ng-src="[[ origin ]]/photos/[[ element.photo ]]" alt="item" class='item_page_photo'/>
 						<div class="item_page_right_div">
 							<table class="info_item_page">
 								<tr>
@@ -126,7 +127,7 @@
 						</div><!-- description_item -->
 					</div><!-- item -->	
 					<!--****************************************************-->
-					<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_photo'/>
+					<img ng-src="[[ origin ]]/photos/[[ element.photo ]]" alt="item" class='item_photo'/>
 					<table class="info_item_page">
 						<tr>
 							<td>Бренд:&nbsp</td>
@@ -153,9 +154,46 @@
 						<p class="catalog_item_price_p catalog_item_price_currency">[[ element.currency ]]</p>
 					</div>
 				</div>
-			</div><!-- item_preview -->
+			</div>
 		</div><!-- change_item -->
 		<a href='/admin/changeItem' class='admin_button_link'>Добавить товар</a>
 		<a href='/admin/info' class='admin_button_link'>Панель информации</a>
 	</div><!-- width_960 catalog_gen -->
 @stop
+
+
+
+
+
+
+
+function run_angular_preview() {
+		var app = angular.module('preview', []);
+		/*------------------------------------------------
+		| CHANGE TEMPLATE BRACKETS
+		------------------------------------------------*/
+		app.config(function($interpolateProvider) {
+			$interpolateProvider.startSymbol('[[');
+			$interpolateProvider.endSymbol(']]');
+		});
+		/*----------------------------------------------*/
+
+		app.controller('PreviewController', function($scope, $http) {
+
+			$scope.origin = location.origin;
+			$scope.categories = [
+				'Барное',
+				'Нейтральное',
+				'Посуда и инвентарь',
+				'Посудомоечное',
+				'Технологическое',
+				'Упаковочное',
+				'Хлебопекарное',
+				'Холодильное'
+			];
+
+			$http.post(location.href).success(function(data) {
+				$scope.element = data;
+			});
+		});
+	}

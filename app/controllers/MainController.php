@@ -114,6 +114,7 @@ class MainController extends BaseController {
 	public function updateOrCreateItem($code=null) {
 		Item::updateOrCreateItemByCode($code, Input::all());
 		return Redirect::to('admin');
+		// return Redirect::action('FooController@itemSearchAdmin');
 	}
 
 	public function deleteItem($code) {

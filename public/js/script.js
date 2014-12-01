@@ -68,6 +68,17 @@
 		});
 	}
 
+	function run_deleting_confirm() {
+		$('.confirm_delete').on('click', function() {
+			if (confirm('Подтвердить удаление')) {
+				$form = $(this).closest('.confirm_form');
+				$form.trigger('sumbmit');
+			} else {
+				return false;
+			}
+		});
+	}
+
 	function run_angular_preview() {
 		var app = angular.module('preview', []);
 		/*------------------------------------------------
@@ -93,20 +104,10 @@
 				'Холодильное'
 			];
 
+			// wrong location.href for admin
 			$http.post(location.href).success(function(data) {
 				$scope.element = data;
 			});
-		});
-	}
-
-	function run_deleting_confirm() {
-		$('.confirm_delete').on('click', function() {
-			if (confirm('Подтвердить удаление')) {
-				$form = $(this).closest('.confirm_form');
-				$form.trigger('sumbmit');
-			} else {
-				return false;
-			}
 		});
 	}
 
