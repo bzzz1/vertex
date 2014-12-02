@@ -4,32 +4,35 @@
 
 @section('body')
 	<div class="width_960 catalog_gen">
-		<div class='change_item'  ng-app='preview'  ng-controller='PreviewController as previewCtrl'>
-			<div class="headers">
-				<h2 class="groups_title"> @if (isset($element->code)) Код: {{ $element->code }} @else Добавить товар @endif </h2>
-				<h2 class='msg'> @if (Session::get('msg')) {{ Session::get('msg') }} @endif</h2>
+		<?php //dd(Input::old()); //protected attributes?>
+		<?php //dd($element); ?>  
+		<div class='change_item' ng-app='preview' ng-controller='PreviewController as previewCtrl'>
+			<div class="headers" {{ isset($element->code) ? "ng-init='stat=\"update\"'" : ''}}>
+				<h2 class="groups_title">{{ $element->code or 'Добавить товар'}}</h2>
+				<h2 class='msg'>{{ Session::get('msg') ? Session::get('msg') : '' }}</h2>
+				<h2 class='error_msg'>{{ Session::get('error_msg') ? Session::get('error_msg') : '' }}</h2>
 			</div>
 			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
 						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('item', null, ['class'=>'change_input', 'ng-model'=>'element.item']) }}</td>
+						<td>{{ Form::text('item', null, ['class'=>'change_input', 'ng-model'=>'element.item', 'required']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('description', 'Описание: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::textarea('description', null, ['class'=>'change_input', 'ng-model'=>'element.description']) }}</td>
+						<td  ng-init='element.description="Описание отсутствует"'>{{ Form::textarea('description', null, ['class'=>'change_input', 'ng-model'=>'element.description']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('producer', 'Бренд: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('producer', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.producer']) }}</td>
+						<td>{{ Form::text('producer', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.producer', 'required']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('price', 'Цена: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('price', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.price']) }}</td>
+						<td>{{ Form::text('price', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.price', 'required']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('currency', 'Валюта: ', ['class'=>'main_label']) }}</td>
-						<td>
+						<td ng-init='element.currency="РУБ"'>
 							{{ Form::radio('currency', 'РУБ', true, ['class'=>'change_radio', 'ng-model'=>'element.currency']) }}
 							{{ Form::label('currency', 'РУБ', ['class'=>'small_label']) }}
 							{{ Form::radio('currency', 'USD', false, ['class'=>'change_radio', 'ng-model'=>'element.currency']) }}
@@ -40,7 +43,7 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('procurement', 'Закупка: ', ['class'=>'main_label']) }}</td>
-						<td>
+						<td ng-init='element.procurement="ТВС"'>
 							{{ Form::radio('procurement', 'ТВС', true, ['class'=>'change_radio', 'ng-model'=>'element.procurement']) }}
 							{{ Form::label('procurement', 'ТВС (Под заказ)', ['class'=>'small_label']) }}
 							{{ Form::radio('procurement', 'МРП', false, ['class'=>'change_radio', 'ng-model'=>'element.procurement']) }}
@@ -49,7 +52,7 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('type', 'Обрудование или ЗИП: ', ['class'=>'main_label']) }}</td>
-						<td>
+						<td ng-init='element.type="оборудование"'>
 							{{ Form::radio('type', 'оборудование', true, ['class'=>'change_radio', 'ng-model'=>'element.type']) }}
 							{{ Form::label('type', 'Техника', ['class'=>'small_label']) }}
 							{{ Form::radio('type', 'ЗИП', false, ['class'=>'change_radio', 'ng-model'=>'element.type']) }}
@@ -59,7 +62,7 @@
 					<tr>
 						<td>{{ Form::label('category', 'Категория (тип): ', ['class'=>'main_label']) }}</td>
 						<td>
-							<select name='category' ng-model='element.category'>
+							<select name='category' ng-init='element.category="Барное"' ng-model='element.category'>
 								<option ng-repeat="category in categories" value="[[category]]">[[category]]</option>
 							</select>
 						</td>
@@ -67,11 +70,11 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('subcategory', 'Подкатегория (вид): ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('subcategory', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.subcategory']) }}</td>
+						<td>{{ Form::text('subcategory', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.subcategory', 'required']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('code', 'Код: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.code']) }}</td>
+						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.code', 'required']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('photo', 'Изображение: 255px*255px', ['class'=>'main_label']) }}</td>

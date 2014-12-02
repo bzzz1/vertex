@@ -388,14 +388,6 @@ a.nav_item.selected {
 	font-size: 24px;
 	font-weight: bold;
 }
-.msg {
-	display: inline-block;
-	color: green;
-	font-size: 24px;
-	font-weight: bold;	
-	line-height: 46px;
-	margin-left: 20px;
-}
 .groups_title a {
 	color: #008ccb;
 	text-decoration: underline;
@@ -1179,4 +1171,20 @@ input[type=submit].save_button {
 	width: auto;
 	height: auto;
 	font-size: 14px;
+}
+.msg {
+	display: inline-block;
+	color: green;
+	font-size: 24px;
+	font-weight: bold;	
+	line-height: 46px;
+	margin-left: 20px;
+}
+.error_msg {
+	display: inline-block;
+	color: red;
+	font-size: 24px;
+	font-weight: bold;	
+	line-height: 46px;
+	margin-left: 20px;
 }

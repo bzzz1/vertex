@@ -5,7 +5,7 @@
 @section('body')
 	<div class="width_960 catalog_gen">
 		<h2 class="groups_title">{{ $current }}</h2>
-		<h2 class='msg'> @if (Session::get('msg')) {{ Session::get('msg') }} @endif</h2>
+		<h2 class='msg'>{{Session::get('msg') or '' }}</h2>
 		<div class="catalog_sort">
 			<ul class="catalog_sort_text_ul">
 				<li class="catalog_sort_text catalog_sort_text_li">Сортировать по: </li>

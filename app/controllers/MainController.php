@@ -113,8 +113,20 @@ class MainController extends BaseController {
 	}
 
 	public function updateOrCreateItem($code=null) {
-		Item::updateOrCreateItemByCode($code, Input::all());
-		return Redirect::back()->with('msg', 'Изменения сохранены');
+		$validator = Validator::make(Input::all(), [
+			'code'				=> 'required|unique:items'
+			// 'code'				=> 'required|max:255|email|unique:users',
+			// 'username'			=> 'required|min:3|unique:users',
+			// 'password'			=> 'required|min:6',
+			// 'password_again'	=> 'required|same:password'
+		]);
+
+		if ($validator->fails()) {
+			return Redirect::back()->with('error_msg', 'Код должен быть уникальным!')->withInput();
+		} else { 
+			Item::updateOrCreateItemByCode($code, Input::all());
+			return Redirect::back()->with('msg', 'Изменения сохранены');
+		}
 	}
 
 	public function deleteItem($code) {

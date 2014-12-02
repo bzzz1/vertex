@@ -2,33 +2,39 @@
 
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
-Route::get('/admin', 'MainController@login');
-Route::get('/admin/info', 'MainController@adminInfo');
-Route::get('/admin/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearchAdmin']);
-Route::get('/admin/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearchAdmin']);
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
-// apply auth filter:
-/*------------------------------------------------
-| ITEM
-------------------------------------------------*/
-Route::post('/admin/createItem', 'MainController@createItem');
-Route::get('/admin/changeItem/{code?}', 'MainController@changeItem');
-Route::post('/admin/changeItem/{code?}', 'MainController@changeItemJson');
-Route::post('/admin/updateItem/{code?}', 'MainController@updateOrCreateItem');
-Route::post('/admin/deleteItem/{code}', 'MainController@deleteItem');
-/*------------------------------------------------
-| ARTICLE
-------------------------------------------------*/
-Route::post('/admin/info/createArticle', 'MainController@createArticle');
-Route::get('/admin/info/changeArticle/{id?}', 'MainController@changeArticle');
-Route::post('/admin/info/updateArticle/{id?}', 'MainController@updateOrCreateArticle');
-Route::post('/admin/info/deleteArticle/{id}', 'MainController@deleteArticle');
+Route::group(array('prefix' => 'admin'), function() {
+	Route::get('/', 'MainController@login');
+	Route::get('/info', 'MainController@adminInfo');
+	Route::get('/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearchAdmin']);
+	Route::get('/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearchAdmin']);
 
+	// apply auth filter:
+	/*------------------------------------------------
+	| ITEM
+	------------------------------------------------*/
+	Route::post('/createItem', 'MainController@createItem');
+	Route::get('/changeItem/{code?}', 'MainController@changeItem');
+	Route::post('/changeItem/{code?}', 'MainController@changeItemJson');
+	Route::post('/updateItem/{code?}', 'MainController@updateOrCreateItem');
+	Route::post('/deleteItem/{code}', 'MainController@deleteItem');
+	/*------------------------------------------------
+	| ARTICLE
+	------------------------------------------------*/
+	Route::post('/info/createArticle', 'MainController@createArticle');
+	Route::get('/info/changeArticle/{id?}', 'MainController@changeArticle');
+	Route::post('/info/updateArticle/{id?}', 'MainController@updateOrCreateArticle');
+	Route::post('/info/deleteArticle/{id}', 'MainController@deleteArticle');
+});
 
-Route::get('/{env}', 'MainController@index');
 Route::get('/{env}/{brand}', 'MainController@catalogBrand');
 Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
 Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory');
+
+
+App::missing(function($exception) {
+	return Redirect::to('/');
+});
 
 /*----------------------------------------------*/
 // Route::group(['before' => 'auth'], function() {
