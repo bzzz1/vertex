@@ -4,14 +4,19 @@
 
 @section('body')
 	<div class="width_960 catalog_gen">
-		<?php //dd(Input::old()); //protected attributes?>
-		<?php //dd($element); ?>  
 		<div class='change_item' ng-app='preview' ng-controller='PreviewController as previewCtrl'>
 			<div class="headers" {{ isset($element->code) ? "ng-init='stat=\"update\"'" : ''}}>
 				<h2 class="groups_title">{{ $element->code or 'Добавить товар'}}</h2>
 				<h2 class='msg'>{{ Session::get('msg') ? Session::get('msg') : '' }}</h2>
 				<h2 class='error_msg'>{{ Session::get('error_msg') ? Session::get('error_msg') : '' }}</h2>
 			</div>
+			<?php
+				// Should work by itself without angular
+				// if (!!Input::old()) {
+				// 	$element = new Item;
+				// 	$element->fill(Input::old());
+				// }			
+			?>
 			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
@@ -91,80 +96,8 @@
 				{{ Form::submit('Сохранить', ['class'=>'submit_field save_button']) }}
 			{{ Form::close() }}
 
-			<div class='item_preview'>
-				<div class="catalog_item">
-					<h2 class="catalog_item_header">[[ element.item ]]</h2>
-					<!--****************************************************
-					| ITEM PAGE
-					*****************************************************-->
-					<div class="item">
-						<h1 class="item_page_header">[[ element.item ]]</h1>
-						<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_page_photo'/>
-						<div class="item_page_right_div">
-							<table class="info_item_page">
-								<tr>
-									<td colspan='2'>
-										[[ (element.type === 'оборудование') ? 'Техника' : 'Запчасти' ]]
-									</td>
-								</tr>
-								<tr>
-									<td>Бренд:&nbsp&nbsp&nbsp&nbsp</td>
-									<td class='info_page_item_text win_item_text'>[[ element.producer ]]</td>
-								</tr>
-								<tr>
-									<td>Код:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>[[ element.code ]]</td>
-								</tr>
-								<tr>
-									<td>Тип:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>[[ element.category ]]</td>
-								</tr>
-								<tr>
-									<td>Вид:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>[[ element.subcategory ]]</td>
-								</tr>											
-							</table>
-							<div class='info_page_item_procurement'>
-								[[ (element.procurement === 'ТВС') ? 'Под заказ' : 'В наличии' ]]
-							</div>
-							<div class="item_price">
-								<p class="item_price_p item_price_number">[[ element.price ]]&nbsp</p>
-								<p class="item_price_p item_price_currency">[[ element.currency ]]</p>
-							</div>
-						</div><!-- item_page_right_div -->
-						<div class="description_item">
-							<p>[[ element.description ]]</p>
-						</div><!-- description_item -->
-					</div><!-- item -->	
-					<!--****************************************************-->
-					<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_photo'/>
-					<table class="info_item_page">
-						<tr>
-							<td>Бренд:&nbsp</td>
-							<td class='info_page_item_text'>[[ element.producer ]]</td>
-						</tr>
-						<tr>
-							<td>Код:&nbsp</td>
-							<td class='info_page_item_text'>[[ element.code ]]</td>
-						</tr>
-						<tr>
-							<td>Тип:&nbsp</td>
-							<td class='info_page_item_text'>[[ element.category ]]</td>
-						</tr>
-						<tr>
-							<td>Вид:&nbsp</td>
-							<td class='info_page_item_text'>[[ element.subcategory ]]</td>
-						</tr>
-					</table>
-					<div class='info_page_item_procurement'>
-						[[ (element.procurement === 'ТВС') ? 'Под заказ' : 'В наличии' ]]
-					</div>
-					<div class="catalog_item_price">
-						<p class="catalog_item_price_p catalog_item_price_number">[[ element.price ]]&nbsp</p>
-						<p class="catalog_item_price_p catalog_item_price_currency">[[ element.currency ]]</p>
-					</div>
-				</div>
-			</div><!-- item_preview -->
+			@include('admin/admin_preview')
+
 		</div><!-- change_item -->
 		<a href='/admin/changeItem' class='admin_button_link'>Добавить товар</a>
 		<a href='/admin/info' class='admin_button_link'>Панель информации</a>

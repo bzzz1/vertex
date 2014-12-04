@@ -104,10 +104,13 @@
 				'Холодильное'
 			];
 
-			// wrong location.href for admin
-			$http.post(location.href).success(function(data) {
-				$scope.element = data;
-			});
+			var patt = /changeItem\/\d+/;
+			var sendPost = patt.test(location.href);
+			if (sendPost) {
+				$http.post(location.href).success(function(data) {
+					$scope.element = data;
+				});
+			}
 		});
 	}
 
