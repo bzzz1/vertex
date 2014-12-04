@@ -87,7 +87,7 @@ class MainController extends BaseController {
 			return Redirect::to('admin');
 		} else {
 			dd('wrong creds!');
-			return Redirect::to('login');
+			return Redirect::to('admin');
 		}
 	}
 
