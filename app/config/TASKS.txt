@@ -1,0 +1,40 @@
+laravel file upload and title
+login system
+
+
+
+
+_______________________________________________
+form validation laravel and angular
+save form state -> ajax get Input::old() from angular
+->withInput()
+
+____JAVASCRIPT__________________________________
+http://www.regexr.com/
+https://regex101.com/
+return in js === die() in php
+
+_____LARAVEL____________________________________
+http://cheats.jesse-obrien.ca/
+http://daylerees.com/codebright/codebright
+http://laravel-recipes.com/
+http://www.laravel-tricks.com/categories
+http://scotch.io/tutorials/php/create-a-laravel-and-angular-single-page-comment-application
+
+_____ANGULAR____________________________________
+https://egghead.io/technologies
+http://www.ng-newsletter.com/posts/
+http://scotch.io/tutorials/php/create-a-laravel-and-angular-single-page-comment-application
+https://docs.angularjs.org/tutorial/step_07
+angular templates and routing
+add item angular first data then tamplate
+ajax login
+
+_____CSS_&_HTML__________________________________
+http://css-tricks.com/almanac/
+
+____TUTORIALS____________________________________
+http://www.w3schools.com/
+https://egghead.io/
+https://www.codeschool.com/
+http://www.codecademy.com/
