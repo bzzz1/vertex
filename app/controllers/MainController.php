@@ -62,13 +62,38 @@ class MainController extends BaseController {
 | ADMIN AREA
 ------------------------------------------------*/
 	public function login() {
-		if (true) {
+		// dd(hash('algo', 'string'));
+
+		if (Auth::check()) {
 			return View::make('admin/admin')->with([
 				'element'	=> new Item
 			]);
 		} else {
 			return View::make('admin.login');
 		}
+	}
+
+	public function validate() {
+		// admin74956491461
+		$creds = [
+			'login' 	=> hash('sha512', Input::get('login')),
+			'password'	=> hash('sha512', Input::get('password'))
+			//'remember_token'	=> Input::get('_token')
+		];
+
+		// dd($creds);
+
+		if (Auth::attempt($creds)) {
+			return Redirect::to('admin');
+		} else {
+			dd('wrong creds!');
+			return Redirect::to('login');
+		}
+	}
+
+	public function logout() {
+		Auth::logout();
+		return Redirect::to('admin');
 	}
 
 	public function adminInfo() {

@@ -9,7 +9,6 @@
 	{{ HTML::style('css/reset.css') }}
 	{{ HTML::style('css/text.css') }}
 	{{ HTML::style('css/960_24_col.css') }}
-	{{ HTML::style('css/login.css') }}
 	{{ HTML::style('css/style.css') }}
 	@yield('css')
 	<!--[if lt IE 10]>
