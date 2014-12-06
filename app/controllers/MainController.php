@@ -115,7 +115,6 @@ class MainController extends BaseController {
 	public function updateOrCreateItem($code=null) {
 		$validator = Validator::make(Input::all(), [
 			'code'				=> ($code === null) ? 'required|unique:items' : 'required'
-			// 'code'				=> 'required|max:255|email|unique:users',
 			// 'username'			=> 'required|min:3|unique:users',
 			// 'password'			=> 'required|min:6',
 			// 'password_again'	=> 'required|same:password'

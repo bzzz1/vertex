@@ -38,3 +38,6 @@ http://www.w3schools.com/
 https://egghead.io/
 https://www.codeschool.com/
 http://www.codecademy.com/
+
+____CHEATSHEETS__________________________________
+http://overapi.com/
