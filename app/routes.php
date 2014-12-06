@@ -3,8 +3,10 @@
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
-Route::group(array('prefix' => 'admin'), function() {
-	Route::get('/', 'MainController@login');
+Route::get('/admin', 'MainController@login');
+Route::post('/validate', 'MainController@validate');
+
+Route::group(['prefix' => 'admin', 'before' => 'auth2'], function() {
 	Route::get('/info', 'MainController@adminInfo');
 	Route::get('/codeSearch', ['as'=>'codeSearchAdmin', 'uses'=>'MainController@codeSearchAdmin']);
 	Route::get('/itemSearch', ['as'=>'itemSearchAdmin', 'uses'=>'MainController@itemSearchAdmin']);

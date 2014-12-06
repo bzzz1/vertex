@@ -1188,3 +1188,30 @@ input[type=submit].save_button {
 	line-height: 46px;
 	margin-left: 20px;
 }
+.login_section {
+	height: 700px;
+}
+.login_section h2.admin_area {
+	margin-top: 50px;
+	width: 100%;
+	text-align: center;
+	margin-bottom: 20px;
+}
+.login_section img.admin_warning {
+	display: block;
+	margin: auto;
+	margin-top: 50px;
+}
+.login_section input.admin_input {
+	width: 300px;
+	font-size: 24px;
+	text-align: center;
+	margin: auto;
+	margin-bottom: 20px;
+}
+.login_section input.login_button {
+	width: 100px;
+	margin: auto;
+	margin-top: 40px;
+	font-weight: bold;
+}
