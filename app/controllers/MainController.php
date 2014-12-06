@@ -62,33 +62,34 @@ class MainController extends BaseController {
 | ADMIN AREA
 ------------------------------------------------*/
 	public function login() {
-		// dd(hash('algo', 'string'));
-
 		if (Auth::check()) {
 			return View::make('admin/admin')->with([
 				'element'	=> new Item
 			]);
 		} else {
-			return View::make('admin.login');
+			return View::make('admin/login');
 		}
 	}
 
 	public function validate() {
-		// admin74956491461
+		// dd(Hash::make('string'));
+		// dd(hash('sha512', 'string'));
+
+		// use $creds to escape where _token problem
 		$creds = [
-			'login' 	=> hash('sha512', Input::get('login')),
-			'password'	=> hash('sha512', Input::get('password'))
-			//'remember_token'	=> Input::get('_token')
+			'password'	=> Input::get('password'),
+			'login' 	=> Input::get('login')
 		];
 
-		// dd($creds);
+		// if (Auth::validate($creds)) {
+		// 	$admin = Member::where('login', $creds['login'])->first();
+		// 	Auth::login($admin, true); 		// true to remember user not only for this page session
+		// }
 
-		if (Auth::attempt($creds)) {
-			return Redirect::to('admin');
-		} else {
-			dd('wrong creds!');
-			return Redirect::to('admin');
-		}
+		Auth::attempt($creds);
+
+		// with or without login, anyway redirect to /admin
+		return Redirect::to('admin');
 	}
 
 	public function logout() {
@@ -142,7 +143,7 @@ class MainController extends BaseController {
 			'code'				=> ($code === null) ? 'required|unique:items' : 'required'
 			// 'username'			=> 'required|min:3|unique:users',
 			// 'password'			=> 'required|min:6',
-			// 'password_again'	=> 'required|same:password'
+			// 'password_again'		=> 'required|same:password'
 		]);
 
 		if ($validator->fails()) {

@@ -992,6 +992,17 @@ ul.pagination {
 	font-weight: bold;
 	margin-bottom: 0px;
 	font-size: 27px;
+	margin-left: 20px;
+}
+.logout_button {
+	background: #4D4D4D;
+	padding: 5px 10px;
+	font-size: 20px;
+	border-radius: 10px;
+	color: white;
+}
+.logout_button:hover {
+	color: white;
 }
 .nav_admin {
 	margin-left: 530px;

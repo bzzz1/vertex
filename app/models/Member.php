@@ -8,4 +8,5 @@ use Illuminate\Auth\Reminders\RemindableInterface;
 class Member extends Eloquent implements UserInterface, RemindableInterface {
 	use UserTrait, RemindableTrait;
 	protected $guarded = [];
+	public $timestamps = false;
 }
