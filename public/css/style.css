@@ -25,10 +25,24 @@
   font-style: italic;
   font-weight: bold;
 }
+/*------------------------------------------------
+| Sticky footer
+------------------------------------------------*/
+.footer_absolute {
+	height: 280px;
+	position: absolute; /* relatively to body */
+	bottom: 0;
+	width: 100%; /* for margin: auto; to work in footer */
+}
+body {
+	padding-bottom: 295px; /* when content > screen */
+	height: auto; /* when content > screen */
+	min-height: 100%; /* when content < screen */
+	position: relative; /* for footer_absolute */
+}
+/*----------------------------------------------*/
 body, html {
 	cursor: default;
-	min-height: 100%;
-	position: relative;
 	font-family: 'Century_Gothic', sans-serif;
 }
 ul {
@@ -445,7 +459,6 @@ p.title_sort {
 .info_footer {
 	min-height: 180px;
 	background: #e4e4e4;
-	margin-top: 15px;
 	line-height: 15px;
 	color: #414141;
 	padding-bottom: 15px;
@@ -567,6 +580,10 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	width: 100px;
 	float: left;
 	margin-right: 5px;
+}
+.item_page_photo_div {
+	display: inline-block;
+	height: 200px;
 }
 .item_page_photo {
 	width: 200px;
@@ -1225,4 +1242,14 @@ input[type=submit].save_button {
 	margin: auto;
 	margin-top: 40px;
 	font-weight: bold;
+}
+.delete_icon {
+	position: relative;
+	height: 20px;
+	background-image: url(../icons/delete_icon.png);
+	background-repeat: no-repeat;
+	background-size: 20px;
+	top: -26px;
+	left: 378px;
+	cursor: pointer;
 }

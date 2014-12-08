@@ -18,8 +18,11 @@
 <body>
 	@yield('header')
 	@yield('body')
-	@yield('footer')
-	
+
+	<div class="footer_absolute">
+		@yield('footer')
+	</div>
+
 	{{ HTML::script('js/jquery.js') }}
 	{{ HTML::script('js/script.js') }}
 	@yield('js')

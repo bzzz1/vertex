@@ -17,7 +17,7 @@
 				// 	$element->fill(Input::old());
 				// }			
 			?>
-			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'method'=>'POST', 'class'=>'item_form']) }}
+			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'files'=>true, 'method'=>'POST', 'class'=>'item_form']) }}
 				<table>
 					<tr>
 						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
@@ -82,13 +82,15 @@
 						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.code', 'required']) }}</td>
 					</tr>
 					<tr>
-						<td>{{ Form::label('photo', 'Изображение: 255px*255px', ['class'=>'main_label']) }}</td>
+						<td>{{ Form::label('photo_label', 'Изображение: 255px*255px', ['class'=>'main_label']) }}</td>
 						<td>
 							@if (isset($element->photo))
-								{{ Form::text('photo', null, ['disabled', 'class'=>'change_input input_file_name', 'ng-model'=>'element.photo']) }}
+								{{ Form::text('photo_name', null, ['disabled', 'class'=>'change_input input_file_name photo_name', 'ng-model'=>'element.photo']) }}
+								{{ Form::hidden('photo_name', '[[ element.photo ]]', ['class'=>'change_input input_file_name photo_name']) }}
 						 	@else 
-								{{ Form::text('photo', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name', 'ng-model'=>'element.photo']) }}
+								{{ Form::text('photo_name', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name photo_name', 'ng-model'=>'element.photo']) }}
 							@endif
+							<div class="delete_icon"></div>
 							{{ Form::file('photo', ['class'=>'change_input']) }}
 						</td>
 					</tr>

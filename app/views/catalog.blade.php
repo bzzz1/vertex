@@ -31,7 +31,9 @@
 					*****************************************************-->
 					<div class="item">
 						<h1 class="item_page_header">{{ $item->item }}</h1>
-						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
+						<div class="item_page_photo_div">
+							{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
+						</div>
 						<div class="item_page_right_div">
 							<table class="info_item_page">
 								<tr>

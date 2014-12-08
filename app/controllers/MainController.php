@@ -148,8 +148,25 @@ class MainController extends BaseController {
 
 		if ($validator->fails()) {
 			return Redirect::back()->with('error_msg', 'Код должен быть уникальным!')->withInput();
-		} else { 
-			Item::updateOrCreateItemByCode($code, Input::all());
+		} else {
+			$fields = Input::all();
+			unset($fields['photo_name']); // clear unneeded fields from item
+
+			if (Input::hasFile('photo')) {
+				$file = Input::file('photo');
+				$destinationPath = public_path().'/photos/';
+				$filename = $file->getClientOriginalName();
+				$fields['photo'] = $filename; // get photo name to store in db if has file
+				$file->move($destinationPath, $filename);
+			} else {
+				if (Input::has('photo_name')) { // ensure this is not brand new item
+					$fields['photo'] = Input::get('photo_name'); // if filename was from updating
+				} else {
+					unset($fields['photo']);
+				}
+			}
+			
+			Item::updateOrCreateItemByCode($code, $fields);
 			return Redirect::back()->with('msg', 'Изменения сохранены');
 		}
 	}

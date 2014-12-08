@@ -5,7 +5,7 @@
 @section('body')
 	<div class="width_960 catalog_gen">
 		<h2 class="groups_title">{{ $current }}</h2>
-		<h2 class='msg'>{{Session::get('msg') or '' }}</h2>
+		<h2 class='msg'>{{Session::get('msg') ? Session::get('msg') : '' }}</h2>
 		<div class="catalog_sort">
 			<ul class="catalog_sort_text_ul">
 				<li class="catalog_sort_text catalog_sort_text_li">Сортировать по: </li>
@@ -33,7 +33,9 @@
 					*****************************************************-->
 					<div class="item">
 						<h1 class="item_page_header">{{ $item->item }}</h1>
-						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
+						<div class="item_page_photo_div">
+							{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
+						</div>	
 						<div class="item_page_right_div">
 							<table class="info_item_page">
 								<tr>

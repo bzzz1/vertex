@@ -1,14 +1,3 @@
-laravel file upload and title
-login system
-
-
-
-
-_______________________________________________
-form validation laravel and angular
-save form state -> ajax get Input::old() from angular
-->withInput()
-
 ____JAVASCRIPT__________________________________
 http://www.regexr.com/
 https://regex101.com/

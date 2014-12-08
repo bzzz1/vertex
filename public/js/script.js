@@ -114,6 +114,13 @@
 		});
 	}
 
+	function run_clear_photo_name() {
+		$('.delete_icon').on('click', function() {
+			$('.photo_name').val('no_image.png');
+		});
+	}
+
+	run_clear_photo_name();
 	run_deleting_confirm();
 	run_angular_preview();
 	run_subcategories();
