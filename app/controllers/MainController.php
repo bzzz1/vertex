@@ -57,6 +57,11 @@ class MainController extends BaseController {
 			'env' 		=> 'info'
 		]);	
 	}
+
+	public function attachment() {
+		header('Content-disposition: attachment; filename=Komplexnoe_predl_s_1_12.xlsx');
+		readfile(public_path().'/attachments/Komplexnoe_predl_s_1_12.xlsx');
+	}
 	
 /*------------------------------------------------
 | ADMIN AREA

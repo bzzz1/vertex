@@ -120,6 +120,14 @@
 		});
 	}
 
+	function run_contact_form_buttons() {
+		$('.contact_form_button').on('click', function() {
+			$('#bcf-trigger')[0].click();
+			return false; // prevent default action like evt.preventDefault();
+		});
+	}
+
+	run_contact_form_buttons();
 	run_clear_photo_name();
 	run_deleting_confirm();
 	run_angular_preview();

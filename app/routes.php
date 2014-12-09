@@ -4,6 +4,8 @@ Route::get('/info', 'MainController@info');
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
 Route::get('/admin', 'MainController@login');
 Route::post('/validate', 'MainController@validate');
+Route::get('/attachment', 'MainController@attachment');
+Route::get('/{env}', 'MainController@index'); // items and spares
 
 Route::group(['prefix'=>'/admin', 'before'=>'auth2'], function() {
 	Route::get('/logout', 'MainController@logout');

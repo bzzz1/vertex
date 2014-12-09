@@ -306,20 +306,6 @@ a.nav_item.selected {
 .free_space {
 	height: 110px;
 }
-/*.first_line {
-	position: absolute;
-	top: 408px;
-	right: 272px;
-}
-.tech_icon_block, .packing_icon_block, .bread_icon_block, .freez_icon_block {
-	margin-top: 300px;
-}
-
-.second_line {
-	position: absolute;
-	top: 788px;
-	right: 273px;
-}*/
 .subcategory_block {
 	width: 880px;
 	background: #e3f0f7;

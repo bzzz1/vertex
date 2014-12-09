@@ -6,26 +6,26 @@
 				<div class="info_footer_catalog ">
 					<p class = "footer_p_catalog">Каталог товаров</p>
 					<ul class = "footer_ul_catalog">
-						<li><a href="#">Главная</a></li><!-- Переход на страницу каталога без сортировки-->
-						<li><a href="#">Барное оборудование</a></li>
-						<li><a href="#">Нейстральное оборудование</a></li>
-						<li><a href="#">Посуда и инвентарь</a></li>
-						<li><a href="#">Посудомоечное оборудование</a></li>
-						<li><a href="#">Технологическое оборудование</a></li>
-						<li><a href="#">Упаковочное оборудование</a></li>
-						<li><a href="#">Хлебопекарское оборудование</a></li>
-						<li><a href="#">Холодильное оборудование</a></li>
+						<li>{{ HTML::link('', 'Главная', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Барное/Всё', 'Барное оборудование', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Нейтральное/Всё', 'Нейтральное оборудование', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Посуда и инвентарь/Всё', 'Посуда и инвентарь', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Посудомоечное/Всё', 'Посудомоечное оборудование', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Технологическое/Всё', 'Технологическое оборудование', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Упаковочное/Всё', 'Упаковочное оборудование', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Хлебопекарное/Всё', 'Хлебопекарное оборудование', ['class'=>'']) }}</li>
+						<li>{{ HTML::link('/items/Холодильное/Всё', 'Холодильное оборудование', ['class'=>'']) }}</li>
 					</ul>
 				</div><!-- info_footer_catalog -->
 
 				<div class="info_footer_services">
 					<p class = "footer_p_services">Услуги </p>
 					<ul class = "footer_ul_services">
-						<li><a href="#">Проектирование</a></li> <!-- форма обратной связи -->
-						<li><a href="#">Лизинг</a></li><!-- форма обратной связи -->
-						<li><a href="#">Дизайн ресторанов и кафе</a></li><!-- на страницу "информация" -->
-						<li><a href="#">Внедрение систем лояльности клиентов</a></li><!-- форма обратной связи -->
-						<li><a href="#">Выпечка и полуфабрикаты</a></li><!-- загрузка прайса(файл в чате) -->
+						<li>{{ HTML::link('', 'Проектирование', ['class'=>'contact_form_button']) }}</li> <!-- форма обратной связи -->
+						<li>{{ HTML::link('', 'Лизинг', ['class'=>'contact_form_button']) }}</li><!-- форма обратной связи -->
+						<li>{{ HTML::link('/info', 'Дизайн ресторанов и кафе', ['class'=>'']) }}</li><!-- на страницу "информация" -->
+						<li>{{ HTML::link('', 'Внедрение систем лояльности клиентов', ['class'=>'contact_form_button']) }}</li><!-- форма обратной связи -->
+						<li>{{ HTML::link('/attachment', 'Выпечка и полуфабрикаты', ['class'=>'']) }}</li><!-- загрузка прайса -->
 					</ul>
 				</div><!-- info_footer_services -->
 				
@@ -50,5 +50,6 @@
 				<br/> made by <a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio</a></p>
 			</div><!-- width_960 -->
 		</div><!-- footer_copyright -->
+		<a id="bcf_trigger" href="http://bettercontactform.com" rel="bcf_trigger">Contact Form</a>
 	</footer>
 @stop

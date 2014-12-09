@@ -24,6 +24,7 @@
 	</div>
 
 	{{ HTML::script('js/jquery.js') }}
+	{{ HTML::script('js/betterContactForm.js') }}
 	{{ HTML::script('js/script.js') }}
 	@yield('js')
 </body>
