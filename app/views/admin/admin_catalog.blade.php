@@ -71,7 +71,9 @@
 						</div><!-- description_item -->
 					</div><!-- item -->	
 					<!--****************************************************-->
-					{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}
+					<div class="item_photo_div">
+						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}
+					</div>
 					<table class="info_item_page">
 						<tr>
 							<td>Бренд:&nbsp</td>

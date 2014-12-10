@@ -8,7 +8,7 @@ git add <path/to/file>						[Add NEW or modified file to stage]
 git branch <branch>							[Add new local branch <branch>]
 git branch									[View all branches]
 git branch -d <branch>						[Delete only already merged branch clean_up]
-git branch -d -f <branch>					[Delete even not yet merged branch clean_up]
+git branch -D <branch>						[Delete even not yet merged branch clean_up]
 git branch -r								[View all LOCAL branches (or REMOTE ONLY after fetch)]
 git branch --set-upstream-to=origin/master	[Set current local branch to track remote <origin>/<branch>]
 git checkout -- <file>		
@@ -16,7 +16,7 @@ git checkout HEAD
 git checkout <branch>
 git checkout -b <branch>					[Checkout and create new branch at the same time]
 git checkout <tag>							[Roll back to <tag> release]
-git checkout -- <file>					[Drop all changes in file <file> since last commit]
+git checkout -- <file>						[Drop all changes in file <file> since last commit]
 git clean [-n, -i, -f]						[Show or force remove untaracking files]
 git clone https://github.com/bzzz1/vertex.git
 git commit --amend -m "bla bla bla"			[Add to the last commit and rewrite commit msg]

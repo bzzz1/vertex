@@ -167,7 +167,7 @@ class MainController extends BaseController {
 				if (Input::has('photo_name')) { // ensure this is not brand new item
 					$fields['photo'] = Input::get('photo_name'); // if filename was from updating
 				} else {
-					unset($fields['photo']);
+					unset($fields['photo']); // use default value from mysql if not $element->photo
 				}
 			}
 			
@@ -191,7 +191,24 @@ class MainController extends BaseController {
 	}
 
 	public function updateOrCreateArticle($id=null) {
-		Article::updateOrCreateArticleById($id, Input::all());
+		$fields = Input::all();
+		unset($fields['photo_name']); // clear unneeded fields from article
+
+		if (Input::hasFile('image')) {
+			$file = Input::file('image');
+			$destinationPath = public_path('/photos/articles/');
+			$filename = $file->getClientOriginalName();
+			$fields['image'] = $filename; // get photo name to store in db if has file
+			$file->move($destinationPath, $filename);
+		} else {
+			if (Input::has('photo_name')) { // ensure this is not brand new item
+				$fields['image'] = Input::get('photo_name'); // if filename was from updating
+			} else {
+				unset($fields['image']); // use default value from mysql if not $article->image
+			}
+		}
+
+		Article::updateOrCreateArticleById($id, $fields);
 		return Redirect::to('admin/info');
 	}
 

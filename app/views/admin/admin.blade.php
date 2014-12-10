@@ -89,6 +89,7 @@
 								{{ Form::hidden('photo_name', '[[ element.photo ]]', ['class'=>'change_input input_file_name photo_name']) }}
 						 	@else 
 								{{ Form::text('photo_name', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name photo_name', 'ng-model'=>'element.photo']) }}
+								{{-- use default value from mysql in not $element->photo --}}
 							@endif
 							<div class="delete_icon"></div>
 							{{ Form::file('photo', ['class'=>'change_input']) }}

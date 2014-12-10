@@ -6,7 +6,7 @@
 	<div class="width_960 catalog_gen">
 		<div class='change_item'>
 			<h2 class="groups_title">Заголовок: {{ $article->title }} </h2>
-			{{ Form::model($article, ['url'=>['admin/info/updateArticle', $article->id], 'method'=>'POST', 'class'=>'item_form admin_info_form']) }}
+			{{ Form::model($article, ['url'=>['admin/info/updateArticle', $article->id], 'files'=>true, 'method'=>'POST', 'class'=>'item_form admin_info_form']) }}
 				<table>
 					<tr>
 						<td>{{ Form::label('title', 'Заголовок: ', ['class'=>'main_label']) }}</td>
@@ -14,7 +14,7 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('body', 'Текст: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::textarea('body', null, ['class'=>'change_input']) }}</td>
+						<td>{{ Form::textarea('body', null, ['class'=>'change_input long_textarea']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('priority', 'Последовательность: ', ['class'=>'main_label']) }}</td>
@@ -23,7 +23,14 @@
 					<tr>
 						<td>{{ Form::label('image', 'Изображение: 255px*255px', ['class'=>'main_label']) }}</td>
 						<td>
-							{{ Form::text('image', null, ['disabled', 'class'=>'change_input input_file_name']) }}
+							@if (isset($article->image))
+								{{ Form::text('photo_name', $article->image, ['disabled', 'class'=>'change_input input_file_name photo_name']) }}
+								{{ Form::hidden('photo_name', $article->image, ['class'=>'change_input input_file_name photo_name']) }}
+						 	@else 
+								{{ Form::text('photo_name', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name photo_name']) }}
+								{{-- use default value from mysql if not $article->image --}}
+							@endif
+							<div class="delete_icon"></div>
 							{{ Form::file('image', ['class'=>'change_input']) }}
 						</td>
 					</tr>

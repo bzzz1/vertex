@@ -16,7 +16,7 @@ Route::group(['prefix'=>'/admin', 'before'=>'auth2'], function() {
 	/*------------------------------------------------
 	| ITEM
 	------------------------------------------------*/
-	Route::post('/createItem', 'MainController@createItem');
+	// Route::post('/createItem', 'MainController@createItem');
 	Route::get('/changeItem/{code?}', 'MainController@changeItem');
 	Route::post('/changeItem/{code?}', 'MainController@changeItemJson');
 	Route::post('/updateItem/{code?}', 'MainController@updateOrCreateItem');
@@ -24,7 +24,7 @@ Route::group(['prefix'=>'/admin', 'before'=>'auth2'], function() {
 	/*------------------------------------------------
 	| ARTICLE
 	------------------------------------------------*/
-	Route::post('/info/createArticle', 'MainController@createArticle');
+	// Route::post('/info/createArticle', 'MainController@createArticle');
 	Route::get('/info/changeArticle/{id?}', 'MainController@changeArticle');
 	Route::post('/info/updateArticle/{id?}', 'MainController@updateOrCreateArticle');
 	Route::post('/info/deleteArticle/{id}', 'MainController@deleteArticle');

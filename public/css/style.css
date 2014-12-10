@@ -562,17 +562,27 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	border-radius: 10px;
 	width: 265px;
 }
-.item_photo {
+.item_photo_div {
+	display: inline-block;
+	height: 100px;
 	width: 100px;
+}
+.item_photo {
+	/* img with proportion ratio */
+	max-width: 100px;
+	max-height: 100px;
 	float: left;
 	margin-right: 5px;
 }
 .item_page_photo_div {
 	display: inline-block;
 	height: 200px;
+	width: 200px;
 }
 .item_page_photo {
-	width: 200px;
+	/* img with proportion ratio */
+	max-width: 200px;
+	max-height: 200px;
 	float: left;
 	margin-right: 5px;
 }
@@ -935,11 +945,20 @@ ul.pagination {
 .article_header {
 	display: block;
 }
+.article_photo_preview_div {
+	margin-right: 15px;
+	float: left;
+	max-height: 255px;
+	width: 255px;
+}
 .article_photo_preview {
 	float: left;
 	margin: 3px;
 	vertical-align: top;
 	margin-right: 5px;
+	/* img with proportion ratio */
+	max-width: 255px;
+	max-height: 255px;
 }
 .article_preview_text {
 	overflow-y: hidden; /*JS*/
@@ -1238,4 +1257,7 @@ input[type=submit].save_button {
 	top: -26px;
 	left: 378px;
 	cursor: pointer;
+}
+textarea.long_textarea {
+	width: 698px;
 }

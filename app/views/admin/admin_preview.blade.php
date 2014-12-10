@@ -7,7 +7,9 @@
 			*****************************************************-->
 			<div class="item">
 				<h1 class="item_page_header">[[ element.item ]]</h1>
-				<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_page_photo'/>
+				<div class="item_page_photo_div">
+					<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_page_photo'/>
+				</div>
 				<div class="item_page_right_div">
 					<table class="info_item_page">
 						<tr>
@@ -45,7 +47,9 @@
 				</div><!-- description_item -->
 			</div><!-- item -->	
 			<!--****************************************************-->
-			<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_photo'/>
+			<div class="item_photo_div">
+				<img ng-src="[[ origin ]]/photos/[[ element.photo ? element.photo : 'no_image.png' ]]" alt="item" class='item_photo'/>
+			</div>
 			<table class="info_item_page">
 				<tr>
 					<td>Бренд:&nbsp</td>

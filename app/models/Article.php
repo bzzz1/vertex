@@ -23,7 +23,7 @@ class Article extends Eloquent {
 ------------------------------------------------*/
 	public static function updateOrCreateArticleById($id, $fields) {
 		$id ? $article = Article::find($id) : $article = new Article;
-		$article->fill(Input::all());
+		$article->fill($fields);
 		$article->save();
 	}
 /*------------------------------------------------
