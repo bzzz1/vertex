@@ -59,6 +59,7 @@ class MainController extends BaseController {
 	}
 
 	public function attachment() {
+		header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-disposition: attachment; filename=Komplexnoe_predl_s_1_12.xlsx');
 		readfile(public_path().'/attachments/Komplexnoe_predl_s_1_12.xlsx');
 	}

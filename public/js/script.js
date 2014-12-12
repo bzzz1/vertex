@@ -6,32 +6,52 @@
 			var $this = $(this);
 			var category = $this.data('category');
 			var classes = $this.attr('class');
-			var was_shown = !!(classes.indexOf('_hover') > 0);
+			var was_shown = (classes.indexOf('_hover') > 0);
 			var deselect = classes.slice(0, classes.length-6);
 			var select = classes + '_hover';
 			var $subcategory = $subcategories.filter(function(index) {
 				return $(this).data('category') === category;
 			});
 
-			// first, hide all opened subcategories and deselect
+			/*------------------------------------------------
+			| Look for already seleted before hide all !!!
+			------------------------------------------------*/
+			var $selected = $categories.filter(function(index) {
+				return $(this).data('selected') === true;
+			});
+			/*----------------------------------------------*/
+
+			/*------------------------------------------------
+			| hide all opened subcategories and deselect
+			------------------------------------------------*/
 			$.each($categories, function(index, value) {
 				var $this = $(this);
 				var classes = $this.attr('class');
 			 	var deselect = classes.slice(0, classes.length-6);
-				var was_shown = !!(classes.indexOf('_hover') > 0);
+				var was_shown = (classes.indexOf('_hover') > 0);
 
 				if (was_shown) {
 					$this.attr('class', deselect);
+					$this.data('selected', false); // doesn't write to DOM but to JQuery object also in JSON
 				}
 			});
-
+			// hide all
 			$subcategories.clearQueue().slideUp();
-			// if this was selected
+			/*----------------------------------------------*/
+
+			/*------------------------------------------------
+			| if this was selected
+			------------------------------------------------*/
 			if (was_shown) {
-				$this.attr('class', deselect);
-			} else { // else show appropriate subcategories
+				$this.attr('class', deselect); // this is already hidden
+			} else { // else if this wasn't selected
 				$this.attr('class', select);
-				$subcategory.clearQueue().delay(400).slideDown();
+				if ($selected.length > 0) { // use length because even empty array [] in jQuery isn't falsy
+					$subcategory.clearQueue().delay(400).slideDown();						
+				} else {
+					$subcategory.clearQueue().slideDown();						
+				}
+				$this.data('selected', true); // doesn't write to DOM but to JQuery object also in JSON
 			}
 
 			// var url = $this.css('background-image');
@@ -121,9 +141,22 @@
 	}
 
 	function run_contact_form_buttons() {
-		$('.contact_form_button').on('click', function() {
-			$('#bcf-trigger')[0].click();
-			return false; // prevent default action like evt.preventDefault();
+		$('.contact_form_button').on('click', function(evt) {
+			evt.preventDefault();
+			var contactFormTag = $('#bcf-trigger')[0];
+
+			if ('click' in contactFormTag) {
+				contactFormTag.click();
+			} else { // doesn't work with $('#bcf-trigger')[0].click() in Safari
+				var evObj = document.createEvent('MouseEvents');
+				evObj.initMouseEvent('click', true, true, window);
+				contactFormTag.dispatchEvent(evObj);
+			}
+
+			// if (typeof contactFormTag.click != 'undefined') {} // should work fine
+			// if (contactFormTag.hasOwnProperty('click')) {} // not own property!
+			
+			// return false; // doesn't work even in IE11 and Mozilla with dispatchEvent() but fine with just click()
 		});
 	}
 
