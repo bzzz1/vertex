@@ -40,14 +40,16 @@
 		</div><!-- info_footer -->
 		<div class="footer_copyright">
 			<div class="width_960 footer_width_960">	
-				<div class="footer_logo_div">
-					<a href="{{ URL::to('/') }}">
-						{{ HTML::image('icons/logo_footer.png', 'Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов', ['class'=>'footer_logo']) }} 
-					</a>
-				</div>	
-				<p class="footer_copyright_p">© 2014 «Vertex.ltd&#187 <br/>Оборудование для ресторанов, посуда для кафе и столовых, мебель для общепита,
-				<br/> кухонный инвентарь
-				<br/> made by <a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio</a></p>
+				<a href="{{ URL::to('/') }}" class='footer_logo_div'>
+					{{ HTML::image('icons/logo_footer.png', 'Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов', ['class'=>'footer_logo']) }} 
+				</a>
+				<p class="footer_copyright_p">
+					© 2014 «Vertex.ltd&#187 
+					<br/>Оборудование для ресторанов, посуда для кафе и столовых, мебель для общепита,
+					<br/> кухонный инвентарь
+					<br/> made by 
+					<a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio</a>
+				</p>
 			</div><!-- width_960 -->
 		</div><!-- footer_copyright -->
 		<a id="bcf_trigger" href="http://bettercontactform.com" rel="bcf_trigger">Contact Form</a>

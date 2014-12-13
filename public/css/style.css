@@ -45,6 +45,9 @@ body, html {
 	cursor: default;
 	font-family: 'Century_Gothic', sans-serif;
 }
+table {
+	margin-bottom: 0;
+}
 ul {
  	list-style-type: none;
 }
@@ -470,7 +473,7 @@ p.title_sort {
 }
 .footer_p_catalog, .footer_p_services, .footer_contacts_p_head {
 	margin-top: 20px;
-	font-size:18.6px;
+	font-size: 18px;
 	font-weight: bold;
 	text-transform: uppercase;
 }
@@ -485,26 +488,27 @@ p.title_sort {
 	margin: 0 0;
 }
 .footer_logo {
-	float: left;
 	margin-top: 20px;
 }
-.footer_logo_div {
-	display: inline-block;
+a.footer_logo_div {
+	position: absolute;
+	left: 0;
+	margin-left: 40px;
 }
 .footer_copyright_p a {
 	color: #cecece;
 }
 .footer_copyright_p {
-	float: right;
+	position: absolute;
+	left: 240px;
 	margin-top: 7px;
 	font-size: 13px;
 	line-height: 14px;
 	display: inline-block;
-	margin-right: 194px;
 	margin-bottom: 0;
 }
 .footer_width_960 {
-	padding-left: 40px;
+	position: relative;
 }
 /*------------------------------------------------
 | item page
