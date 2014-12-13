@@ -321,23 +321,20 @@ a.nav_item.selected {
 	border-radius: 10px;
 	display: none;
 }
-.subcategory_block ul {
-	height: 10px;
-}
 .subcategory_block a:hover {
 	text-decoration: underline;
 }
 .subcategory_column {
 	width: 880px;
-	-webkit-column-count: 4;
+	/*-webkit-column-count: 4;
 	-ms-column-count: 4;
 	-moz-column-count: 4;
 	column-count: 4;
 	-webkit-column-gap: 45px; 
 	-ms-column-gap: 45px; 
 	-moz-column-gap: 45px; 
-	column-gap: 45px;
-	padding: 10px; 
+	column-gap: 45px;*/
+	padding: 10px 10px 0px 10px; 
 }
 .subcategory_column a {
 	text-decoration: none;
@@ -396,15 +393,7 @@ a.nav_item.selected {
 	text-decoration: underline;
 }
 .brands_column {
-	-webkit-column-count: 4;
-	-ms-column-count: 4;
-	-moz-column-count: 4;
-	column-count: 4;
-	-webkit-column-gap: 0px; 
-	-ms-column-gap: 0px; 
-	-moz-column-gap: 0px; 
-	column-gap: 0px;
-	padding: 10px; 
+	padding: 10px 10px 0px 10px; 
 	margin-left: 40px;
 }
 .type, .brands li {
@@ -567,7 +556,9 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	width: 265px;
 }
 .item_photo_div {
-	display: inline-block;
+	/*display: inline-block;*/
+	float: left;
+	margin-right: 5px;
 	height: 100px;
 	width: 100px;
 }
@@ -792,7 +783,6 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-	/*max-height: 34px*/
 	text-decoration: underline;
 	cursor: pointer;
 }
@@ -800,6 +790,9 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	display: inline-block;
 	margin: 0;
 	vertical-align: top;
+	width: 145px;
+}
+.info_item_page tr {
 	width: 145px;
 }
 .catalog_item_info {
@@ -1061,21 +1054,6 @@ ul.pagination {
 }
 .admin_add_change_descrition {
 	margin-bottom: 0px;
-}
-.admin_2nd_main_menu {
-	-webkit-column-count: 2;
-	-ms-column-count: 2;
-	-moz-column-count: 2;
-	column-count: 2;
-	-webkit-column-gap: 240px; 
-	-ms-column-gap: 240px; 
-	-moz-column-gap: 240px; 
-	column-gap: 240px;
-	-webkit-column-rule: 10px dashed #eeeeee;
-	-ms-column-rule: 10px dashed #eeeeee;
-	-moz-column-rule: 10px dashed #eeeeee;
-	column-rule: 10px dashed #eeeeee;
-	height: 450px;
 }
 .admin_preview_item {
 	box-shadow: 0 8px 4px #c0c0c0;

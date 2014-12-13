@@ -160,6 +160,14 @@
 		});
 	}
 
+	function run_columnizer() {
+		$('.brands_column').columnize({columns: 4});
+		$('.subcategory_block').show(); // all subcategory_column needs to be display: block to apply columnize()
+		$('.subcategory_column').columnize({width: 205}); //can't use doneFunc because it applies only for the first block
+		$('.subcategory_block').hide(); // hide back
+	}
+
+	run_columnizer();
 	run_contact_form_buttons();
 	run_clear_photo_name();
 	run_deleting_confirm();
