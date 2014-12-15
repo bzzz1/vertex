@@ -25,7 +25,7 @@
 						<li>{{ HTML::link('', 'Лизинг', ['class'=>'contact_form_button']) }}</li><!-- форма обратной связи -->
 						<li>{{ HTML::link('/info', 'Дизайн ресторанов и кафе', ['class'=>'']) }}</li><!-- на страницу "информация" -->
 						<li>{{ HTML::link('', 'Внедрение систем лояльности клиентов', ['class'=>'contact_form_button']) }}</li><!-- форма обратной связи -->
-						<li>{{ HTML::link('/attachment', 'Выпечка и полуфабрикаты', ['class'=>'']) }}</li><!-- загрузка прайса -->
+						<li>{{ HTML::link('/attachment', 'Выпечка и полуфабрикаты | скачать прайс', ['class'=>'']) }}</li><!-- загрузка прайса -->
 					</ul>
 				</div><!-- info_footer_services -->
 				
@@ -33,8 +33,7 @@
 					<p class="footer_contacts_p_head">Контакты</p>
 					<p class="footer_contacts_p">Офис продаж</p>
 					<p class="footer_contacts_p">+7(861)203-40-97</p>
-					<p class="footer_contacts_p">Заказать</p> 
-					<p class="footer_contacts_p"> обраный звонок</p>
+					<a class="footer_contacts_p contact_form_button">Заказать <br> обраный звонок</a>
 				</div>
 			</div><!-- width_960 footer_960 -->
 		</div><!-- info_footer -->

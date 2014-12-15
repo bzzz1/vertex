@@ -55,6 +55,9 @@ li {
 	list-style-type: none;
 	margin: 0;
 }
+a, button, input, a:visited {
+	outline: 0;
+}
 .width_960 {
 	margin-left: auto;
 	margin-right: auto;
@@ -371,7 +374,7 @@ a.nav_item.selected {
 .groups a:hover {
 	background: white;
 	border: 1px solid #cecece;
-	box-shadow: inset 1px 1px 3px #cecece;
+	box-shadow: inseint 1px 1px 3px #cecece;
 	height: 20px;
 	line-height: 18px;
 	width: auto;
@@ -502,23 +505,10 @@ a.footer_logo_div {
 /*------------------------------------------------
 | item page
 ------------------------------------------------*/
-/*
- ::first-line 
-font properties
-color properties
-background properties
-word-spacing
-letter-spacing
-text-decoration
-vertical-align
-text-transform
-line-height
-clear
-*/
 .item {
 	position: absolute;
 	top: 25px;
-	left: -130px;
+	left: -25px;
 	z-index: 10;
 	background: #fff;
 	border: 3px solid #cecece; 
@@ -602,19 +592,6 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	float: right;
 	color: white;
 	font-weight: bold;
-}
-
-.info_page_item_text:hover {
-	position: absolute;
-	z-index: 10;
-	background: white;
-	border: 1px solid #cecece;
-	box-shadow: inset 1px 1px 3px #cecece;
-	height: auto;
-	width: auto;
-	white-space: normal;
-	padding: 0px 10px;
-	border-radius: 10px;
 }
 .info_page_item_procurement {
 	margin-top: 10px;
@@ -792,15 +769,11 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	vertical-align: top;
 	width: 145px;
 }
-.info_item_page tr {
-	width: 145px;
-}
 .catalog_item_info {
 	display: inline-block;
 	float: right;
 	width: 201px;
 }
-
 .catalog_item_info_p, .catalog_item_info_p_field, .catalog_item_price_p {
 	margin-bottom: 0px;
 }
@@ -899,13 +872,34 @@ ul.pagination {
 	cursor: default;
 }
 .info_page_item_text {
-	display: inline-block;
-	height: 19px;
-	width: 84px;
 	overflow: hidden;
-	white-space: nowrap;
 	text-overflow: ellipsis;
+	white-space: nowrap;
 }
+.info_page_item_title {
+	width: 50px;
+}
+.info_page_item_text:hover {
+	position: absolute;
+	z-index: 10;
+	background: white;
+	border: 1px solid #cecece;
+	box-shadow: inset 1px 1px 3px #cecece;
+	height: auto;
+	width: auto;
+	padding: 0px 10px;
+	border-radius: 10px;
+}
+/*------------------------------------------------
+| IE9 fix not working width with overflow
+------------------------------------------------*/
+.info_item_page_catalog .info_page_item_text {
+	max-width: 84px;
+}
+.info_item_page_catalog .info_page_item_text:hover {
+	max-width: none;
+}
+/*----------------------------------------------*/
 .win_item_text {
 	display: inline-block;
 	height: 19px;
@@ -913,7 +907,7 @@ ul.pagination {
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
-}s
+}
 /*------------------------------------------------
 | article
 ------------------------------------------------*/
@@ -929,7 +923,7 @@ ul.pagination {
 	margin-bottom: 15px;
 	vertical-align: top;
 	overflow: hidden;
-	width: 835px;
+	width: 880px;
 }
 .article_preview_header {
 	color: #008ccb;
@@ -1243,3 +1237,15 @@ input[type=submit].save_button {
 textarea.long_textarea {
 	width: 698px;
 }
+.contact_form_button {
+	cursor: pointer;
+}
+.contact_form_button:hover {
+	text-decoration: none;
+}
+/*.info_item_page_catalog tbody {
+	position: absolute;
+}*/
+/*.info_item_page tr {
+	width: 145px;
+}*/

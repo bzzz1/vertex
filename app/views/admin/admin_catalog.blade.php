@@ -74,21 +74,21 @@
 					<div class="item_photo_div">
 						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}
 					</div>
-					<table class="info_item_page">
+					<table class="info_item_page info_item_page_catalog">
 						<tr>
-							<td>Бренд:&nbsp</td>
+							<td class='info_page_item_title'>Бренд:&nbsp</td>
 							<td class='info_page_item_text'>{{ $item->producer }}</td>
 						</tr>
 						<tr>
-							<td>Код:&nbsp</td>
+							<td class='info_page_item_title'>Код:&nbsp</td>
 							<td  class='info_page_item_text'>{{ $item->code }}</td>
 						</tr>
 						<tr>
-							<td>Тип:&nbsp</td>
+							<td class='info_page_item_title'>Тип:&nbsp</td>
 							<td class='info_page_item_text'>{{ $item->category }}</td>
 						</tr>
 						<tr>
-							<td>Вид:&nbsp</td>
+							<td class='info_page_item_title'>Вид:&nbsp</td>
 							<td class='info_page_item_text'>{{ $item->subcategory }}</td>
 						</tr>
 						<tr>
