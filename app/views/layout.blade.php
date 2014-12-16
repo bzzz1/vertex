@@ -2,7 +2,7 @@
 <html lang="en">
 <head>
 	<meta charset="UTF-8">
-	<meta name='viewport' content='width=960'>
+	<meta name='viewport' content='width=device-width, initial-scale=1, maximum-scale=3, minimum-scale=0.1'>
 	<title>Vertex - Комплексное оснащение баров, ресторанов, кафе, пищевых производств и магазинов</title>
 	{{ HTML::script('js/angular.min.js') }}
 	<link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
