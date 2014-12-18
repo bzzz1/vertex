@@ -4,7 +4,7 @@
 
 @section('body')
 	<div class="width_960 catalog_gen">
-		<div class='change_item' ng-app='preview' ng-controller='PreviewController as previewCtrl'>
+		<div class='change_item' ng-app='preview' ng-controller='PreviewController as previewCtrl' ng-cloak>
 			<div class="headers" {{ isset($element->code) ? "ng-init='stat=\"update\"'" : ''}}>
 				<h2 class="groups_title">{{ $element->code or 'Добавить товар'}}</h2>
 				<h2 class='msg'>{{ Session::get('msg') ? Session::get('msg') : '' }}</h2>

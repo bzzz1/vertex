@@ -111,7 +111,6 @@
 		/*----------------------------------------------*/
 
 		app.controller('PreviewController', function($scope, $http) {
-
 			$scope.origin = location.origin;
 			$scope.categories = [
 				'Барное',
