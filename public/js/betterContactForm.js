@@ -4,7 +4,7 @@
 		var js, fjs = d.getElementsByTagName(s)[0];
 		js = d.createElement(s);
 		js.id = id;
-		js.src = "http://bettercontactform.com/contact/media/c/1/c12fd5b63f08f4d0ccd1a21333ab26567be03e6f.js";
+		js.src = "http://bettercontactform.com/contact/media/3/a/3ac6f7fc6028beb3669257ec0185cf01be5a8001.js";
 		fjs.parentNode.insertBefore(js, fjs);
 	}(document, "script", "bcf-render"));
 })();

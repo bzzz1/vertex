@@ -1251,3 +1251,6 @@ textarea.long_textarea {
 /*.info_item_page tr {
 	width: 145px;
 }*/
+.header_contacts {
+	text-align: left;
+}

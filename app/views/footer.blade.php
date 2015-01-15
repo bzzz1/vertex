@@ -32,7 +32,7 @@
 				<div class = "info_footer_contacts">
 					<p class="footer_contacts_p_head">Контакты</p>
 					<p class="footer_contacts_p">Офис продаж</p>
-					<p class="footer_contacts_p">+7(861)203-40-97</p>
+					<p class="footer_contacts_p">(812) 982 33 54</p>
 					<a class="footer_contacts_p contact_form_button">Заказать <br> обраный звонок</a>
 				</div>
 			</div><!-- width_960 footer_960 -->
@@ -51,6 +51,5 @@
 				</p>
 			</div><!-- width_960 -->
 		</div><!-- footer_copyright -->
-		<a id="bcf_trigger" href="http://bettercontactform.com" rel="bcf_trigger">Contact Form</a>
 	</footer>
 @stop
