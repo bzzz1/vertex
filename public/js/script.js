@@ -130,6 +130,28 @@
 					$scope.element = data;
 				});
 			}
+
+			/*------------------------------------------------
+			| PERSISTING FORM DATA
+			------------------------------------------------*/
+			setTimeout(function() { 
+				if (localStorage.getItem('form_data')) {
+					var form_data = localStorage.getItem('form_data');
+					$scope.element = JSON.parse(form_data);
+				}
+				$scope.$apply(); // !!! with setTimeout needed!
+			}, 0);
+
+			setInterval(function() {
+				var form_data = JSON.stringify($scope.element);
+				console.log(form_data);
+				localStorage['form_data'] = form_data;
+			}, 1000);
+
+			$scope.clear_form_data = function() { 
+				$scope.element = {"description":"Описание отсутствует","currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное"};
+			}
+			/*----------------------------------------------*/
 		});
 	}
 

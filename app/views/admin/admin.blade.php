@@ -97,6 +97,7 @@
 					</tr>
 				</table>
 				{{ Form::submit('Сохранить', ['class'=>'submit_field save_button']) }}
+				<input class="btn btn-info" value="Очистить" style="float: right;" ng-click='clear_form_data()'>
 			{{ Form::close() }}
 
 			@include('admin/admin_preview')

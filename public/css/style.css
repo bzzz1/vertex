@@ -874,13 +874,17 @@ ul.pagination {
 	color: inherit;
 	cursor: default;
 }
+.info_page_item_title {
+	width: 50px;
+}
 .info_page_item_text {
+	max-width: 100px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.info_page_item_title {
-	width: 50px;
+.win_item_text {
+	max-width: initial;
 }
 .info_page_item_text:hover {
 	position: absolute;
@@ -892,6 +896,7 @@ ul.pagination {
 	width: auto;
 	padding: 0px 10px;
 	border-radius: 10px;
+	max-width: initial;
 }
 /*------------------------------------------------
 | IE9 fix not working width with overflow

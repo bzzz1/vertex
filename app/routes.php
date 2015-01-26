@@ -5,6 +5,7 @@ Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearc
 Route::get('/admin', 'MainController@login');
 Route::post('/validate', 'MainController@validate');
 Route::get('/attachment', 'MainController@attachment');
+Route::get('/excel_import', 'ExcelController@excelImport'); // items and spares
 Route::get('/{env}', 'MainController@index'); // items and spares
 
 Route::group(['prefix'=>'/admin', 'before'=>'auth2'], function() {
