@@ -121,7 +121,9 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+
 		// 'Maatwebsite\Excel\ExcelServiceProvider',
+
 	),
 
 	/*
@@ -188,7 +190,12 @@ return array(
 		'URL'             => 'Illuminate\Support\Facades\URL',
 		'Validator'       => 'Illuminate\Support\Facades\Validator',
 		'View'            => 'Illuminate\Support\Facades\View',
+<<<<<<< HEAD
 		// 'Excel' 		  => 'Maatwebsite\Excel\Facades\Excel',
+=======
+		'Excel' 		  => 'Maatwebsite\Excel\Facades\Excel',
+
+>>>>>>> f7368c54fdd79982fe2499dbec5150d5c59c8cdc
 	),
 
 );
