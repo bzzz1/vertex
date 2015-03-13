@@ -1,2 +1,5 @@
 User-agent: *
 Disallow:
+Disallow: /admin
+Host: vertex-shop.ru
+Sitemap: http://vertex-shop.ru/public/sitemap.xml

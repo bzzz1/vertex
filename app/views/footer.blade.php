@@ -34,6 +34,7 @@
 					<p class="footer_contacts_p">Офис продаж</p>
 					<p class="footer_contacts_p">(812) 982 33 54</p>
 					<a class="footer_contacts_p contact_form_button">Заказать <br> обраный звонок</a>
+					<p class="footer_contacts_p">9823354@mail.ru</p>
 				</div>
 			</div><!-- width_960 footer_960 -->
 		</div><!-- info_footer -->
@@ -47,7 +48,7 @@
 					<br/>Оборудование для ресторанов, посуда для кафе и столовых, мебель для общепита,
 					<br/> кухонный инвентарь
 					<br/> made by 
-					<a href="http://www.bzzz.biz.ua">[bzzz!]* web development studio</a>
+					<a href="http://www.dev.bzzz.biz.ua" target="_blank">[bzzz!]* web development studio</a>
 				</p>
 			</div><!-- width_960 -->
 		</div><!-- footer_copyright -->

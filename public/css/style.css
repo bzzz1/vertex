@@ -120,6 +120,10 @@ header {
 	line-height: 17px;
 	margin-left: 38px;
 }
+.header_callback_2nd:hover {
+	color: #008CCB;
+	text-decoration: none;
+}
 .header_contacts {
 	margin-bottom: 0px;
 	margin-top: 2px;
@@ -874,13 +878,17 @@ ul.pagination {
 	color: inherit;
 	cursor: default;
 }
+.info_page_item_title {
+	width: 50px;
+}
 .info_page_item_text {
+	max-width: 100px;
 	overflow: hidden;
 	text-overflow: ellipsis;
 	white-space: nowrap;
 }
-.info_page_item_title {
-	width: 50px;
+.win_item_text {
+	max-width: initial;
 }
 .info_page_item_text:hover {
 	position: absolute;
@@ -892,6 +900,7 @@ ul.pagination {
 	width: auto;
 	padding: 0px 10px;
 	border-radius: 10px;
+	max-width: initial;
 }
 /*------------------------------------------------
 | IE9 fix not working width with overflow

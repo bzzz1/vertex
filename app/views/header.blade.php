@@ -7,9 +7,9 @@
 			</a>
 			<div class="header_contscts_div">
 				<p class="header_callback"> пн-пт с 9:00 до 18:00</p>
-				<p class="header_callback_2nd"> Oбратный звонок</p>
-				<p class="header_contacts">(812) 982 33 54</p>
-				<p class="header_contacts_2nd">8 (905) 222 335 47</p>
+				<p class="header_callback_2nd contact_form_button"> Oбратный звонок</p>
+				<p class="header_contacts">8 (812) 982 33 54</p>
+				<p class="header_contacts_2nd">8 (905) 222 33 54</p>
 			</div>
 			<h1 class="header_discription"> 
 				Комплексное оснащение <br />
