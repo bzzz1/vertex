@@ -59,9 +59,9 @@ return array(
 		'mysql' => array(
 			'driver'    => 'mysql',
 			'host'      => 'localhost',
-			'database'  => 'vertexsh_vertex',
-			'username'  => 'vertexsh',
-			'password'  => '00bWAl6k9v',
+			'database'  => 'vertex',
+			'username'  => 'iaroslav',
+			'password'  => 'bzzzgroup',
 			'charset'   => 'utf8',
 			'collation' => 'utf8_general_ci',
 			'prefix'    => '',
