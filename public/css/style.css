@@ -1241,12 +1241,13 @@ input[type=submit].save_button {
 	background-image: url(../icons/delete_icon.png);
 	background-repeat: no-repeat;
 	background-size: 20px;
-	top: -26px;
-	left: 378px;
+	top: -32px;
+	left: 372px;
 	cursor: pointer;
 }
 textarea.long_textarea {
 	width: 698px;
+	margin: 10px 0px;
 }
 .contact_form_button {
 	cursor: pointer;
@@ -1262,4 +1263,9 @@ textarea.long_textarea {
 }*/
 .header_contacts {
 	text-align: left;
+}
+
+.time_field {
+	line-height: normal !important;
+	margin-bottom: 10px;
 }

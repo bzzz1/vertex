@@ -8,8 +8,11 @@
 		"phpmailer/phpmailer": "dev-master",
 		"raveren/kint": "v0.9",
 		"phpunit/phpunit": "4.3.*@dev",
-		"maatwebsite/excel": "1.*",
 		"phpoffice/phpexcel": "dev-master",
+		"ollieread/multiauth": "dev-master",
+		"ckeditor/ckeditor": "dev-master",
+  		"sunhater/kcfinder": "dev-master",
+  		"nesbot/carbon": "~1.14"
 	},
 	"autoload": {
 		"classmap": [
