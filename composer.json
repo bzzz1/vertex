@@ -10,8 +10,6 @@
 		"phpunit/phpunit": "4.3.*@dev",
 		"phpoffice/phpexcel": "dev-master",
 		"ollieread/multiauth": "dev-master",
-		"ckeditor/ckeditor": "dev-master",
-  		"sunhater/kcfinder": "dev-master",
   		"nesbot/carbon": "~1.14"
 	},
 	"autoload": {

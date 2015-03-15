@@ -1,5 +1,41 @@
 (function ($) {
 
+	/*------------------------------------------------
+	| CKEDITOR EMBED
+	------------------------------------------------*/
+	if ($('#ckeditor').length) {
+		CKEDITOR.replace('ckeditor', {
+			filebrowserBrowseUrl 	   : '../packages/kcfinder/browse.php?opener=ckeditor&type=files',
+			filebrowserImageBrowseUrl  : '../packages/kcfinder/browse.php?opener=ckeditor&type=images',
+			filebrowserFlashBrowseUrl  : '../packages/kcfinder/browse.php?opener=ckeditor&type=flash',
+			filebrowserUploadUrl  	   : '../packages/kcfinder/upload.php?opener=ckeditor&type=files',
+			filebrowserImageUploadUrl  : '../packages/kcfinder/upload.php?opener=ckeditor&type=images',
+			filebrowserFlashUploadUrl  : '../packages/kcfinder/upload.php?opener=ckeditor&type=flash',
+			// uiColor: '#702329'
+			// toolbar : [
+				// ['ajaxsave'],
+				// ['Bold', 'Italic', 'Underline', '-', 'NumberedList', 'BulletedList', '-', 'Link', 'Unlink' ],
+				// ['Cut','Copy','Paste','PasteText'],
+				// ['Undo','Redo','-','RemoveFormat'],
+				// ['TextColor','BGColor'],
+				// ['Maximize', 'Image']
+
+			// ],
+		});
+	}
+
+	/*------------------------------------------------
+	| FIX ANGULAR DESCRIPTION
+	------------------------------------------------*/
+	// $(".cke_wysiwyg_frame").contents().find("body").on('change', function() {
+	// 	app.controller('PreviewController', function($scope, $http) {
+	// 		var description = $(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html();
+	// 		console.log(description);
+	// 		$scope.description = description;
+	// 	});
+	// });
+	/*----------------------------------------------*/
+
 	function run_subcategories() {
 
 		$subcategories = $('.subcategory_block');
@@ -383,3 +419,47 @@
 
 
 })(jQuery);
+
+
+		// // KCFinder SETTINGS
+		// 	conf -> config.php
+		// 		'disabled' => false, 
+		// 		'uploadURL' => "../../../upload", 
+		// 		'uploadDir' => "../../../upload",
+				
+		/*------------------------------------------------
+		| js -> 080.files.js 69
+		------------------------------------------------*/
+		// 		if (file.thumb) {
+		//             /*------------------------------------------------
+		//             | >>beststrelok<<
+		//             ------------------------------------------------*/
+		//             // icon = _.getURL('thumb') + "&file=" + encodeURIComponent(file.name) + "&dir=" + encodeURIComponent(_.dir) + "&stamp=" + stamp;
+		//             icon = _.uploadURL + "/" + _.dir + "/" + encodeURIComponent(file.name);
+		//             icon = $.$.escapeDirs(icon).replace(/\'/g, "%27");
+		//             /*------------------------------------------------
+		//             | REPLACE THUMBS !!!
+		//             ------------------------------------------------*/
+		//             icon = icon.replace("upload/images", "upload/.thumbs/images");
+		//             ----------------------------------------------
+		//         }
+		//         else if (file.smallThumb) {
+		//             icon = _.uploadURL + "/" + _.dir + "/" + encodeURIComponent(file.name);
+		//             icon = $.$.escapeDirs(icon).replace(/\'/g, "%27");
+		//         } else {
+		//             /*------------------------------------------------
+		//             | >>beststrelok<<
+		//             ------------------------------------------------*/
+		//             icon = _.uploadURL + "/" + _.dir + "/" + encodeURIComponent(file.name);
+		//             icon = $.$.escapeDirs(icon).replace(/\'/g, "%27");
+		//             // icon = file.bigIcon ? $.$.getFileExtension(file.name) : ".";
+		//             // if (!icon.length) icon = ".";
+		//             // icon = "themes/" + _.theme + "/img/files/big/" + icon + ".png";
+		//             /*----------------------------------------------*/
+ 		//               }
+ 		//  			f = $('<div class="file"><div class="thumb"></div><div class="name"></div><div class="time"></div><div class="size"></div></div>');
+		// 				f.appendTo(c);
+		/*----------------------------------------------*/
+
+		// // KCEditor get contents
+		// 	$(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html()

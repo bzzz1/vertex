@@ -37,30 +37,29 @@
 			?>
 
 			{{ Form::model($element, ['url'=>['/admin/updateItem', $element->code], 'files'=>true, 'method'=>'POST', 'class'=>'item_form']) }}
-
-				<table>
-
-					<tr>
-
-						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label']) }}</td>
-
-						<td>{{ Form::text('item', null, ['class'=>'change_input', 'ng-model'=>'element.item', 'required']) }}</td>
-
-					</tr>
+			<div class="pad">
+				<table class='fullwidth'>
 
 					<tr>
 
-						<td>{{ Form::label('description', 'Описание: ', ['class'=>'main_label']) }}</td>
+						<td>{{ Form::label('item', 'Название: ', ['class'=>'main_label article_label_first']) }}</td>
 
-						<td  ng-init='element.description="Описание отсутствует"'>{{ Form::textarea('description', null, ['class'=>'change_input', 'ng-model'=>'element.description']) }}</td>
+						<td>{{ Form::text('item', null, ['class'=>'change_input form-control', 'ng-model'=>'element.item', 'required']) }}</td>
 
 					</tr>
+				</table>
+			</div>
+			
+			<span ng-init='element.description="Описание отсутствует"'></span>
+			{{ Form::textarea('body', null, ['class' => 'name form-control', 'id' => 'ckeditor', 'ng-model'=>'element.description']) }}
 
+			<div class="pad">
+				<table class='fullwidth'>
 					<tr>
 
 						<td>{{ Form::label('producer', 'Бренд: ', ['class'=>'main_label']) }}</td>
 
-						<td>{{ Form::text('producer', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.producer', 'required']) }}</td>
+						<td>{{ Form::text('producer', null, ['class'=>'change_input change_input_short form-control', 'ng-model'=>'element.producer', 'required']) }}</td>
 
 					</tr>
 
@@ -68,7 +67,7 @@
 
 						<td>{{ Form::label('price', 'Цена: ', ['class'=>'main_label']) }}</td>
 
-						<td>{{ Form::text('price', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.price', 'required']) }}</td>
+						<td>{{ Form::text('price', null, ['class'=>'change_input change_input_code form-control', 'ng-model'=>'element.price', 'required']) }}</td>
 
 					</tr>
 
@@ -136,7 +135,7 @@
 
 						<td>
 
-							<select name='category' ng-init='element.category="Барное"' ng-model='element.category'>
+							<select name='category' ng-init='element.category="Барное"' ng-model='element.category' class="form-control">
 
 								<option ng-repeat="category in categories" value="[[category]]">[[category]]</option>
 
@@ -152,7 +151,7 @@
 
 						<td>{{ Form::label('subcategory', 'Подкатегория (вид): ', ['class'=>'main_label']) }}</td>
 
-						<td>{{ Form::text('subcategory', null, ['class'=>'change_input change_input_short', 'ng-model'=>'element.subcategory', 'required']) }}</td>
+						<td>{{ Form::text('subcategory', null, ['class'=>'change_input change_input_short form-control', 'ng-model'=>'element.subcategory', 'required']) }}</td>
 
 					</tr>
 
@@ -160,7 +159,7 @@
 
 						<td>{{ Form::label('code', 'Код: ', ['class'=>'main_label']) }}</td>
 
-						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code', 'ng-model'=>'element.code', 'required']) }}</td>
+						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code form-control', 'ng-model'=>'element.code', 'required']) }}</td>
 
 					</tr>
 
@@ -172,13 +171,13 @@
 
 							@if (isset($element->photo))
 
-								{{ Form::text('photo_name', null, ['disabled', 'class'=>'change_input input_file_name photo_name', 'ng-model'=>'element.photo']) }}
+								{{ Form::text('photo_name', null, ['disabled', 'id'=>'image', 'class'=>'change_input input_file_name photo_name form-control', 'ng-model'=>'element.photo']) }}
 
 								{{ Form::hidden('photo_name', '[[ element.photo ]]', ['class'=>'change_input input_file_name photo_name']) }}
 
 						 	@else 
 
-								{{ Form::text('photo_name', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name photo_name', 'ng-model'=>'element.photo']) }}
+								{{ Form::text('photo_name', null, ['disabled', 'placeholder'=>'no_image.png', 'id'=>'image', 'class'=>'change_input input_file_name photo_name form-control', 'ng-model'=>'element.photo']) }}
 
 								{{-- use default value from mysql in not $element->photo --}}
 
@@ -186,7 +185,7 @@
 
 							<div class="delete_icon"></div>
 
-							{{ Form::file('photo', ['class'=>'change_input']) }}
+							{{ Form::file('photo', ['class'=>'change_input form-control', 'id'=>'file']) }}
 
 						</td>
 
@@ -196,6 +195,7 @@
 
 				{{ Form::submit('Сохранить', ['class'=>'submit_field save_button']) }}
 				<input class="btn btn-info" value="Очистить" style="float: right;" ng-click='clear_form_data()'>
+			</div>
 
 			{{ Form::close() }}
 

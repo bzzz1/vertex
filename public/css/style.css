@@ -1079,7 +1079,7 @@ ul.pagination {
 	width: 590px;
 	border: 1px solid #cecece;
 	vertical-align: top;
-	padding: 15px;
+	/*padding: 15px;*/
 }
 .admin_info_form {
 	width: 100%;
@@ -1105,9 +1105,9 @@ ul.pagination {
 .item_form textarea {
 	width: 400px;
 }
-.item_form input[type=text] {
+/*.item_form input[type=text] {
 	width: 400px;
-}
+}*/
 .item_form input[type=number], .item_form input[type=text] {
 	padding: 0px 5px;
 }
@@ -1236,13 +1236,15 @@ input[type=submit].save_button {
 	font-weight: bold;
 }
 .delete_icon {
-	position: relative;
+	position: absolute;
 	height: 20px;
+	display: block;
+	width: 20px;
 	background-image: url(../icons/delete_icon.png);
 	background-repeat: no-repeat;
 	background-size: 20px;
-	top: -32px;
-	left: 372px;
+	right: 5px;
+	top: 7px;
 	cursor: pointer;
 }
 textarea.long_textarea {
@@ -1268,4 +1270,59 @@ textarea.long_textarea {
 .time_field {
 	line-height: normal !important;
 	margin-bottom: 10px;
+}
+h2.groups_title {
+	text-align: center;
+	width: 100%;
+}
+#title {
+	width: 100%;
+}
+.main_label {
+	font-size: 16px;
+	margin-top: 5px;
+	color: #45463E !important;
+}
+.relative {
+	position: relative;
+}
+#time {
+	width: 155px !important;
+}
+#producer {
+	width: 100%;
+	margin-top: 10px;
+	margin-bottom: 10px;
+}
+#subcategory, #description {
+	margin-top: 10px;
+}
+#image, #cke_ckeditor {
+	margin-top: 10px;
+	margin-bottom: 10px;	
+}
+#file, #price {
+	margin-bottom: 10px;
+}
+#subcategory, #code {
+	width: 100%;
+}
+table.fullwidth {
+	width: 100%;
+}
+.pad {
+	padding: 15px;
+}
+.article_label {
+	max-width: 70px;
+}
+.article_label_first {
+	max-width: 30px;
+}
+.cke_contents, #cke_editor {
+	height: 600px !important;
+}
+
+.change_item .cke_contents, #cke_editor {
+	height: 300px !important;
 }

@@ -51,9 +51,9 @@ Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory
 
 
 
-App::missing(function($exception) {
-	return Redirect::to('/');
-});
+// App::missing(function($exception) {
+// 	return Redirect::to('/');
+// });
 
 
 /*------------------------------------------------

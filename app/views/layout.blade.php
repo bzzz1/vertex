@@ -24,6 +24,8 @@
 
 	{{ HTML::script('js/angular.min.js') }}
 
+	{{ HTML::script('packages/ckeditor/ckeditor.js') }}
+
 	@yield('css')
 
 	<!--[if lt IE 10]>
