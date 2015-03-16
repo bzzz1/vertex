@@ -4,6 +4,7 @@
 
 @section('body')
 	<div class="width_960">
+		@include('flash_messages')
   
   <!-- Yandex.Metrika counter -->
 <script type="text/javascript">

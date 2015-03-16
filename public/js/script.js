@@ -5,12 +5,12 @@
 	------------------------------------------------*/
 	if ($('#ckeditor').length) {
 		CKEDITOR.replace('ckeditor', {
-			filebrowserBrowseUrl 	   : '../packages/kcfinder/browse.php?opener=ckeditor&type=files',
-			filebrowserImageBrowseUrl  : '../packages/kcfinder/browse.php?opener=ckeditor&type=images',
-			filebrowserFlashBrowseUrl  : '../packages/kcfinder/browse.php?opener=ckeditor&type=flash',
-			filebrowserUploadUrl  	   : '../packages/kcfinder/upload.php?opener=ckeditor&type=files',
-			filebrowserImageUploadUrl  : '../packages/kcfinder/upload.php?opener=ckeditor&type=images',
-			filebrowserFlashUploadUrl  : '../packages/kcfinder/upload.php?opener=ckeditor&type=flash',
+			filebrowserBrowseUrl 	   : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=files',
+			filebrowserImageBrowseUrl  : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=images',
+			filebrowserFlashBrowseUrl  : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=flash',
+			filebrowserUploadUrl  	   : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=files',
+			filebrowserImageUploadUrl  : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=images',
+			filebrowserFlashUploadUrl  : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=flash',
 			// uiColor: '#702329'
 			// toolbar : [
 				// ['ajaxsave'],

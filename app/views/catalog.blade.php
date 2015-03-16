@@ -4,12 +4,43 @@
 
 @section('body')
 	<div class="width_960 catalog_gen">
-		<h2 class = "groups_title">{{ $current }}</h2>
+
+		{{-- BREADCRUMBS --}}
+		<h2 class = "groups_title breadcrumbs">
+			@if (Request::segment(1) == 'itemSearch')
+				<?php 
+					parse_str(Request::getQueryString(), $query_array);
+				?>
+				Результаты поиска: {{ $query_array['param'] }}
+			@else
+				@if (Request::segment(1) == 'items')
+					{{ HTML::link(Request::segment(1), 'Техника') }}
+				@elseif (Request::segment(1) == 'spares')
+					{{ HTML::link(Request::segment(1), 'Запчасти') }}
+				@endif
+				<span class='glyphicon glyphicon-arrow-right'></span>
+
+				<?php 
+					$category = urldecode(Request::segment(2));
+					$subcategory = urldecode(Request::segment(3));
+				?>
+
+				{{ HTML::link("$env/$category/Всё", $category) }}
+
+				@if ($subcategory)
+					<span class='glyphicon glyphicon-arrow-right'></span>
+					{{ HTML::link("$env/$category/$subcategory", $subcategory) }}
+				@endif
+			@endif
+		</h2>
+		{{-- END BREADCRUMBS --}}
+
+		{{-- SORTING --}}
 		<div class="catalog_sort">
 			<ul class="catalog_sort_text_ul">
 				<li class="catalog_sort_text catalog_sort_text_li">Сортировать по: </li>
 				<li class="catalog_sort_titel catalog_sort_text_li">наименованию 
-					<?php $q = http_build_query(Input::except(['item', 'order'])); ?>
+					<?php $q = http_build_query(Input::except(['page', 'sort', 'order'])); ?>
 					{{ HTML::link(URL::current().'?'.$q.'&sort=item&order=desc', '', ['class'=>"icon_tr_dw"]) }}
 					{{ HTML::link(URL::current().'?'.$q.'&sort=item&order=asc', '', ['class'=>"icon_tr_up"]) }}
 				</li>
@@ -21,54 +52,16 @@
 			<div class="catalog_sort_pages_div">
 				{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
 			</div>
-		</div><!-- catalog_sort -->
+		</div>
+		{{-- END SORTING --}}
+
+		{{-- ITEMS --}}
 		<div class="menu catalog_menu">
 			@foreach($items as $item)
 				<div class="catalog_item">
-					<h2 class="catalog_item_header">{{ $item->item }}</h2>
-					<!--****************************************************
-					| ITEM PAGE
-					*****************************************************-->
-					<div class="item">
-						<h1 class="item_page_header">{{ $item->item }}</h1>
-						<div class="item_page_photo_div">
-							{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_page_photo']) }}
-						</div>
-						<div class="item_page_right_div">
-							<table class="info_item_page">
-								<tr>
-									<td colspan='2'> @if ($item->type == 'ЗИП') Запчасти @else Техника @endif </td>
-								</tr>
-								<tr>
-									<td>Бренд:&nbsp&nbsp&nbsp&nbsp</td>
-									<td class='info_page_item_text  win_item_text'>{{ $item->producer }}</td>
-								</tr>
-								<tr>
-									<td>Код:</td>
-									<td class='info_page_item_text win_item_text'>{{ $item->code }}</td>
-								</tr>
-								<tr>
-									<td>Тип:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>{{ $item->category }}</td>
-								</tr>
-								<tr>
-									<td>Вид:&nbsp</td>
-									<td class='info_page_item_text win_item_text'>{{ $item->subcategory }}</td>
-								</tr>											
-							</table>
-							<div class='info_page_item_procurement'>
-								@if ($item->procurement == 'МРП') В наличии @else Под заказ @endif 
-							</div>
-							<div class="item_price">
-								<p class="item_price_p item_price_number">{{ $item->price }}&nbsp</p>
-								<p class="item_price_p item_price_currency">{{ $item->currency }}</p>
-							</div>
-						</div><!-- item_page_right_div -->
-						<div class="description_item">
-							<p>{{ $item->description }}</p>
-						</div><!-- description_item -->
-					</div><!-- item -->	
-					<!--****************************************************-->
+					<h2 class="catalog_item_header">
+						{{ HTML::link("view_item/$item->item?item_id=$item->id", $item->item ) }}
+					</h2>
 					<div class="item_photo_div">
 						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}
 					</div>
@@ -90,6 +83,9 @@
 							<td class='info_page_item_text'>{{ $item->subcategory }}</td>
 						</tr>
 					</table>
+					{{-- NEED FIXES --}}
+					<a href="/order?item_id={{ $item->id }}" class="btn btn-default items_button items_order">Заказать</a>
+
 					<div class='info_page_item_procurement'>
 						@if ($item->procurement == 'МРП') В наличии @else Под заказ @endif 
 					</div>
@@ -98,10 +94,15 @@
 						<p class="catalog_item_price_p catalog_item_price_currency">{{ $item->currency }}</p>
 					</div>
 				</div>
-			@endforeach	
-		</div><!-- menu catalog_menu -->
+			@endforeach
+		</div>
+		{{-- END ITEMS --}}
+
+		{{-- PAGINATION --}}
 		<div class="catalog_bottom_pages">
 			{{ $items->appends(Request::except('page'))->links('zurb_presenter') }}
 		</div>
+		{{-- END PAGINATION --}}
+
 	</div><!-- width_960 catalog_gen -->
 @stop

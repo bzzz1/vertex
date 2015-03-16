@@ -1,6 +1,84 @@
 <?php
 class MainController extends BaseController {
 
+	public static $admin_email;
+	public static $site_email;
+	public static $site_password;
+
+	public function __construct() {
+		static::$admin_email = 'beststrelok@gmail.com';
+		static::$site_email = 'sportsecretshop@gmail.com';
+		static::$site_password = '080493210893';
+	}
+
+	private static function sendMail($data, $subject, $view, $email=null) {
+		if (! $email) {
+			$email = self::$admin_email;
+		}
+
+		$mail = new PHPMailer;
+		$mail->CharSet = "UTF-8";
+
+		$mail->isSMTP(); // Set mailer to use SMTP
+		$mail->Host = 'smtp.gmail.com'; // Specify main and backup SMTP servers
+		$mail->SMTPAuth = true; // Enable SMTP authentication
+		$mail->Username = self::$site_email; // SMTP username
+		$mail->Password = self::$site_password; // SMTP password
+		$mail->SMTPSecure = 'tls'; // Enable encryption, 'ssl' also accepted
+		$mail->Port = 587;         // TCP port to connect to
+
+		// $mail->From = 'sportsecretshop@gmail.com';
+		$mail->From = 'Vertex';
+		$mail->FromName = 'Vertex';
+		$mail->addAddress($email); // Add a recipient
+		// $mail->addAddress('ellen@example.com'); // Name is optional
+		// $mail->addReplyTo('info@example.com', 'Information');
+		// $mail->addCC('cc@example.com');
+		// $mail->addBCC('bcc@example.com');
+
+		// $mail->WordWrap = 50; // Set word wrap to 50 characters
+		// $mail->addEmbeddedImage('public/img/vsx15.jpg', 'embed_1'); // Add attachments
+		// $mail->addAttachment('public/img/vsx15.jpg', ''); // Add attachments
+		// $mail->addAttachment('/tmp/image.jpg', 'new.jpg'); // Optional name
+		$mail->isHTML(true); // Set email format to HTML
+
+		// $mail->Subject = 'Заказ оформлен';
+		$mail->Subject = $subject;
+		$mail->Body = View::make($view, $data);
+		// $mail->Body = 'This is the HTML message body <b>in bold!</b>';
+		// $mail->AltBody = 'This is the body in plain text for non-HTML mail clients';
+
+		if ( ! $mail->send()) {
+			echo 'Message could not be sent.';
+			echo 'Mailer Error: ' . $mail->ErrorInfo;
+		}
+	}
+
+	public function contacts() {
+		return View::make('contacts')->with([
+			'env' 		=> 'contacts'
+		]);
+	}
+
+	public function order_page() {
+		return View::make('order')->with([
+			'item'		=> Item::find(Input::get('item_id')),
+			'env'		=> ''
+		]);
+	}
+
+	public function order() {
+		$fields = Input::all();
+		$email = Input::get('email');
+
+		// send to admin
+		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order');
+		// send to user
+		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order_user', $email);
+
+		return Redirect::to('/')->with('message', 'Ваш заказ оформлен!');
+	}
+
 	public function index($env='items') {
 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
 		
@@ -18,6 +96,17 @@ class MainController extends BaseController {
 			'items' 		=> Item::readItemsBySubcategory($type, $category, $subcategory),
 			'current' 		=> HTML::link("$env/$category/Всё", $category).' -> '.HTML::link("$env/$category/$subcategory", $subcategory),
 			'env' 			=> $env
+		]);
+	}
+
+	public function item() {
+		$type = Item::find(Input::get('item_id'))->type;
+		($type = 'ЗИП') ? $env = 'spares' : $env = 'items'; 
+
+		return View::make('item')->with([
+			'item' 		=> Item::find(Input::get('item_id')),
+			'env' 	    => $env,
+			'same'		=> Item::getSameItems($type)
 		]);
 	}
 

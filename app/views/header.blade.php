@@ -29,6 +29,9 @@
 				<div class="mask_nav_item">
 					<a href="/info" class="nav_item @if ($env == 'info') selected @endif">Информация</a>
 				</div>
+				<div class="mask_nav_item">
+					<a href="/contacts" class="nav_item @if ($env == 'contacts') selected @endif">Контакты</a>
+				</div>
 			</nav>
 			{{ Form::open(array('route' => "itemSearch", 'method' => 'GET', 'class'=>'header_search')) }}
 				{{ Form::text('param', null, ['placeholder'=>"     Поиск товаров", 'class'=>'search_field']) }} 

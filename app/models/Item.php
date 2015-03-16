@@ -6,6 +6,18 @@ class Item extends Eloquent {
 /*------------------------------------------------
 | READ
 ------------------------------------------------*/
+	public static function getSameItems($type) {
+		$item = Item::find(Input::get('item_id'));
+
+		$items = new Item;
+		$items = $items->where('type', $type);
+		$items = $items->where('category', $item->category);
+		$items = $items->where('subcategory', $item->subcategory);
+		$items = $items->orderByRaw("RAND()")->take(3)->get();
+
+		return $items;
+	}
+
 	public static function readItemsByBrands($type, $brand) {
 		$sort = Input::get('sort', 'item');
 		$order = Input::get('order', 'ASC');

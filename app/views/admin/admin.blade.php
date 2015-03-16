@@ -14,7 +14,7 @@
 
 			<div class="headers" {{ isset($element->code) ? "ng-init='stat=\"update\"'" : ''}}>
 
-				<h2 class="groups_title">{{ $element->code or 'Добавить товар'}}</h2>
+				<h2 class="groups_title_admin">{{ $element->code or 'Добавить товар'}}</h2>
 
 				<h2 class='msg'>{{ Session::get('msg') ? Session::get('msg') : '' }}</h2>
 

@@ -188,7 +188,7 @@ nav {
 	font-weight: bold;
 	line-height: 45px;
 	text-align: center;
-	width: 200px;
+	width: 150px;
 	text-decoration: none;
 	color: black;
 	margin-right: 5px;
@@ -512,20 +512,6 @@ a.footer_logo_div {
 /*------------------------------------------------
 | item page
 ------------------------------------------------*/
-.item {
-	position: absolute;
-	top: 25px;
-	left: -25px;
-	z-index: 10;
-	background: #fff;
-	border: 3px solid #cecece; 
-	border-radius: 10px;
-	overflow: hidden;
-	width: 505px;
-	margin: auto;
-	padding: 10px;
-	display: none;
-}
 .item .info_item_page {
 	width: 165px;
 }
@@ -1271,7 +1257,11 @@ textarea.long_textarea {
 	line-height: normal !important;
 	margin-bottom: 10px;
 }
-h2.groups_title {
+h2.groups_title_admin {
+	display: inline-block;
+	color: #008ccb;
+	font-size: 24px;
+	font-weight: bold;
 	text-align: center;
 	width: 100%;
 }
@@ -1325,4 +1315,11 @@ table.fullwidth {
 
 .change_item .cke_contents, #cke_editor {
 	height: 300px !important;
+}
+.breadcrumbs {
+	font-size: 16px;
+	margin-top: 10px;
+}
+.catalog_item_header a {
+	color: #008ccb;
 }

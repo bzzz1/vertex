@@ -5,7 +5,7 @@
 @section('body')
 	<div class="width_960 catalog_gen">
 		<div class='change_article'>
-			<h2 class="groups_title">{{ $article->title }} </h2>
+			<h2 class="groups_title_admin">{{ $article->title }} </h2>
 			{{ Form::model($article, ['url'=>['admin/info/updateArticle', $article->id], 'files'=>true, 'method'=>'POST', 'class'=>'item_form admin_info_form']) }}
 				<div class="pad">
 					<table class=fullwidth>

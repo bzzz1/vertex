@@ -4,8 +4,11 @@ date_default_timezone_set('Europe/Kiev');
 
 Route::get('/', 'MainController@index');
 Route::get('/info', 'MainController@info');
+Route::get('/contacts', 'MainController@contacts');
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
 Route::get('/admin', 'MainController@login');
+Route::get('/order', 'MainController@order_page');
+Route::post('/order', 'MainController@order');
 Route::post('/validate', 'MainController@validate');
 Route::get('/attachment', 'MainController@attachment');
 Route::get('/excel_import', 'ExcelController@excelImport'); // items and spares
@@ -45,9 +48,11 @@ Route::group(['prefix'=>'/admin', 'before'=>'auth2'], function() {
 
 
 
+Route::get('/view_item/{item_title}', 'MainController@item');
 Route::get('/{env}/{brand}', 'MainController@catalogBrand');
 Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
 Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory');
+// Route::get('/{category}/{subcat}/{item_title}', 'MainController@item');
 
 
 
