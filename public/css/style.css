@@ -994,6 +994,31 @@ ul.pagination {
 	margin-bottom: 0;
 }
 /*------------------------------------------------
+| contacts
+------------------------------------------------*/
+.contacts_heading {
+	color: #008ccb;
+}
+.contacts_left_block {
+	display: inline-block;
+	margin-right: 111px;
+}
+.contacts_inline_block{
+	width: 880px;
+}
+.contacts_var {
+	display: inline-block;
+	margin-left: 61px;
+}
+.contacts_inline_block :first-child {
+	margin-left: 0;
+}
+.contacts_btn {
+	background-color: #008ccb;
+	font-size: 22px;
+	padding: 7px 99px;
+}
+/*------------------------------------------------
 | admin
 ------------------------------------------------*/
 .admin_title {

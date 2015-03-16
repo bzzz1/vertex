@@ -33,7 +33,7 @@
 					<p class="footer_contacts_p_head">Контакты</p>
 					<p class="footer_contacts_p">Офис продаж</p>
 					<p class="footer_contacts_p">(812) 982 33 54</p>
-					<a class="footer_contacts_p contact_form_button">Заказать <br> обраный звонок</a>
+					<a class="footer_contacts_p contact_form_button">Заказать <br> обратный звонок</a>
 					<p class="footer_contacts_p">9823354@mail.ru</p>
 				</div>
 			</div><!-- width_960 footer_960 -->
