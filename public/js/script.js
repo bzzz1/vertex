@@ -27,13 +27,10 @@
 	/*------------------------------------------------
 	| FIX ANGULAR DESCRIPTION
 	------------------------------------------------*/
-	// $(".cke_wysiwyg_frame").contents().find("body").on('change', function() {
-	// 	app.controller('PreviewController', function($scope, $http) {
-	// 		var description = $(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html();
-	// 		console.log(description);
-	// 		$scope.description = description;
-	// 	});
-	// });
+	setInterval(function() { 
+		var description = $(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html();
+		$('.description_item').html(description);
+	}, 1500);
 	/*----------------------------------------------*/
 
 	function run_subcategories() {
@@ -255,7 +252,6 @@
 		});
 
 		/*----------------------------------------------*/
-
 
 
 		app.controller('PreviewController', function($scope, $http) {
