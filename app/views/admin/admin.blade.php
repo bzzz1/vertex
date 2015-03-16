@@ -51,7 +51,7 @@
 			</div>
 			
 			<span ng-init='element.description="Описание отсутствует"'></span>
-			{{ Form::textarea('body', null, ['class' => 'name form-control', 'id' => 'ckeditor', 'ng-model'=>'element.description']) }}
+			{{ Form::textarea('description', null, ['class' => 'name form-control', 'id' => 'ckeditor', 'ng-model'=>'element.description']) }}
 
 			<div class="pad">
 				<table class='fullwidth'>
