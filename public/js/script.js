@@ -3,14 +3,23 @@
 	/*------------------------------------------------
 	| CKEDITOR EMBED
 	------------------------------------------------*/
+	// var editor = CKEDITOR.replace( 'editor1' );
+	// editor.setData( '<p>Just click the <b>Image</b> or <b>Link</b> button, and then <b>&quot;Browse Server&quot;</b>.</p>' );
+
 	if ($('#ckeditor').length) {
-		CKEDITOR.replace('ckeditor', {
-			filebrowserBrowseUrl 	   : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=files',
-			filebrowserImageBrowseUrl  : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=images',
-			filebrowserFlashBrowseUrl  : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=flash',
-			filebrowserUploadUrl  	   : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=files',
-			filebrowserImageUploadUrl  : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=images',
-			filebrowserFlashUploadUrl  : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=flash',
+		var $$editor = CKEDITOR.replace('ckeditor', {
+			// filebrowserBrowseUrl 	   : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=files',
+			// filebrowserImageBrowseUrl  : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=images',
+			// filebrowserFlashBrowseUrl  : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=flash',
+			// filebrowserUploadUrl  	   : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=files',
+			// filebrowserImageUploadUrl  : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=images',
+			// filebrowserFlashUploadUrl  : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=flash',
+			// filebrowserBrowseUrl 	   : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=files',
+			// filebrowserImageBrowseUrl  : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=images',
+			// filebrowserFlashBrowseUrl  : location.origin+'/packages/kcfinder/browse.php?opener=ckeditor&type=flash',
+			// filebrowserUploadUrl  	   : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=files',
+			// filebrowserImageUploadUrl  : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=images',
+			// filebrowserFlashUploadUrl  : location.origin+'/packages/kcfinder/upload.php?opener=ckeditor&type=flash',
 			// uiColor: '#702329'
 			// toolbar : [
 				// ['ajaxsave'],
@@ -23,6 +32,8 @@
 			// ],
 		});
 	}
+
+	CKFinder.setupCKEditor($$editor, '/packages/ckfinder/');
 
 	/*------------------------------------------------
 	| FIX ANGULAR DESCRIPTION
