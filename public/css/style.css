@@ -587,12 +587,12 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	font-weight: bold;
 }
 .info_page_item_procurement {
-	margin-top: 10px;
-	margin-left: 10px;
-	clear: left;
+	/*margin-top: 10px;*/
+	/*margin-left: 10px;*/
+	/*clear: left;*/
 	display: block;
 	font-weight: bold;
-	float: left;
+	/*float: left;*/
 	font-size: 16px;
 }
 .item .info_page_item_procurement {
@@ -781,7 +781,7 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	padding: 3px 11px;
 	font-size: 17px;
 	font-weight: bold;
-	float: right;
+	float: left;
 	margin-right: 10px;
 	margin-top: 5px;
 }
@@ -790,6 +790,20 @@ h2.catalog_item_header:hover + .item, .item:hover {
 }
 .catalog_item_price_currency {
 	float: right;
+}
+.items_order {
+	float: right;
+	clear: both;
+	background-color: #008ccb;
+	color: #fff;
+	font-weight: bold;
+	padding: 6px 23px;
+	margin-top: 4px;
+}
+.items_order:hover {
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
 }
 .catalog_geneal_menu {
 	height: 590px;

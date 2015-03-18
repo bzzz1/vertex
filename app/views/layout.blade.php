@@ -17,13 +17,10 @@
 	<link rel="shortcut icon" href="{{ asset('icons/favicon.ico') }}">
 
 	{{ HTML::style('css/bootstrap.min.css') }}
-
+	{{ HTML::style('css/font-awesome.min.css') }}
 	{{ HTML::style('css/reset.css') }}
-
 	{{ HTML::style('css/style.css') }}
-
 	{{ HTML::script('js/angular.min.js') }}
-
 	{{ HTML::script('packages/ckeditor/ckeditor.js') }}
 	{{ HTML::script('packages/ckfinder/ckfinder.js') }}
 
