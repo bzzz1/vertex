@@ -25,6 +25,7 @@
 	{{ HTML::script('js/angular.min.js') }}
 
 	{{ HTML::script('packages/ckeditor/ckeditor.js') }}
+	{{ HTML::script('packages/ckfinder/ckfinder.js') }}
 
 	@yield('css')
 
