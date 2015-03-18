@@ -5,11 +5,11 @@
 @section('body')
 	<div class="width_960 catalog_gen">
 		
-		{{-- <ol class="breadcrumb">
+		<ol class="breadcrumb">
 		  <li><a href="/">Главная</a></li>
 		  <li class="active">Контакты</li>
-		</ol> --}}
-		<h2 class="contacts_heading">Контактная информация</h2>
+		</ol>
+		<h2 class="contacts_heading main_cont_heading">Контактная информация</h2>
 		<hr class="main_hr">
 		<div class="contacts_text_block">
 			<div class="contacts_left_block">		
