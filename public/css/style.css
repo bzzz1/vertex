@@ -1131,7 +1131,8 @@ label {
 .item_page_recommended_heading {
 	float: right;
 	margin-right: 10px;
-	margin-bottom: 12px;
+	margin-bottom: 12
+	px;
 	margin-top: 4px;
 	font-weight: bold;
 }
