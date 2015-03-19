@@ -1519,7 +1519,8 @@ input[type=submit].save_button {
 	background-repeat: no-repeat;
 	background-size: 20px;
 	/*right: 5px;*/
-	right: 30px;
+	/*right: 30px;*/
+	left: 274px;
 	top: -37px;
 	/*top: 7px;*/
 	cursor: pointer;
@@ -1650,7 +1651,19 @@ input[type=submit].save_button {
 	margin-right: 15px;
 	margin-left: 15px;
 }
-
-
-
+input[name='photo_name'].input_file_name {
+	width: 307px;
+}
+input[type=file] {
+	width: 307px;
+}
+.del_art {
+	top: -32px;
+}
+.photo_label {
+	line-height: 3;
+}
+.ph_label {
+	line-height: 2;
+}
 

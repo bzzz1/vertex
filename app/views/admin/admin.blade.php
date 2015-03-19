@@ -98,7 +98,7 @@
 						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code form-control', 'ng-model'=>'element.code', 'required']) }}</td>
 					</tr>
 					<tr>
-						<td>{{ Form::label('photo_label', 'Изображение: 255px*255px', ['class'=>'main_label']) }}</td>
+						<td>{{ Form::label('photo_label', 'Изображение: 255px*255px', ['class'=>'main_label photo_label']) }}</td>
 						<td>
 							@if (isset($element->photo))
 								{{ Form::text('photo_name', null, ['disabled', 'id'=>'image', 'class'=>'change_input input_file_name photo_name form-control', 'ng-model'=>'element.photo']) }}

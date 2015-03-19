@@ -25,7 +25,7 @@
 							<td>{{ Form::input('date', 'time', $article->time->format('Y-m-d'), ['class'=>'time_field form-control']) }}</td>
 						</tr>
 						<tr>
-							<td>{{ Form::label('image', 'Изображение: 255px*255px', ['class'=>'main_label article_label']) }}</td>
+							<td>{{ Form::label('image', 'Изображение: 255px*255px', ['class'=>'main_label article_label ph_label']) }}</td>
 							<td class='relative'>
 								@if (isset($article->image))
 									{{ Form::text('photo_name', $article->image, ['disabled', 'class'=>'change_input input_file_name photo_name form-control']) }}
@@ -34,7 +34,7 @@
 									{{ Form::text('photo_name', null, ['disabled', 'placeholder'=>'no_image.png', 'class'=>'change_input input_file_name photo_name form-control']) }}
 									{{-- use default value from mysql if not $article->image --}}
 								@endif
-								<div class="delete_icon"></div>
+								<div class="delete_icon del_art"></div>
 								{{ Form::file('image', ['class'=>'change_input form-control']) }}
 							</td>
 						</tr>
