@@ -33,7 +33,6 @@
 </script>
 <noscript><div><img src="//mc.yandex.ru/watch/28058841" style="position:absolute; left:-9999px;" alt="" /></div></noscript>
 <!-- /Yandex.Metrika counter -->
-
 		<div class="main_menu">
 
 			<div class="category_icon_block bar_icon_block" data-category='Барное'>
