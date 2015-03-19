@@ -101,7 +101,7 @@ class MainController extends BaseController {
 
 	public function item() {
 		$type = Item::find(Input::get('item_id'))->type;
-		($type = 'ЗИП') ? $env = 'spares' : $env = 'items'; 
+		('ЗИП' == $type) ? $env = 'spares' : $env = 'items';
 
 		return View::make('item')->with([
 			'item' 		=> Item::find(Input::get('item_id')),
