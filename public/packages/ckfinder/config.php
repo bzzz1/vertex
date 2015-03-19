@@ -37,6 +37,8 @@ function CheckAuthentication()
 // fully functional, in demo mode.
 $config['LicenseName'] = 'localhost';
 $config['LicenseKey'] = 'HJ0B000040094000000000000E0';
+// $config['LicenseName'] = 'localhost';
+// $config['LicenseKey'] = 'HJ0B000040094000000000000E0';
 // $config['LicenseName'] = $_SERVER['HTTP_HOST'];
 // $config['LicenseKey'] = 'C1234567A89BC';
 

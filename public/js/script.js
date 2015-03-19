@@ -8,6 +8,12 @@
 
 	if ($('#ckeditor').length) {
 		var $$editor = CKEDITOR.replace('ckeditor', {
+			// filebrowserBrowseUrl 		: 'packages/ckfinder/ckfinder.html',
+			// filebrowserImageBrowseUrl 	: 'packages/ckfinder/ckfinder.html?type=Images',
+			// filebrowserFlashBrowseUrl 	: 'packages/ckfinder/ckfinder.html?type=Flash',
+			// filebrowserUploadUrl 		: 'packages/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Files',
+			// filebrowserImageUploadUrl	: 'packages/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Images',
+			// filebrowserFlashUploadUrl 	: 'packages/ckfinder/core/connector/php/connector.php?command=QuickUpload&type=Flash'
 			// filebrowserBrowseUrl 	   : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=files',
 			// filebrowserImageBrowseUrl  : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=images',
 			// filebrowserFlashBrowseUrl  : location.origin+'/packages/ckfinder/ckfinder.php?opener=ckeditor&type=flash',
@@ -31,9 +37,12 @@
 
 			// ],
 		});
+
+		CKFinder.setupCKEditor($$editor, '/packages/ckfinder/');
 	}
 
-	CKFinder.setupCKEditor($$editor, '/packages/ckfinder/');
+
+
 
 	/*------------------------------------------------
 	| FIX ANGULAR DESCRIPTION
