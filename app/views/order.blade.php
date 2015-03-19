@@ -18,11 +18,11 @@
 					<td>{{ Form::text('surname', null, ['class'=>'change_input_order form-control', 'required']) }}</td>
 				</tr>
 				<tr>
-					<td>{{ Form::label('item', 'Наименование: ', ['class'=>'main_label req']) }}</td>
+					<td>{{ Form::label('item', 'Наименование: ', ['class'=>'main_label']) }}</td>
 					<td>{{ Form::text('item', null, ['class'=>'change_input_order form-control', 'required', 'readonly'=>'readonly']) }}</td>
 				</tr>
 				<tr>
-					<td>{{ Form::label('code', 'Код: ', ['class'=>'main_label req']) }}</td>
+					<td>{{ Form::label('code', 'Код: ', ['class'=>'main_label']) }}</td>
 					<td>{{ Form::text('code', null, ['class'=>'change_input_order change_input_order_code form-control', 'required', 'readonly'=>'readonly']) }}</td>
 				</tr>
 				<tr>
@@ -34,7 +34,7 @@
 					<td>{{ Form::email('email', null, ['class'=>'change_input_order change_input_order_code form-control', 'required']) }}</td>
 				</tr>
 				<tr>
-					<td>{{ Form::label('company', 'Компания: ', ['class'=>'main_label req']) }}</td>
+					<td>{{ Form::label('company', 'Компания: ', ['class'=>'main_label']) }}</td>
 					<td>{{ Form::text('company', null, ['class'=>'change_input_order change_input_order_code form-control',]) }}</td>
 				</tr>
 				<tr>

@@ -51,12 +51,14 @@
 
 
 	{{ HTML::script('js/jquery.min.js') }}
+	{{ HTML::script('js/bootstrap.min.js') }}
 
 	{{ HTML::script('js/jquery.columnizer.js') }}
 
 	{{ HTML::script('js/betterContactForm.js') }}
 
 	{{ HTML::script('js/script.js') }}
+
 
 	@yield('js')
 
