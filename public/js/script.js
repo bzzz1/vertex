@@ -334,7 +334,8 @@
 			}, 1000);
 
 			$scope.clear_form_data = function() { 
-				$scope.element = {"description":"Описание отсутствует","currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное"};
+				$scope.element = {"currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное"};
+				$(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html('Описание отсутствует');
 			}
 			/*----------------------------------------------*/
 		});
