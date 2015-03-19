@@ -1,5 +1,5 @@
 @section('preview')
-	<div class='item_preview' data-spy="affix" data-offset-top="10" data-offset-bottom="105"> 
+	<div class='item_preview'> 
 		{{-- <h2 class="catalog_item_header">[[ element.item ]]</h2> --}}
 		<!--****************************************************
 		| ITEM PAGE

@@ -76,6 +76,7 @@ a:focus {
 	outline: none;
 }
 .uni_btn {
+	border: 1px solid #008ccb;
 	background-color: #008ccb;
 	color: #fff;
 	font-weight: bold;
@@ -968,6 +969,11 @@ ul.pagination {
 	overflow: hidden;
 	width: 880px;
 }
+.art_prewiew_head_block {
+	display: block;
+	overflow: hidden;
+	margin-bottom: 15px;
+}
 .article_preview_header {
 	color: #008ccb;
 	font-size: 24px;
@@ -975,6 +981,18 @@ ul.pagination {
 	margin-bottom: 0px;
 	text-align: center;
 	font-weight: bold;
+	float: left;
+	margin-top: 6px;
+}
+.article_prewiew_date {
+	float: right;
+	font-size: 24px;
+	margin-left: 20px;
+	margin-bottom: 0px;
+	text-align: center;
+	font-weight: bold;
+	color: #008ccb;
+	margin-right: 20px;
 }
 .article_header {
 	display: block;
@@ -1429,19 +1447,18 @@ form.submit_form {
 	outline: none;
 }
 .admin_button_link {
-	border: none;
+	/*border: none;*/
 	display: inline-block;
-	background: #cecece;
 	padding: 5px;
-	font-size: 14px;
+	font-size: 20px;
 	margin-top: 10px;
 }
 .button_form {
 	display: inline-block;
 }
 .admin_button_link:hover {
-	text-decoration: underline;
-	color: #008ccb;
+	/*text-decoration: underline;*/
+	/*color: #008ccb;*/
 }
 input[type=submit].save_button {
 	padding: 5px 10px;
@@ -1625,6 +1642,13 @@ input[type=submit].save_button {
 }
 .save_button:hover {
 	color: #fff;
+}
+.r_btn {
+	float: right;
+}
+.admin_button_link {
+	margin-right: 15px;
+	margin-left: 15px;
 }
 
 

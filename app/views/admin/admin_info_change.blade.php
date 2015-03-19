@@ -43,8 +43,8 @@
 				</div>
 			{{ Form::close() }}
 		</div>
-		{{ HTML::link('/admin/info/changeArticle', 'Добавить статью', ['class'=>'admin_button_link']) }}
-		{{ HTML::link('/admin', 'Панель товаров', ['class'=>"admin_button_link"]) }}
-		{{ HTML::link('/admin/info', 'Панель информации', ['class'=>"admin_button_link"]) }}
+		{{ HTML::link('/admin/info/changeArticle', 'Добавить статью', ['class'=>'admin_button_link btn uni_btn']) }}
+		{{ HTML::link('/admin', 'Панель товаров', ['class'=>"admin_button_link r_btn btn uni_btn"]) }}
+		{{ HTML::link('/admin/info', 'Панель информации', ['class'=>"admin_button_link r_btn btn uni_btn"]) }}
 	</div><!--width_960 catalog_gen -->
 @stop
