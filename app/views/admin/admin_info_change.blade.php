@@ -39,7 +39,7 @@
 							</td>
 						</tr>
 					</table>
-					{{ Form::submit('Сохранить', ['class'=>'submit_field save_button btn btn-info']) }} 
+					{{ Form::submit('Сохранить', ['class'=>'submit_field save_button btn uni_btn']) }} 
 				</div>
 			{{ Form::close() }}
 		</div>

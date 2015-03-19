@@ -1,4 +1,7 @@
 (function ($) {
+	$('.close_message').click(function() {
+		$('.message').css('display','none')
+	});
 
 	/*------------------------------------------------
 	| CKEDITOR EMBED

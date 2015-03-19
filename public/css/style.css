@@ -75,6 +75,20 @@ a:hover {
 a:focus {
 	outline: none;
 }
+.uni_btn {
+	background-color: #008ccb;
+	color: #fff;
+	font-weight: bold;
+}
+.uni_btn:hover {
+	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+	border: 1px solid #008ccb;
+	text-decoration: none;
+	outline: none;
+	font-weight: bold;
+}
 /**************
 *= Header
 **************/
@@ -1036,7 +1050,7 @@ ul.pagination {
 	font-size: 24px;
 }
 .contacts_text_block {
-	letter-spacing: 1px; 
+	letter-spacing: 0px; 
 }
 .contacts_text_block p {
 	color: #151515;
@@ -1044,7 +1058,7 @@ ul.pagination {
 .contacts_left_block {
 	display: block;
 	float: left;
-	margin-right: 137px;
+	margin-right: 157px;
 }
 .contacts_rest {
 	margin-top: 30px;
@@ -1121,7 +1135,7 @@ label {
 | item
 ------------------------------------------------*/
 .s_item_wrap {
-	display: table;
+	overflow: hidden;
 }
 .s_item_heading {
 	font-size: 24px;
@@ -1131,8 +1145,7 @@ label {
 .item_page_recommended_heading {
 	float: right;
 	margin-right: 10px;
-	margin-bottom: 12
-	px;
+	margin-bottom: 12px;
 	margin-top: 4px;
 	font-weight: bold;
 }
@@ -1142,30 +1155,35 @@ label {
 	display: inline-block;
 	box-shadow: 1px 1px 5px 0px #a1a1a1;
 	float: left;
+	padding: 10px 15px 15px 20px;
 }
 .s_item_img {
 	max-width: 220px;
 	max-height: 220px;
+	min-height: 220px;
+	min-width: 220px;
 	float: left;
 	margin-top: 20px;
-	margin-left: 20px;
+	/*margin-left: 20px;*/
 }
 .s_item_creteries {
 	background-color: #e0edf3;
 	display: inline-block;
-	padding: 20px 96px;
+	padding: 20px 20px;
+	width: 318px;
 	margin-top: 20px;
 	margin-left: 20px;
 	border-radius: 20px;
 }
 .s_item_proc {
-	font-size: 20px;
+	font-size: 19px;
 	font-weight: bold;
 	color: #636363;
-	margin-left: 35px;
+	margin-left: 40px;
 	float: left;
 	display: inline-block;
 	margin-bottom: 0;
+	min-width: 100px;
 }
 .s_item_price {
 	background-color: #eeeeee;
@@ -1200,7 +1218,7 @@ label {
 .s_item_btn {
 	background-color: #008CCB;
 	color: #fff;
-	padding: 10px 100px;
+	padding: 10px 99px;
 	margin-left: 34px;
 	font-size: 20px;
 	border-radius: 10px;
@@ -1215,10 +1233,10 @@ label {
 	background-color: #e4e4e4;
 	margin-top: 25px;
 	padding: 15px;
-	margin-left: 20px;
+	/*margin-left: 20px;*/
 	margin-bottom: 30px;
 	border-radius: 10px;
-	width: 93%;
+	/*width: 93%;*/
 }
 .s_item_item {
 	margin-left: 0;
@@ -1227,6 +1245,18 @@ label {
 .s_item_item:nth-child(3n+2) {
 	margin-left: 0;
 	margin-right: 0;
+}
+/*------------------------------------------------
+| messages
+------------------------------------------------*/
+.message {
+	margin-top: 8px;
+	margin-bottom: 7px;
+}
+.message_text {
+	display: table;
+	margin: auto;
+	font-size: 20px;
 }
 /*------------------------------------------------
 | admin
@@ -1378,7 +1408,10 @@ form.submit_form {
 	text-align: center;
 	text-decoration: none;
 	background: #cecece;
-	color: #008ccb;
+	background-color: #008ccb;
+	color: #fff;
+	font-weight: bold;
+	/*color: #008ccb;*/
 	border: 1px solid #cecece;
 	border-radius: 10px;
 	padding: 5px 10px;
@@ -1386,8 +1419,11 @@ form.submit_form {
 	font-size: 16px;
 }
 .article_button:hover {
-	background: #008ccb;
 	color: #fff;
+	background-color: #31b0d5;
+	border-color: #269abc;
+	/*background: #008ccb;
+	color: #fff;*/
 	border: 1px solid #008ccb;
 	text-decoration: none;
 	outline: none;
@@ -1457,15 +1493,18 @@ input[type=submit].save_button {
 	font-weight: bold;
 }
 .delete_icon {
-	position: absolute;
+	/*position: absolute;*/
+	position: relative;
 	height: 20px;
 	display: block;
 	width: 20px;
 	background-image: url(../icons/delete_icon.png);
 	background-repeat: no-repeat;
 	background-size: 20px;
-	right: 5px;
-	top: 7px;
+	/*right: 5px;*/
+	right: 30px;
+	top: -37px;
+	/*top: 7px;*/
 	cursor: pointer;
 }
 textarea.long_textarea {
@@ -1558,3 +1597,36 @@ table.fullwidth {
 .catalog_item_header a {
 	color: #008ccb;
 }
+/*ADMIN*/
+.m_adm_btn {
+	font-size: 20px;
+	margin-top: 15px;
+	margin-left: 15px;
+	margin-right: 15px;
+}
+.add_adm_btn {
+	float: right;
+}
+input[type=submit].save_button {
+	font-size: 18px;
+	padding: 6px 40px;
+}
+.clean_btn {save_button
+	font-size: 18px;
+	padding-left: 0px;
+	padding-right: 0px;
+}
+/*ADMIN_INFO*/
+.adm_info_btn {
+	font-size: 20px;
+}
+.last_btn {
+	float: right;
+}
+.save_button:hover {
+	color: #fff;
+}
+
+
+
+
