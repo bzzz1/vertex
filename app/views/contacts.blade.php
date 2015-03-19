@@ -2,9 +2,8 @@
 @extends('header')
 @extends('footer')
 
-@section('body')`
+@section('body')
 	<div class="width_960 catalog_gen">
-		
 		{{-- <ol class="breadcrumb">
 		  <li><a href="/">Главная</a></li>
 		  <li class="active">Контакты</li>
