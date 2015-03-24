@@ -610,6 +610,11 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	/*float: left;*/
 	font-size: 16px;
 }
+@-moz-document url-prefix() {
+   .info_page_item_procurement {
+	font-size: 14px;
+	}
+}
 .item .info_page_item_procurement {
 	margin-left: 0;
 	margin-top: 15px;
