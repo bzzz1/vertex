@@ -97,7 +97,7 @@ class ExcelController extends BaseController {
 				$price 		= $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
 				$currency 	= $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
 
-				if (!empty($code)) {
+				if (isset($code)) {
 					$error = '';
 					$rows++;
 
@@ -105,21 +105,23 @@ class ExcelController extends BaseController {
 
 					if ($item) {
 						// check price
-						if (!is_float($price)) {
-							$error .= 'Цена должна быть числом. ';
-						} else if ($price < 0) {
-							$error .= 'Цена не может быть отрицательной! ';
+						if (!isset($price)) {
+							$error .= 'Не указана цена! ';
+						} else {
+							if (!is_float($price)) {
+								$error .= 'Цена должна быть числом. ';
+							} else if ($price < 0) {
+								$error .= 'Цена не может быть отрицательной! ';
+							}
 						}
 
 						// check currency
-						if (!in_array($currency, $currencies)) {
-							$error .= 'Выберите валюту: РУБ, EUR, USD. ';
-						}
-
-						if (!is_float($price)) {
-							$error .= 'Цена должна быть числом. ';
-						} else if ($price < 0) {
-							$error .= 'Цена не может быть отрицательной! ';
+						if (!isset($currency)) {
+							$error .= 'Не указана валюта! ';
+						} else {
+							if (!in_array($currency, $currencies)) {
+								$error .= 'Выберите валюту: РУБ, EUR, USD. ';
+							}
 						}
 
 						// check errors
