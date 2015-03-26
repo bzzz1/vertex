@@ -610,6 +610,11 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	/*float: left;*/
 	font-size: 16px;
 }
+@-moz-document url-prefix() {
+   .info_page_item_procurement {
+	font-size: 14px;
+	}
+}
 .item .info_page_item_procurement {
 	margin-left: 0;
 	margin-top: 15px;
@@ -770,6 +775,18 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	text-overflow: ellipsis;
 	text-decoration: underline;
 	cursor: pointer;
+}
+.catalog_item_header:hover {
+	position: relative;
+	z-index: 10;
+	background: #e7e7e7;
+	/*border: 1px solid #cecece;*/
+	/*box-shadow: inset 1px 1px 3px #cecece;*/
+	/*height: auto;*/
+	width: auto;
+	/*padding: 0px 5px;*/
+	/*border-radius: 10px;*/
+	max-width: initial;
 }
 .info_item_page {
 	display: inline-block;
@@ -1087,7 +1104,7 @@ ul.pagination {
 }
 .contacts_var {
 	display: inline-block;
-	margin-left: 165px;
+	margin-left: 150px;
 }
 .contacts_inline_block :first-child {
 	margin-left: 0;
@@ -1201,7 +1218,7 @@ label {
 	float: left;
 	display: inline-block;
 	margin-bottom: 0;
-	min-width: 100px;
+	max-width: 100px;
 }
 .s_item_price {
 	background-color: #eeeeee;
@@ -1666,4 +1683,3 @@ input[type=file] {
 .ph_label {
 	line-height: 2;
 }
-
