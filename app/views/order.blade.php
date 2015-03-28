@@ -14,8 +14,8 @@
 					<td>{{ Form::text('name', null, ['class'=>'change_input_order form-control', 'required']) }}</td>
 				</tr>
 				<tr>
-					<td>{{ Form::label('surname', 'Фамилия: ', ['class'=>'main_label req']) }}</td>
-					<td>{{ Form::text('surname', null, ['class'=>'change_input_order form-control', 'required']) }}</td>
+					<td>{{ Form::label('surname', 'Фамилия: ', ['class'=>'main_label']) }}</td>
+					<td>{{ Form::text('surname', null, ['class'=>'change_input_order form-control']) }}</td>
 				</tr>
 				<tr>
 					<td>{{ Form::label('item', 'Наименование: ', ['class'=>'main_label']) }}</td>
@@ -38,7 +38,7 @@
 					<td>{{ Form::text('company', null, ['class'=>'change_input_order change_input_order_code form-control',]) }}</td>
 				</tr>
 				<tr>
-					<td>{{ Form::label('comment', 'Комментарий: ', ['class'=>'main_label req']) }}</td>
+					<td>{{ Form::label('comment', 'Комментарий: ', ['class'=>'main_label']) }}</td>
 					<td>{{ Form::textarea('comment', null, ['class'=>'change_input_order change_input_order_code form-control',]) }}</td>
 				</tr>
 			</table>
