@@ -39,7 +39,7 @@ return array(
 	|
 	*/
 
-	'timezone' => 'UTC',
+	'timezone' => 'Europe/Kiev',
 
 	/*
 	|--------------------------------------------------------------------------
@@ -121,6 +121,7 @@ return array(
 		'Illuminate\Validation\ValidationServiceProvider',
 		'Illuminate\View\ViewServiceProvider',
 		'Illuminate\Workbench\WorkbenchServiceProvider',
+		'YYamagata\PsyshLaravel\PsyshLaravelServiceProvider',
 	),
 
 	/*

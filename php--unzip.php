@@ -1,6 +1,6 @@
 <?php
 	$zip = new ZipArchive;
-	$res = $zip->open('vertex_done_15_01+DB.zip');
+	$res = $zip->open('articles.zip');
 	if ($res === TRUE) {
 		$zip->extractTo(getcwd());
 		$zip->close();

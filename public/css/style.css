@@ -1104,20 +1104,31 @@ ul.pagination {
 }
 .contacts_var {
 	display: inline-block;
-	margin-left: 150px;
+	margin-left: 20px;
+	width: 30%;
+	vertical-align: text-top;
 }
 .contacts_inline_block :first-child {
 	margin-left: 0;
+}
+.c_v_last {
+	float: right;
+	margin-right: 30px;
 }
 .contacts_var_head {
 	font-size: 14px;
 	color: #4b4b4b;
 	font-weight: bold;
 	text-align: center;
+	min-height: 50px;
+	max-height: 50px;
 }
 .contacts_var p {
-	font-size: 12px;
+	font-size: 15px;
 	line-height: 0px;
+	display: table;
+	margin: 10px auto;
+	margin-bottom: 80px;
 
 }
 .ques {

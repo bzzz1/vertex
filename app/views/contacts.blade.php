@@ -49,19 +49,24 @@
 		<div class="contacts_rest">	
 			<div class="contacts_inline_block">
 				<div class="contacts_var">
-					<h3 class="contacts_var_head">По вопросам приобритения</h3>
-					<p>Иванов Иван Иванович</p>
-					<p>+7(912) 987 78 43</p>
+					<h3 class="contacts_var_head"> Отдел сервиса<br> и запасных частей</h3>
+					<p>(812) 45 54 001</p>
 				</div>
 				<div class="contacts_var">
-					<h3 class="contacts_var_head">По вопросам заказа</h3>
-					<p>Иванов Иван Иванович</p>
-					<p>+7(912) 987 78 43</p>
+					<h3 class="contacts_var_head">По общим вопросам, отдел оборудования </h3>
+					<p>(812) 67 09 767</p>
 				</div>
 				<div class="contacts_var">
-					<h3 class="contacts_var_head">По вопросам обслуживания</h3>
-					<p>Иванов Иван Иванович</p>
-					<p>+7(912) 987 78 43</p>
+					<h3 class="contacts_var_head">Отдел запасных частей и оптовых продаж</h3>
+					<p>(812) 37 47 001</p>
+				</div>
+				<div class="contacts_var">
+					<h3 class="contacts_var_head">Проектный отдел, отдел дизайна, отдел лизинга.</h3>
+					<p>(812) 98 23 354</p>
+				</div>
+				<div class="contacts_var c_v_last">
+					<h3 class="contacts_var_head">Отдел микроэлектроники , комплектующих для ЧПУ и промышленного производства.</h3>
+					<p>(812) 41 47 001</p>
 				</div>
 			</div>	
 		</div>

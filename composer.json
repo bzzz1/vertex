@@ -10,7 +10,8 @@
 		"phpunit/phpunit": "4.3.*@dev",
 		"phpoffice/phpexcel": "dev-master",
 		"ollieread/multiauth": "dev-master",
-  		"nesbot/carbon": "~1.14"
+  		"nesbot/carbon": "~1.14",
+		"y-yamagata/psysh-laravel": "0.1.*"
 	},
 	"autoload": {
 		"classmap": [
