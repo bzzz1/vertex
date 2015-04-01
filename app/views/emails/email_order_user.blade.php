@@ -1,8 +1,8 @@
 <p>Ваш заказ: </p>
 <p class="change_input change_input_short form-control">{{{$item}}}</p>
 <p>был принят и будет обработан нашими специалистами в кратчайшие сроки!</p>
-<p>Проверте пожалуйста Ваши контактные данные. В случае ошибки, пожалуйста свяжитесь с нами.</p>
-<table class="order_form_table" style="width:100%;">
+<p>Проверьте пожалуйста Ваши контактные данные. В случае ошибки, пожалуйста свяжитесь с нами.</p>
+<table class="order_form_table">
 	<tr>
 		<td class="main_label">Имя: </td>
 		<td class="change_input form-control">{{{$name}}}</td>
@@ -16,11 +16,23 @@
 		<td class="change_input change_input_short form-control">{{{$item}}}</td>
 	</tr>
 	<tr>
+		<td class="main_label">Стоимость:</td>
+		<td class="change_input change_input_code form-control">{{{$price}}}</td>
+	</tr>
+	<tr>
+		<td class="main_label">Валюта:</td>
+		<td class="change_input change_input_code form-control">{{{$currency}}}</td>
+	</tr>
+	<tr>
+		<td class="main_label">Код:</td>
+		<td class="change_input change_input_code form-control">{{{$code}}}</td>
+	</tr>
+	<tr>
 		<td class="main_label">Телефон:</td>
 		<td class="change_input change_input_code form-control">{{{$phone}}}</td>
 	</tr>
 	<tr>
-		<td class="main_label">E-Mail:</td>
+		<td class="main_label">Email:</td>
 		<td class="change_input change_input_code form-control">{{{$email}}}</td>
 	</tr>
 	<tr>

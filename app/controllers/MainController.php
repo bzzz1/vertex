@@ -6,10 +6,10 @@ class MainController extends BaseController {
 	public static $site_password;
 
 	public function __construct() {
-		static::$admin_email = 'beststrelok@gmail.com';
-		// static::$admin_email = 'send@vertex.ru';
-		static::$site_email = 'info@vertex.ru';
-		static::$site_password = 'NVlgrhZ6hD';
+		// static::$admin_email = 'beststrelok@gmail.com';
+		static::$admin_email = 'send@vertex-shop.ru';
+		static::$site_email = 'info@vertex-shop.ru';
+		static::$site_password = '12vertex2015';
 	}
 
 	public function contacts() {
@@ -274,12 +274,12 @@ class MainController extends BaseController {
 		$mail->CharSet = "UTF-8";
 
 		// $mail->isSMTP(); // Set mailer to use SMTP
-		$mail->Host = 'mx1.hostinger.com.ua'; // Specify main and backup SMTP servers
+		$mail->Host = 'pdd.yandex.ru'; // Specify main and backup SMTP servers
 		// $mail->SMTPAuth = true; // Enable SMTP authentication
 		$mail->Username = self::$site_email; // SMTP username
 		$mail->Password = self::$site_password; // SMTP password
 		// $mail->SMTPSecure = 'tls'; // Enable encryption, 'ssl' also accepted
-		$mail->Port = 2525;         // TCP port to connect to
+		$mail->Port = 465;         // TCP port to connect to
 
 		// $mail->From = 'sportsecretshop@gmail.com';
 		$mail->From = 'Vertex';

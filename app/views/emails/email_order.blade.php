@@ -15,6 +15,14 @@
 		<td class="change_input change_input_short form-control">{{{$item}}}</td>
 	</tr>
 	<tr>
+		<td class="main_label">Стоимость:</td>
+		<td class="change_input change_input_code form-control">{{{$price}}}</td>
+	</tr>
+	<tr>
+		<td class="main_label">Валюта:</td>
+		<td class="change_input change_input_code form-control">{{{$currency}}}</td>
+	</tr>
+	<tr>
 		<td class="main_label">Код:</td>
 		<td class="change_input change_input_code form-control">{{{$code}}}</td>
 	</tr>
@@ -23,7 +31,7 @@
 		<td class="change_input change_input_code form-control">{{{$phone}}}</td>
 	</tr>
 	<tr>
-		<td class="main_label">E-Mail:</td>
+		<td class="main_label">Email:</td>
 		<td class="change_input change_input_code form-control">{{{$email}}}</td>
 	</tr>
 	<tr>
