@@ -483,3 +483,16 @@
 
 		// // KCEditor get contents
 		// 	$(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html()
+
+var forms = document.getElementsByTagName('form');
+for (var i = 0; i < forms.length; i++) {
+    forms[i].noValidate = true;
+
+    forms[i].addEventListener('submit', function(event) {
+        //Prevent submission if checkValidity on the form returns false.
+        if (!event.target.checkValidity()) {
+            event.preventDefault();
+            //Implement you own means of displaying error messages to the user here.
+        }
+    }, false);
+}
