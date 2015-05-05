@@ -323,3 +323,15 @@ class MainController extends BaseController {
 		}
 	}
 }
+
+
+// Item::where('photo', '!=', 'no_image.png')->get()->filter(function($item) {
+// 	$path = public_path().DIRECTORY_SEPARATOR.'photos'.DIRECTORY_SEPARATOR.$item->photo;
+// 	if(File::exists($path)) {
+// 		return $item;
+// 	}
+// });
+
+// Item::where('photo', '!=', 'no_image.png')->get();
+
+// Item::where('photo', '!=', 'no_image.png')->filter(function($item) {$path = public_path().DIRECTORY_SEPARATOR.'photos'.DIRECTORY_SEPARATOR.$item->photo; if(File::exists($path)) {return $item; } })->get();
