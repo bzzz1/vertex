@@ -17,7 +17,7 @@
 			<span class='glyphicon glyphicon-arrow-right'></span>
 			{{ HTML::link("$env/".$item->category."/".$item->subcategory, $item->subcategory) }}
 			<span class='glyphicon glyphicon-arrow-right'></span>
-			{{ HTML::link(URL::current(), $item->item) }}
+			{{ HTML::link(URL::current()."?item_id=$item->id", $item->item) }}
 		</h2>
 		{{-- END BREADCRUMBS --}}
 		<div class="s_item_head_block">
@@ -72,7 +72,7 @@
 			@foreach ($same as $item)
 				<div class="catalog_item s_item_item">
 					<h2 class="catalog_item_header">
-						{{ HTML::link("view_item/$item->item?item_id=$item->id", $item->item ) }}
+						{{ HTML::link("view_item/".urlencode2($item->item)."?item_id=$item->id", $item->item ) }}
 					</h2>
 					<div class="item_photo_div">
 						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}

@@ -40,6 +40,8 @@ Route::get('/{env}/{brand}', 'MainController@catalogBrand');
 Route::get('/{env}/{category}/Всё', 'MainController@catalogCategory');
 Route::get('/{env}/{category}/{subcategory}', 'MainController@catalogSubcategory');
 
+
+
 // App::missing(function($exception) {
 // 	return Redirect::to('/');
 // });

@@ -4,10 +4,11 @@
 
 @section('body')
 	<div class="width_960 catalog_gen">
+	@include('flash_messages')
 
 		<h2 class="order_heading contacts_heading">Форма заказа</h2>
 		<hr class="main_hr">
-		{{ Form::model($item, ['url'=>['/order'], 'method'=>'POST', 'class'=>'order_form']) }}
+		{{ Form::model($item, ['url'=>['/order'], 'method'=>'POST', 'class'=>'order_form', 'data-parsley-validate']) }}
 			<table class="order_form_table">
 				<tr>
 					<td>{{ Form::label('name', 'Имя: ', ['class'=>'main_label req']) }}</td>

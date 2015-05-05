@@ -12,33 +12,46 @@ class MainController extends BaseController {
 		static::$site_password = '12vertex2015';
 	}
 
+	// public static function callm() {
+	// 	$callers=debug_backtrace();
+	// 	echo $callers[1]['function'];
+	// }
+
 	public function contacts() {
-		return View::make('contacts')->with([
+ 		return View::make('contacts')->with([
 			'env' 		=> 'contacts'
 		]);
 	}
 
 	public function order_page() {
-		return View::make('order')->with([
+ 		return View::make('order')->with([
 			'item'		=> Item::find(Input::get('item_id')),
 			'env'		=> ''
 		]);
 	}
 
 	public function order() {
-		$fields = Input::all();
-		$email = Input::get('email');
+ 		$fields = Input::all();
+
+		$item = Item::where('code', $fields['code'])->first(); 
+ 		$fields['item'] = $item->item;
+ 		$fields['price'] = $item->price;
+ 		$fields['currency'] = $item->currency;
+
+		if (! filter_var($fields['email'], FILTER_VALIDATE_EMAIL)) {
+			return Redirect::back()->withErrors('Поле email должно содержать email адресс!');
+		}
 
 		// send to admin
 		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order');
 		// send to user
-		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order_user', $email);
+		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order_user', $fields['email']);
 
 		return Redirect::to('/')->with('message', 'Ваш заказ оформлен!');
 	}
 
 	public function index($env='items') {
-		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
+ 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
 		
 		return View::make('index')->with([
 			'brands' 		=> Item::readBrands($type),
@@ -48,7 +61,7 @@ class MainController extends BaseController {
 	}
 
 	public function catalogSubcategory($env, $category, $subcategory) {
-		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
+ 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
 		
 		return View::make('catalog')->with([
 			'items' 		=> Item::readItemsBySubcategory($type, $category, $subcategory),
@@ -58,7 +71,7 @@ class MainController extends BaseController {
 	}
 
 	public function item() {
-		$type = Item::find(Input::get('item_id'))->type;
+ 		$type = Item::find(Input::get('item_id'))->type;
 		('ЗИП' == $type) ? $env = 'spares' : $env = 'items';
 
 		return View::make('item')->with([
@@ -69,7 +82,7 @@ class MainController extends BaseController {
 	}
 
 	public function catalogCategory($env, $category) {
-		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
+ 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
 		
 		return View::make('catalog')->with([
 			'items' 		=> Item::readItemsByCategory($type, $category),
@@ -79,7 +92,7 @@ class MainController extends BaseController {
 	}
 
 	public function catalogBrand($env, $brand) {
-		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
+ 		($env === 'spares') ? $type = 'ЗИП' : $type = 'оборудование';
 		
 		return View::make('catalog')->with([
 			'items' 		=> Item::readItemsByBrands($type, $brand),
@@ -89,7 +102,7 @@ class MainController extends BaseController {
 	}
 
 	public function itemSearch() {
-		$param = Input::get('param');
+ 		$param = Input::get('param');
 
 		return View::make('catalog')->with([
 			'current' 		=> $param,
@@ -99,14 +112,14 @@ class MainController extends BaseController {
 	}
 
 	public function info() {
-		return View::make('info')->with([
+ 		return View::make('info')->with([
 			'articles'  => Article::readArticles(),
 			'env' 		=> 'info'
 		]);	
 	}
 
 	public function attachment() {
-		header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+ 		header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-disposition: attachment; filename=Komplexnoe_predl_s_1_12.xlsx');
 		readfile(public_path().'/attachments/Komplexnoe_predl_s_1_12.xlsx');
 	}
@@ -115,7 +128,7 @@ class MainController extends BaseController {
 | ADMIN AREA
 ------------------------------------------------*/
 	public function login() {
-		if (Auth::check()) {
+ 		if (Auth::check()) {
 			return View::make('admin/admin')->with([
 				'element'	=> new Item
 			]);
@@ -125,7 +138,7 @@ class MainController extends BaseController {
 	}
 
 	public function validate() {
-		// dd(Hash::make('string'));
+ 		// dd(Hash::make('string'));
 		// dd(hash('sha512', 'string'));
 
 		// use $creds to escape where _token problem
@@ -146,18 +159,18 @@ class MainController extends BaseController {
 	}
 
 	public function logout() {
-		Auth::logout();
+ 		Auth::logout();
 		return Redirect::to('admin');
 	}
 
 	public function adminInfo() {
-		return View::make('admin/admin_info')->with([
+ 		return View::make('admin/admin_info')->with([
 			'articles' 		=> Article::readArticles()
 		]);;
 	}
 
 	public function codeSearchAdmin() {
-		$code = Input::get('code');
+ 		$code = Input::get('code');
 		// dd(Item::readItemByCode($code)->getCollection());
 
 		return View::make('admin/admin_catalog')->with([
@@ -168,7 +181,7 @@ class MainController extends BaseController {
 	}
 
 	public function itemSearchAdmin() {
-		$param = Input::get('param');
+ 		$param = Input::get('param');
 
 		return View::make('admin/admin_catalog')->with([
 			'current' 		=> $param,
@@ -180,19 +193,19 @@ class MainController extends BaseController {
 | ITEM
 ------------------------------------------------*/
 	public function changeItem($code=null) {
-		return View::make('admin/admin')->with([
+ 		return View::make('admin/admin')->with([
 			'current' 		=> null,
 			'element'		=> $code ? Item::readElementByCode($code) : new Item
 		]);
 	}
 
 	public function changeItemJson($code=null) {
-		$data = $code ? Item::readElementByCode($code) : new Item;
+ 		$data = $code ? Item::readElementByCode($code) : new Item;
 		return Response::json($data);
 	}
 
 	public function updateOrCreateItem($code=null) {
-		$validator = Validator::make(Input::all(), [
+ 		$validator = Validator::make(Input::all(), [
 			'code'				=> ($code === null) ? 'required|unique:items' : 'required'
 			// 'username'			=> 'required|min:3|unique:users',
 			// 'password'			=> 'required|min:6',
@@ -225,7 +238,7 @@ class MainController extends BaseController {
 	}
 
 	public function deleteItem($code) {
-		Item::deleteItemByCode($code);
+ 		Item::deleteItemByCode($code);
 		return Redirect::back()->with('msg', 'Товар #'.$code.' удален');
 	}
 /*------------------------------------------------
@@ -239,7 +252,7 @@ class MainController extends BaseController {
 	}
 
 	public function updateOrCreateArticle($id=null) {
-		$fields = Input::all();
+ 		$fields = Input::all();
 		unset($fields['photo_name']); // clear unneeded fields from article
 
 		if (Input::hasFile('image')) {
@@ -261,7 +274,7 @@ class MainController extends BaseController {
 	}
 
 	public function deleteArticle($id) {
-		Article::deleteArticleById($id);
+ 		Article::deleteArticleById($id);
 		return Redirect::to('admin/info');	
 	}
 
