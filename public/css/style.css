@@ -396,7 +396,7 @@ a.nav_item.selected {
 .groups a:hover {
 	background: white;
 	border: 1px solid #cecece;
-	box-shadow: inseint 1px 1px 3px #cecece;
+	box-shadow: inset 1px 1px 3px #cecece;
 	height: 20px;
 	line-height: 18px;
 	width: auto;
@@ -770,6 +770,7 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	margin-bottom: 5px;
 	height: 16px;
 	width: 237px;
+	min-width: 237px;
 	overflow: hidden;
 	white-space: nowrap;
 	text-overflow: ellipsis;
@@ -1045,7 +1046,7 @@ ul.pagination {
 	float: right;
 	margin-right: 10px;
 	vertical-align: top;
-	display: inline;`
+	display: inline;
 }
 .article_button_p {
 	margin: 0;
@@ -1187,6 +1188,7 @@ label {
 	font-size: 24px;
 	float: left;
 	margin-bottom: 0;
+	max-width: 595px;
 }
 .item_page_recommended_heading {
 	float: right;
@@ -1203,13 +1205,20 @@ label {
 	float: left;
 	padding: 10px 15px 15px 20px;
 }
-.s_item_img {
+.img_block {
 	max-width: 220px;
-	max-height: 220px;
-	min-height: 220px;
 	min-width: 220px;
 	float: left;
 	margin-top: 20px;
+	background-color: #fff;
+	/*margin-left: 20px;*/
+}
+.s_item_img {
+	max-width: 220px;
+	
+	float: left;
+	margin-top: 20px;
+	
 	/*margin-left: 20px;*/
 }
 .s_item_creteries {
@@ -1225,7 +1234,7 @@ label {
 	font-size: 19px;
 	font-weight: bold;
 	color: #636363;
-	margin-left: 40px;
+	margin-left: 10px;
 	float: left;
 	display: inline-block;
 	margin-bottom: 0;
@@ -1657,7 +1666,7 @@ input[type=submit].save_button {
 	font-size: 18px;
 	padding: 6px 40px;
 }
-.clean_btn {save_button
+.clean_btn, save_button {
 	font-size: 18px;
 	padding-left: 0px;
 	padding-right: 0px;
