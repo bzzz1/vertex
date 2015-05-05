@@ -1,11 +1,11 @@
 /*MESSAGE*/
 .message {
-	width: 960px;
+	width: 880px;
 	position: absolute;
-	top: 208px;
-	left: 221px;
+	/*top: 208px;*/
+	/*left: 221px;*/
 	font-size: 21px;
-	margin-left: 19px;
+	/*margin-left: 19px;*/
 	z-index: 101;
 }
 .message_text {
