@@ -32,12 +32,20 @@ class MainController extends BaseController {
 
 	public function order() {
  		$fields = Input::all();
-		$email = Input::get('email');
+
+		$item = Item::where('code', $fields['code'])->first(); 
+ 		$fields['item'] = $item->item;
+ 		$fields['price'] = $item->price;
+ 		$fields['currency'] = $item->currency;
+
+		if (! filter_var($fields['email'], FILTER_VALIDATE_EMAIL)) {
+			return Redirect::back()->withErrors('Поле email должно содержать email адресс!');
+		}
 
 		// send to admin
 		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order');
 		// send to user
-		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order_user', $email);
+		self::sendMail($fields, 'Заказ оформлен', 'emails.email_order_user', $fields['email']);
 
 		return Redirect::to('/')->with('message', 'Ваш заказ оформлен!');
 	}

@@ -20,6 +20,8 @@
 	{{ HTML::style('css/font-awesome.min.css') }}
 	{{ HTML::style('css/reset.css') }}
 	{{ HTML::style('css/style.css') }}
+	{{ HTML::style('css/parsley.css') }}
+	{{ HTML::style('css/flash_messages.css') }}
 	{{ HTML::script('js/angular.min.js') }}
 	{{ HTML::script('packages/ckeditor/ckeditor.js') }}
 	{{ HTML::script('packages/ckfinder/ckfinder.js') }}
@@ -51,6 +53,9 @@
 
 
 	{{ HTML::script('js/jquery.min.js') }}
+	{{ HTML::script('js/parsley.min.js') }}
+	{{ HTML::script('js/parsley_i18n_ru.js') }}
+	
 
 	{{ HTML::script('js/jquery.columnizer.js') }}
 
