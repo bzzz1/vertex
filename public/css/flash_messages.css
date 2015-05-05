@@ -1,8 +1,9 @@
 /*MESSAGE*/
 .message {
-	width: 1132px;
+	width: 960px;
 	position: absolute;
-	top: 255px;
+	top: 208px;
+	left: 221px;
 	font-size: 21px;
 	margin-left: 19px;
 	z-index: 101;
