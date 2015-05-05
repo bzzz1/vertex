@@ -25,6 +25,7 @@
 	{{ HTML::script('js/angular.min.js') }}
 	{{ HTML::script('packages/ckeditor/ckeditor.js') }}
 	{{ HTML::script('packages/ckfinder/ckfinder.js') }}
+	{{ HTML::script('js/jquery.min.js') }}
 
 	@yield('css')
 
@@ -52,7 +53,6 @@
 
 
 
-	{{ HTML::script('js/jquery.min.js') }}
 	{{ HTML::script('js/parsley.min.js') }}
 	{{ HTML::script('js/parsley_i18n_ru.js') }}
 	

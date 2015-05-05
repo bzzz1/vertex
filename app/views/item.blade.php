@@ -110,6 +110,18 @@
 			{{-- END SAME ITEMS --}}
 		</div>	
 	</div>
+	<script>
+		$(window).load(function(){
+			var $num = $(".s_item_price_number").text();
+			var $len = $num.length;
+			if ($len > 8) {
+				$(".s_item_price").css({
+					'margin-left' : '0',
+					'padding' : '10px 10px'});
+			};
+		});
+		
+	</script>
 @stop
 
 

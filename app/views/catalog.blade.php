@@ -63,7 +63,14 @@
 						{{ HTML::link("view_item/".urlencode2($item->item)."?item_id=$item->id", $item->item ) }}
 					</h2>
 					<div class="item_photo_div">
+					<?php 
+					$path = public_path().DIRECTORY_SEPARATOR.'photos'.DIRECTORY_SEPARATOR.$item->photo;
+					?>
+					@if(File::exists($path))
 						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'item_photo']) }}
+					@else 
+						{{ HTML::image("photos/no_image.png", 'item', ['class'=>'item_photo']) }}
+					@endif
 					</div>
 					<table class="info_item_page info_item_page_catalog">
 						<tr>
