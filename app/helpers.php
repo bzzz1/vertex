@@ -1,5 +1,4 @@
 <?php 
-	// Custom helper functions
 
 	function urlencode2($string) {
 		$string = urlencode($string);
