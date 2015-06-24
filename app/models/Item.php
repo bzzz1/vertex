@@ -111,8 +111,12 @@ class Item extends Eloquent {
 		$order = Input::get('order', 'ASC');
 
 		$items = new Item;
-		$items = $items->where('item', 'like', '%'.$param.'%');
-		$items = $items->orderBy($sort, $order);
+		$items = $items->where('code', $param);
+                if (count($items->get())==0) {
+		    $items = $items->orWhere('item', 'like', '%'.$param.'%');
+
+                }
+                $items = $items->orderBy($sort, $order);
 		$items = $items->paginate(12);
 		return $items;
 	}
