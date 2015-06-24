@@ -13,7 +13,7 @@
 		<div class="contacts_text_block">
 			<div class="contacts_left_block">		
 				<div class="adress_block">
-					<h3 class="contacts_heading">Мы находимся по адрессу:</h3>
+					<h3 class="contacts_heading">Мы находимся по адресу:</h3>
 					<p>
 						Россия,<br>
 						Санкт-Петербург<br>
