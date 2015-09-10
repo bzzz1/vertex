@@ -57,8 +57,18 @@
 						<p class="s_item_proc">Под заказ</p>
 					@endif 
 					<div class="s_item_price">
-						<p class="s_item_price_p s_item_price_number">{{ $item->price }}&nbsp</p>
-						<p class="s_item_price_p s_item_price_currency">{{ $item->currency }}</p>
+						<p class="s_item_price_p s_item_price_number">
+						@if($item->price == 0.00)
+							По запросу
+						@else
+							{{ $item->price }}&nbsp
+						@endif
+						</p>
+						<p class="s_item_price_p s_item_price_currency">
+							@if($item->price != 0.00)
+								{{ $item->currency }}
+							@endif
+						</p>
 					</div>
 					<a href="/order?item_id={{ $item->id }}" class="btn btn-default s_item_btn">Заказать</a>
 				</div>
@@ -102,8 +112,20 @@
 						@if ($item->procurement == 'МРП') В наличии @else Под заказ @endif 
 					</div>
 					<div class="catalog_item_price">
-						<p class="catalog_item_price_p catalog_item_price_number">{{ $item->price }}&nbsp</p>
-						<p class="catalog_item_price_p catalog_item_price_currency">{{ $item->currency }}</p>
+						@if($item->price == 0.00)
+							<p class="catalog_item_price_p" style="float:left;">
+								По запросу
+							</p>	
+						@else
+							<p class="catalog_item_price_p catalog_item_price_number">
+								{{ $item->price }}&nbsp
+							</p>
+						@endif
+						<p class="catalog_item_price_p catalog_item_price_currency">
+							@if($item->price != 0.00)
+								{{ $item->currency }}
+							@endif
+						</p>
 					</div>
 				</div>
 			@endforeach

@@ -95,7 +95,7 @@
 					</tr>
 					<tr>
 						<td>{{ Form::label('code', 'Код: ', ['class'=>'main_label']) }}</td>
-						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code form-control', 'ng-model'=>'element.code', 'required']) }}</td>
+						<td>{{ Form::text('code', null, ['class'=>'change_input change_input_code form-control js_code', 'ng-model'=>'element.code', 'required']) }}</td>
 					</tr>
 					<tr>
 						<td>{{ Form::label('photo_label', 'Изображение: 255px*255px', ['class'=>'main_label photo_label']) }}</td>
@@ -119,6 +119,14 @@
 			@include('admin/admin_preview')
 		</div><!-- change_item -->
 		<a href='/admin/changeItem' class='btn uni_btn m_adm_btn'>Добавить товар</a>
+		<div class="admin_panel_import_div">
+			<p class="admin_uni_label"><i class="fa fa-reply"></i> Импорт</p>
+			{{ Form::open(['url'=>'/admin/import', 'files'=>true, 'method'=>'POST', 'class'=>'admin_panel_import']) }}
+				{{ Form::file('excel', ['class'=>'admin_panel_input']) }}
+				{{ Form::checkbox('only_price', 'only_price', false, ['class'=>'form-control']) }}
+				{{ Form::submit('Импортировать', ['class'=>'btn admin_uni_button']) }}
+			{{ Form::close() }}
+		</div>
 		<a href='/admin/info' class='btn uni_btn m_adm_btn add_adm_btn'>Панель информации</a>
 	</div><!-- width_960 catalog_gen -->
 @stop

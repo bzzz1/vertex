@@ -334,7 +334,17 @@
 			}, 1000);
 
 			$scope.clear_form_data = function() { 
-				$scope.element = {"currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное"};
+				var chars = "0123456789";
+				var string_length = 5;
+				var randomstring = '';
+				for (var i=0; i<string_length; i++) {
+					var rnum = Math.floor(Math.random() * chars.length);
+					randomstring += chars.substring(rnum,rnum+1);
+				}
+				$value = 'A'+randomstring;
+				console.log($value);
+				$scope.element = {"currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное", "code":$value};
+				// console.log($scope.element)
 				$(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html('Описание отсутствует');
 			}
 			/*----------------------------------------------*/
@@ -419,6 +429,19 @@
 		$('.subcategory_block').hide(); // hide back
 
 	}
+	// function run_code_admin () {
+	// 	var chars = "0123456789";
+	// 	var string_length = 5;
+	// 	var randomstring = '';
+	// 	for (var i=0; i<string_length; i++) {
+	// 		var rnum = Math.floor(Math.random() * chars.length);
+	// 		randomstring += chars.substring(rnum,rnum+1);
+	// 	}
+	// 	$value = 'A'+randomstring;
+	// 	console.log($value);
+	// 	$('.js_code').text($value);
+
+	// }
 
 
 
@@ -435,6 +458,8 @@
 	run_subcategories();
 
 	run_article_button_read();
+
+	// run_code_admin();
 
 
 

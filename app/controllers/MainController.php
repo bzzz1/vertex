@@ -205,6 +205,8 @@ class MainController extends BaseController {
 	}
 
 	public function updateOrCreateItem($code=null) {
+		$code_start = Input::get('code');
+
  		$validator = Validator::make(Input::all(), [
 			'code'				=> ($code === null) ? 'required|unique:items' : 'required'
 			// 'username'			=> 'required|min:3|unique:users',
@@ -241,6 +243,28 @@ class MainController extends BaseController {
  		Item::deleteItemByCode($code);
 		return Redirect::back()->with('msg', 'Товар #'.$code.' удален');
 	}
+
+	public function import() {
+ 		if (Input::hasFile('excel')) {
+			$file = Input::file('excel');
+			$only_prices = Input::get('only_price');
+			$destinationPath = public_path().DIRECTORY_SEPARATOR.'excel';
+			$extension = $file->getClientOriginalExtension();
+			if ($extension != 'xlsx') {
+				return Redirect::to('/admin')->withErrors('Выбранный файл должен иметь формат .xlsx');
+			}
+			// $filename = $file->getClientOriginalName(); // full
+			$filename = 'excel.'.$extension;
+			$file->move($destinationPath, $filename);
+
+			// returns import_status view
+			return App::make('ExcelController')->excelImport($only_prices);
+			// return Redirect::to('/admin')->with('msg', 'Excel файл загружен!');
+		} else {
+			return Redirect::to('/admin')->withErrors('Excel файл не выбран!');
+		}
+	}
+
 /*------------------------------------------------
 | ARTICLE
 ------------------------------------------------*/

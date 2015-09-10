@@ -5,6 +5,7 @@ Route::get('/info', 'MainController@info');
 Route::get('/contacts', 'MainController@contacts');
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
 Route::get('/admin', 'MainController@login');
+Route::post('/admin/import', 'MainController@import');
 Route::get('/order', 'MainController@order_page');
 Route::post('/order', 'MainController@order');
 Route::post('/validate', 'MainController@validate');
