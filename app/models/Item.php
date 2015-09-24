@@ -110,14 +110,44 @@ class Item extends Eloquent {
 		$sort = Input::get('sort', 'item');
 		$order = Input::get('order', 'ASC');
 
-		$items = new Item;
-		$items = $items->where('code', $param);
-                if (count($items->get())==0) {
-		    $items = $items->orWhere('item', 'like', '%'.$param.'%');
+		// $items = new Item;
+		// $items = [];
+		foreach ($param as $param) {
+			$items = new Item;
+			$items = $items
+				// ->where('item', 'like', $param)
+				// ->orWhere('item', 'like', '%'.$param)
+				// ->orWhere('item', 'like', $param.'%')
+				->where('item', 'like', '%'.$param.'%')
+				->orWhere('producer', 'like', '%'.$param.'%')
+				->orWhere('subcategory', 'like', '%'.$param.'%')
+				->orWhere('code', $param)
+	         	->orderBy($sort, $order)
+				->paginate(12);
+				return $items;
 
-                }
-                $items = $items->orderBy($sort, $order);
-		$items = $items->paginate(12);
+		}
+		// $items = $items
+		// 	->where('item', 'like', $param)
+		// 	->orWhere('item', 'like', '%'.$param)
+		// 	->orWhere('item', 'like', $param.'%')
+		// 	->orWhere('item', 'like', '%'.$param.'%')
+		// 	->orWhere('producer', 'like', '%'.$param.'%')
+		// 	->orWhere('subcategory', 'like', '%'.$param.'%')
+		// 	->orWhere('code', $param)
+  //        	->orderBy($sort, $order)
+  //        	->get();
+         	// print_r($items);
+         	// exit();
+			// ->paginate(12);
+		// foreach ($items as $item) {
+			// $itemm = new Item;
+		// }
+		// $items = $items->paginate(12);
+		// $items = new Item->panginate(12);
+		// $items = json_decode($items);
+		// $items->paginate(12);
+		// exit();
 		return $items;
 	}
 /*------------------------------------------------

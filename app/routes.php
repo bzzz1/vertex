@@ -6,10 +6,12 @@ Route::get('/contacts', 'MainController@contacts');
 Route::get('/itemSearch', ['as'=>'itemSearch', 'uses'=>'MainController@itemSearch']);
 Route::get('/admin', 'MainController@login');
 Route::post('/admin/import', 'MainController@import');
+Route::get('/admin/import_s/{offset?}', 'Parser@index');
 Route::get('/order', 'MainController@order_page');
 Route::post('/order', 'MainController@order');
 Route::post('/validate', 'MainController@validate');
 Route::get('/attachment', 'MainController@attachment');
+Route::get('/price_base', 'MainController@price_base');
 Route::get('/{env}', 'MainController@index'); // items and spares
 
 Route::group(['prefix'=>'/admin', 'before'=>'auth2'], function() {

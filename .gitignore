@@ -1,5 +1,9 @@
 /bootstrap/compiled.php
 /vendor
+public/packages/ckfinder
+public/packages/ckeditor
+
+/public/photos
 composer.phar
 composer.lock
 .env.*.php

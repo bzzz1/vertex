@@ -341,7 +341,7 @@
 					var rnum = Math.floor(Math.random() * chars.length);
 					randomstring += chars.substring(rnum,rnum+1);
 				}
-				$value = 'A'+randomstring;
+				$value = 'vt'+randomstring;
 				console.log($value);
 				$scope.element = {"currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное", "code":$value};
 				// console.log($scope.element)

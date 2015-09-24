@@ -11,7 +11,8 @@
 		"phpoffice/phpexcel": "dev-master",
 		"ollieread/multiauth": "dev-master",
   		"nesbot/carbon": "~1.14",
-		"y-yamagata/psysh-laravel": "0.1.*"
+		"y-yamagata/psysh-laravel": "0.1.*",
+		"akeneo/spreadsheet-parser": "~1.1"
 	},
 	"autoload": {
 		"classmap": [

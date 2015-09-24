@@ -25,58 +25,103 @@
 			<h4 class="item_page_recommended_heading">Товары из этой категории</h4>
 		</div>
 		<div class="single_item">
-			<div class="s_item_descr">
-				{{ HTML::image("photos/$item->photo", 'item', ['class'=>'s_item_img']) }}
-				<div class="s_item_creteries">
-					<table class="s_itiem_table">
-					<tr>
-						<td colspan='2'> @if ($item->type == 'ЗИП') Запчасти @else Техника @endif </td>
-					</tr>
-					<tr>
-						<td>Бренд:&nbsp&nbsp&nbsp&nbsp</td>
-						<td class=''>{{ $item->producer }}</td>
-					</tr>
-					<tr>
-						<td>Код:</td>
-						<td class=''>{{ $item->code }}</td>
-					</tr>
-					<tr>
-						<td>Тип:&nbsp</td>
-						<td class=''>{{ $item->category }}</td>
-					</tr>
-					<tr>
-						<td>Вид:&nbsp</td>
-						<td class=''>{{ $item->subcategory }}</td>
-					</tr>											
-					</table>
-				</div>
-				<div class="s_item_button">
-					@if ($item->procurement == 'МРП') 
-						<p class="s_item_proc">В наличии</p>
-					@else 
-						<p class="s_item_proc">Под заказ</p>
-					@endif 
-					<div class="s_item_price">
-						<p class="s_item_price_p s_item_price_number">
-						@if($item->price == 0.00)
-							По запросу
-						@else
-							{{ $item->price }}&nbsp
-						@endif
-						</p>
-						<p class="s_item_price_p s_item_price_currency">
-							@if($item->price != 0.00)
-								{{ $item->currency }}
-							@endif
-						</p>
+			<div class="top_block">
+				<div class="s_item_descr">
+					<div class="image">
+						{{ HTML::image("photos/$item->photo", 'item', ['class'=>'s_item_img']) }}
 					</div>
-					<a href="/order?item_id={{ $item->id }}" class="btn btn-default s_item_btn">Заказать</a>
+					<div class="descr_parent">
+						<div class="s_item_creteries">
+							<table class="s_itiem_table">
+							<tr>
+								<td colspan='2'> @if ($item->type == 'ЗИП') Запчасти @else Техника @endif </td>
+							</tr>
+							<tr>
+								<td>Бренд:&nbsp&nbsp&nbsp&nbsp</td>
+								<td class=''>{{ $item->producer }}</td>
+							</tr>
+							<tr>
+								<td>Код:</td>
+								<td class=''>{{ $item->code }}</td>
+							</tr>
+							<tr>
+								<td>Тип:&nbsp</td>
+								<td class=''>{{ $item->category }}</td>
+							</tr>
+							<tr>
+								<td>Вид:&nbsp</td>
+								<td class=''>{{ $item->subcategory }}</td>
+							</tr>											
+							</table>
+						</div>
+						<div class="s_item_button">
+							@if ($item->procurement == 'МРП') 
+								<p class="s_item_proc">В наличии</p>
+							@else 
+								<p class="s_item_proc">Под заказ</p>
+							@endif 
+							<div class="s_item_price">
+								<p class="s_item_price_p s_item_price_number">
+								@if($item->price == 0.00)
+									По запросу
+								@else
+									{{ $item->price }}&nbsp
+								@endif
+								</p>
+								<p class="s_item_price_p s_item_price_currency">
+									@if($item->price != 0.00)
+										{{ $item->currency }}
+									@endif
+								</p>
+							</div>
+							<a href="/order?item_id={{ $item->id }}" class="btn btn-default s_item_btn">Заказать</a>
+						</div>
+					</div>
 				</div>
 			</div>
-			<div class="s_item_info_big">
-				<p>{{ $item->description }}</p>
+			<div class="bottom_block">
+				<div class="s_item_info_big">
+					<p>{{ $item->description }}</p>
+				</div>
 			</div>
 		</div>
+		<style>
+			.top_block {
+				overflow: hidden;
+				width: 100%;
+			}
+			.bottom_block {
+				overflow: hidden;
+				width: 100%;
+			}
+			.image {
+				width: 220px;
+				height: 250px;
+				overflow: hidden;
+				float: left;
+			}
+			.descr_parent {
+				overflow: hidden;
+				float: right;
+				width: 59%;
+			}
+			.s_item_creteries {
+				margin-left: 0;
+				/*float: right;*/
+				/*width: auto;*/
+				/*padding-left: 70px;*/
+				/*padding-right: 70px;*/
+			}
+			.s_item_btn {
+				display: table;	
+				margin: auto;
+				margin-top: 15px;
+				/*float: right;*/
+			}
+			.s_item_img {
+				max-height: 250px;
+			}
+		</style>
 		{{-- SAME ITEMS --}}
 		<div class="rec_item">
 			@foreach ($same as $item)
@@ -132,18 +177,18 @@
 			{{-- END SAME ITEMS --}}
 		</div>	
 	</div>
-	<script>
-		$(window).load(function(){
-			var $num = $(".s_item_price_number").text();
-			var $len = $num.length;
-			if ($len > 8) {
-				$(".s_item_price").css({
-					'margin-left' : '0',
-					'padding' : '10px 10px'});
-			};
-		});
+	// <script>
+	// 	$(window).load(function(){
+	// 		var $num = $(".s_item_price_number").text();
+	// 		var $len = $num.length;
+	// 		if ($len > 8) {
+	// 			$(".s_item_price").css({
+	// 				'margin-left' : '0',
+	// 				'padding' : '10px 10px'});
+	// 		};
+	// 	});
 		
-	</script>
+	// </script>
 @stop
 
 

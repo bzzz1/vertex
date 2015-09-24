@@ -102,7 +102,8 @@ class MainController extends BaseController {
 	}
 
 	public function itemSearch() {
- 		$param = Input::get('param');
+ 		// $param = Input::get('param');
+ 		$param = explode(" ", Input::get('param') );
 
 		return View::make('catalog')->with([
 			'current' 		=> $param,
@@ -122,6 +123,11 @@ class MainController extends BaseController {
  		header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
 		header('Content-disposition: attachment; filename=Komplexnoe_predl_s_1_12.xlsx');
 		readfile(public_path().'/attachments/Komplexnoe_predl_s_1_12.xlsx');
+	}
+	public function price_base() {
+ 		header('Content-type: application/vnd.openxmlformats-officedocument.spreadsheetml.sheet');
+		header('Content-disposition: attachment; filename=price_base.xlsx');
+		readfile(public_path().'/excel/price_base.xlsx');
 	}
 	
 /*------------------------------------------------
@@ -205,6 +211,8 @@ class MainController extends BaseController {
 	}
 
 	public function updateOrCreateItem($code=null) {
+		$code_start = Input::get('code');
+
  		$validator = Validator::make(Input::all(), [
 			'code'				=> ($code === null) ? 'required|unique:items' : 'required'
 			// 'username'			=> 'required|min:3|unique:users',
@@ -241,6 +249,48 @@ class MainController extends BaseController {
  		Item::deleteItemByCode($code);
 		return Redirect::back()->with('msg', 'Товар #'.$code.' удален');
 	}
+
+	public function import() {
+ 		if (Input::hasFile('excel')) {
+ 			Session::flush();
+			$file = Input::file('excel');
+			$only_prices = Input::get('only_price');
+			Session::put('only_prices', $only_prices);
+			$destinationPath = public_path().DIRECTORY_SEPARATOR.'excel';
+			$extension = $file->getClientOriginalExtension();
+			$original_name = $file->getClientOriginalName();
+			Session::put('original_name', $original_name);
+
+
+
+			if ($extension != 'xlsx') {
+				return Redirect::to('/admin')->withErrors('Выбранный файл должен иметь формат .xlsx');
+			}
+			// $filename = $file->getClientOriginalName(); // full
+			$filename = 'excel.'.$extension;
+			$file->move($destinationPath, $filename);
+			// $excel_file = public_path().DIRECTORY_SEPARATOR.'excel'.DIRECTORY_SEPARATOR.'excel.xlsx';
+
+			// $objReader = new PHPExcel_Reader_Excel2007();
+			// $objReader = PHPExcel_IOFactory::createReader('Excel2007');
+			// $objReader->setReadDataOnly(TRUE);
+			// $objPHPExcel = $objReader->load($excel_file);
+			// $objWorksheet = $objPHPExcel->getActiveSheet();
+
+			// Get the highest row and column numbers referenced in the worksheet
+			// $highestRow = $objWorksheet->getHighestRow(); // e.g. 10
+			// $highestColumn = $objWorksheet->getHighestColumn(); // e.g 'F'
+			// $highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn); // e.g. 5
+			// Session::put('highestRow', $highestRow);
+
+			// returns import_status view
+			return App::make('Parser')->index();
+			// return Redirect::to('/admin')->with('msg', 'Excel файл загружен!');
+		} else {
+			return Redirect::to('/admin')->withErrors('Excel файл не выбран!');
+		}
+	}
+
 /*------------------------------------------------
 | ARTICLE
 ------------------------------------------------*/

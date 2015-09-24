@@ -3,7 +3,7 @@
 <html lang="en">
 
 <head>
-
+	@yield('meta')
 	<meta charset="UTF-8">
 
 	<meta name='viewport' content='width=960'>

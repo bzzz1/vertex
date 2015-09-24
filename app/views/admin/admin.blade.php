@@ -106,21 +106,64 @@
 						</td>
 					</tr>
 				</table>
-				{{ Form::submit('Сохранить', ['class'=>'submit_field save_button btn uni_btn']) }}
-				<input class="btn btn-info uni_btn clean_btn" value="Очистить" style="float: right;" ng-click='clear_form_data()'>
+				{{ Form::submit('Сохранить', ['class'=>'submit_field save_button btn uni_btn ']) }}
+				<a href class="btn btn-info uni_btn clean_btn" value="Очистить" style="float: right; padding-left: 48px; padding-right: 48px;" ng-click='clear_form_data()'>Очистить</a>
 			</div>
 			{{ Form::close() }}
+			<div class="admin_panel_import_div">
+				{{ Form::open(['url'=>'/admin/import', 'files'=>true, 'method'=>'POST', 'class'=>'admin_panel_import']) }}
+				<p class="admin_uni_label main_label"><i class="fa fa-reply"></i> Импорт</p>
+				{{ Form::file('excel', ['class'=>'admin_panel_input']) }}
+					<div class="form">
+						{{ Form::label('only_price', 'Обновить цены и наличие', ['class'=>'main_label price_label']) }}
+						{{ Form::checkbox('only_price', 'only_price', false, ['class'=>'check_my']) }}
+					</div>
+					{{ Form::submit('Импортировать', ['class'=>'save_button btn uni_btn import_btn']) }}
+					<a href="/price_base" class="save_button btn uni_btn download_btn">Скачать прайс</a>
+				{{ Form::close() }}
+			</div>
 			@include('admin/admin_preview')
 		</div><!-- change_item -->
 		<a href='/admin/changeItem' class='btn uni_btn m_adm_btn'>Добавить товар</a>
-		<div class="admin_panel_import_div">
-			<p class="admin_uni_label"><i class="fa fa-reply"></i> Импорт</p>
-			{{ Form::open(['url'=>'/admin/import', 'files'=>true, 'method'=>'POST', 'class'=>'admin_panel_import']) }}
-				{{ Form::file('excel', ['class'=>'admin_panel_input']) }}
-				{{ Form::checkbox('only_price', 'only_price', false, ['class'=>'form-control']) }}
-				{{ Form::submit('Импортировать', ['class'=>'btn admin_uni_button']) }}
-			{{ Form::close() }}
-		</div>
 		<a href='/admin/info' class='btn uni_btn m_adm_btn add_adm_btn'>Панель информации</a>
 	</div><!-- width_960 catalog_gen -->
+	<style>
+		.admin_panel_import_div {
+			width: 100%;
+			float: left;
+			border: 1px solid #cecece;
+			margin-top: 30px;
+			margin-bottom: 30px;
+			padding: 20px;
+		}
+		.admin_uni_label {
+			display: inline-block;
+		}
+		.admin_panel_input {
+		}
+		.admin_panel_import_div input[type=file] {
+			display: inline-block;
+			margin-left: 14%;
+
+		}
+		.form {
+			margin-bottom: 10px;
+		}
+		.form input[type=checkbox] {
+			display: inline-block;
+			/*width: 50%;*/
+			height: 24px;
+		}
+		.price_label {
+			vertical-align: super;
+		}
+		.import_btn {
+		    padding-left: 19px!important;
+			padding-right: 17px!important;
+		}
+		.download_btn {
+			float: right;
+			font-size: 18px;
+		}
+	</style>
 @stop
