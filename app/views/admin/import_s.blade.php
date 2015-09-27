@@ -9,11 +9,12 @@
 	<div class="width_960 catalog_gen">
 		<div class="top">
 			<h1>Происходит иморт файла {{$original_name}}</h1>
+			<p>Импорт займет примерно {{round(($max_row/$iteration)*4.5/60)}} минут</p>
 			<p>Подождите немного.</p>
 		</div>
 		<div class="status">
 			<h2>Статус импорта</h2>
-			<p class="status_text">Импортируются товары с {{$offset-$iteration}} по {{$offset}} из {{$max_row-$skip}}</p>
+			<p class="status_text">Импортируются товары с {{$offset-$iteration}} по {{$offset}} из {{$max_row}}</p>
 		</div>
 		<div class="loader">
 			<p><span>Импортровано </span> <span class="js_status">{{round(($offset/$max_row)*100)}}%</span></p>

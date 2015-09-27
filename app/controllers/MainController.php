@@ -187,10 +187,11 @@ class MainController extends BaseController {
 	}
 
 	public function itemSearchAdmin() {
- 		$param = Input::get('param');
+// 		$param = Input::get('param');
+		$param = explode(" ", Input::get('param') );
 
 		return View::make('admin/admin_catalog')->with([
-			'current' 		=> $param,
+			'current' 		=> Input::get('param'),
 			'items' 		=> Item::readItemsBySearch($param),
 			'element'		=> null
 		]);
@@ -263,8 +264,8 @@ class MainController extends BaseController {
 
 
 
-			if ($extension != 'xlsx') {
-				return Redirect::to('/admin')->withErrors('Выбранный файл должен иметь формат .xlsx');
+			if ($extension != 'csv') {
+				return Redirect::to('/admin')->withErrors('Выбранный файл должен иметь формат .csv');
 			}
 			// $filename = $file->getClientOriginalName(); // full
 			$filename = 'excel.'.$extension;

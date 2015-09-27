@@ -1,622 +1,278 @@
 <?php
 class Parser extends BaseController {
-	public function index() {
-		$offset = (array_key_exists('offset', $_GET)) ? $_GET['offset'] : 1;
+	private $offset;
+	private $one_iteration = 300;
+	private $total_rows;
+	private $data = [];
+	private $rows;
+	private $added;
+	private $products_codes = [];
+	private $products_duplication = [];
+	private $errors = [];
+	private $errors_session;
+	private $only_prices;
+	private $codes;
+	private $real_num = 0;
+	private $types = ['ЗИП', 'оборудование'];
+	private $categories = [
+		'Барное',
+		'Нейтральное',
+		'Посуда и инвентарь',
+		'Посудомоечное',
+		'Технологическое',
+		'Упаковочное',
+		'Хлебопекарное',
+		'Холодильное'
+	];
+	public function __construct() {
+		$this->offset = (array_key_exists('offset', $_GET)) ? $_GET['offset'] : 1;
+		$this->products_codes = Session::get('perser_products_codes', []);
+		$this->products_duplication = Session::get('perser_duplications', []);
+		$this->codes = Item::lists('code');
+		$this->errors_session = Session::get('parser_errors', []);
+		$this->only_prices = Session::get('only_prices');
+	}
 
-		function timer_start() { // add error timing
-			global $__start;
-			date_default_timezone_set('Europe/Moscow');
-			// echo 'Start at: '.date('H:i:s');
-			$__start = microtime(true);
+	private function _prepareData(){
+		$csv_file = public_path().DIRECTORY_SEPARATOR.'excel'.DIRECTORY_SEPARATOR.'excel.csv';
+		$document = file($csv_file, FILE_SKIP_EMPTY_LINES);
+		unset($document[0]);
+		$this->total_rows = count($document);
+		$limit = $this->offset + $this->one_iteration;
+		for ($offset_parse = $this->offset; $offset_parse <= $limit; $offset_parse++) {
+			if (!array_key_exists($offset_parse, $document)) {
+				continue;
+			}
+			if (mb_check_encoding($document[$offset_parse]) === 'Windows-1251' ) {
+				$this->data[] = explode(";", iconv('Windows-1251', "utf-8", $document[$offset_parse]));
+			} elseif (mb_check_encoding($document[$offset_parse]) === 'ANSII' ) {
+				$this->data[] = explode(";", iconv('ANSII', "utf-8", $document[$offset_parse]));
+			} else {
+				$this->data[] = explode(";", $document[$offset_parse]);
+			}
 		}
-		function memuse($line = 'unknown') {
-			echo "</br>memory_get_usage(true) on line $line</br>";
-			echo round(memory_get_usage(true)/1024/1024, 2);
-			echo ' Mb</br>';
+
+	}
+	private function _validate($data) {
+		if ($this->offset <= $this->one_iteration) {
+			$i = $this->offset;
+		} else {
+			$i = $this->offset;
 		}
-		function mempeak($line = 'unknown') {
-			$round = round(memory_get_peak_usage(true)/1024/1024, 2);
-			return "</br>Максимальная загрузка памяти: ".$round.' Mb</br>';
+		foreach ($data as $row) {
+			$i++;
+			$this->real_num = $i;
+			foreach ($row as $id => $value) {
+				$row[$id] = addslashes($value);
+			}
+			$code = $row[0];
+			$title = $row[1];
+			$description = $row[2];
+			$type = $row[3];
+			$category = $row[4];
+			$subcat = $row[5];
+			$producer = $row[6];
+			$price = $row[7];
+			$currency = $row[8];
+			$procurement = $row[9];
+			$image = $row[10];
+			if (isset($code)) {
+				$this-> _isValid($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image);
+
+			}
 		}
-		function timer_stop() {
-			global $__start;
-			$__time = microtime(true) - $__start;
-			return '</br>Время работы скрипта: '.round($__time, 2).' с</br>';
+	}
+	private function _isValid($code, $title, $type, $category, $price, $currency, $procurement) {
+		$error = '';
+		$code = trim($code);
+		$code = strval($code);
+		if (in_array($code, $this->products_codes)) {
+			if (!array_key_exists($code, $this->products_duplication)) {
+				$products_duplication[$code] = [];
+			}
+			$products_duplication[$code][] = $this->real_num;
+
+		} else {
+			$this->products_codes[] = $code;
 		}
 
-		timer_start();
+		//*** title - 1
+		if (!isset($title)) {
+			$error .= 'Не указано название! ';
+		}
 
-		set_time_limit(10*60);
-		ini_set('memory_limit', '256M');
-		$memoryCacheSizeMb = 10;
-		$excel_file = public_path().DIRECTORY_SEPARATOR.'excel'.DIRECTORY_SEPARATOR.'excel.xlsx';
+		//*** type - 3
+		if (!isset($type)) {
+			$error .= 'Не указан тип товара(ЗИП или оборудование)! ';
+		} elseif (!in_array($type, $this->types)) {
+			$error .= 'Тип товара указан не верно(ЗИП или оборудование)! ';
+		}
 
-		$SKIP = 1; // amount of rows to be skiped
-		$ONE_ITER = 299; //amount of rows to import
-		global $limit;
-		$errors_session = Session::get('errors', []);
-		$messages_session = Session::get('messages', []);
-		$errors = [];
-		$messages = [];
-		$added = Session::get('added', 0);
-		$rows = Session::get('rows', 0);
+		//*** category - 4 and subcat - can be null
+		if (!isset($category)) {
+			$error .= 'Не указана категория! ';
+		} else {
+			if (!in_array($category, $this->categories)) {
+				$error .= 'Вы ввели неверную категорию. ';
+			}
+		}
 
-		/*------------------------------------------------
-		| RETRIEVE DATA
-		------------------------------------------------*/
-		$currencies = ['РУБ', 'EUR', 'USD'];
-		$categories = [
-			'Барное',
-			'Нейтральное',
-			'Посуда и инвентарь',
-			'Посудомоечное',
-			'Технологическое',
-			'Упаковочное',
-			'Хлебопекарное',
-			'Холодильное'
+		//*** price - 7
+		if (!isset($price)) {
+			$error .= 'Не указана цена! ';
+		} else {
+			if (!is_float($price)) {
+				$error .= 'Цена должна быть числом. ';
+			} else if ($price < 0) {
+				$error .= 'Цена не может быть отрицательной! ';
+			}
+		}
+
+		//*** currency - 8
+		if (!isset($currency)) {
+			$error .= 'Не указана валюта! ';
+		}
+
+		//*** procurement - 9
+		if (!isset($procurement)) {
+			$error .= 'Не указано наличие! ';
+		} else {
+			if (!($procurement == 'МРП' || $procurement == 'ТВС')) {
+				$error .= 'Поле Наличие должно иметь значение ТВС - нет, МРП - есть. ';
+			}
+		}
+
+		if ($error) {
+			$this->errors = $this->real_num . ' строка. ' . $error;
+		}
+	}
+	private function updatePrice($price, $currency, $procurement, $code) {
+		$fields = [
+			'price' => $price,
+			'currency' => $currency,
+			'procurement' => $procurement,
+			'code' => $code
 		];
-		$types = ['ЗИП', 'оборудование'];
-		$codes = Item::lists('code');
-		$producers_all = Item::lists('producer');
-		$producers = array_unique($producers_all);
-		$only_prices = Session::get('only_prices', '');
-
-		/*------------------------------------------------
-		| Read chunks of xlsx
-		------------------------------------------------*/
-		$objReader = new PHPExcel_Reader_Excel2007();
-		$objReader->setReadDataOnly(TRUE);
-
-		/*------------------------------------------------
-		| Enabling Caching
-		------------------------------------------------*/
-		$cacheMethod=PHPExcel_CachedObjectStorageFactory::cache_to_phpTemp;
-		$cacheSettings=array("memoryCacheSize"=>"$memoryCacheSizeMb"."MB");
-		PHPExcel_Settings::setCacheStorageMethod($cacheMethod, $cacheSettings);
-
-		$objReader = PHPExcel_IOFactory::createReader('Excel2007');
-		$objReader->setReadDataOnly(TRUE);
-		$objPHPExcel = $objReader->load($excel_file);
-		$objWorksheet = $objPHPExcel->getActiveSheet();
-
-		// Get the highest row and column numbers referenced in the worksheet
-		$highestRow = $objWorksheet->getHighestRow(); // e.g. 10
-		$highestColumn = $objWorksheet->getHighestColumn(); // e.g 'F'
-		$highestColumnIndex = PHPExcel_Cell::columnIndexFromString($highestColumn); // e.g. 5
-		$codes_duplication =[];
-		$products_codes = Session::get('perser_products_codes', []);
-		$products_duplication = Session::get('perser_duplications', []);
-
-
-		if ($offset < $highestRow) {
-			if ($offset+$ONE_ITER > $highestRow) {
-				for ($row=$offset+$SKIP; $row <= $highestRow; $row++) {
-					//echo "{$row} строка";
-					$code 			= $objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
-					$title 			= $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
-					$description 	= $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
-					$type		 	= $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
-					$category 		= $objWorksheet->getCellByColumnAndRow(4, $row)->getValue();
-					$subcat 		= $objWorksheet->getCellByColumnAndRow(5, $row)->getValue();
-					$producer 		= $objWorksheet->getCellByColumnAndRow(6, $row)->getValue();
-					$price 			= $objWorksheet->getCellByColumnAndRow(7, $row)->getValue();
-					$currency 		= $objWorksheet->getCellByColumnAndRow(8, $row)->getValue();
-					$procurement 	= $objWorksheet->getCellByColumnAndRow(9, $row)->getValue();
-					$image 			= $objWorksheet->getCellByColumnAndRow(10, $row)->getValue();
-
-					// VALIDATION AND MAIN CODE
-					if (isset($code)) {
-						$message = '';
-						$error = '';
-						$rows++;
-
-
-						$code = trim($code);
-						$code = strval($code);
-						if (in_array($code, $products_codes)) {
-							if (!array_key_exists($code, $products_duplication)) {
-								$products_duplication[$code] = [];
-							}
-							$products_duplication[$code][] = $row;
-							continue;
-						} else {
-							$products_codes[] = $code;
-						}
-
-
-
-						// validation
-						//*** code - 0 not empty because of initial condition
-						if (in_array($code, $codes)) {
-							$message .= 'Товар с кодом '.$code.' существует! ';
-						} else {
-							$message .= 'Товар с кодом '.$code.' добавлен! ';
-						}
-						// check if code was in this price alerady
-						if ( in_array($code, $codes_duplication) ) {
-							$message .= 'Товар с кодом '.$code.' уже встречался в прайсе! ';
-						}
-
-						//*** title - 1
-						if (!isset($title)) {
-							$error .= 'Не указано название! ';
-						}
-
-						//*** type - 3
-						if ( !isset($type) ) {
-							$error .= 'Не указан тип товара(ЗИП или оборудование)! ';
-						} elseif ( !in_array($type, $types) ) {
-							$error .= 'Тип товара указан не верно(ЗИП или оборудование)! ';
-						}
-
-						//*** category - 4 and subcat - can be null
-						if (!isset($category)) {
-							$error .= 'Не указана категория! ';
-						} else {
-							if (!in_array($category, $categories)) {
-								$error .= 'Вы ввели неверную категорию. ';
-							}
-						}
-
-						//*** price - 7
-						if (!isset($price)) {
-							$error .= 'Не указана цена! ';
-						} else {
-							if (!is_float($price)) {
-								$error .= 'Цена должна быть числом. ';
-							} else if ($price < 0) {
-								$error .= 'Цена не может быть отрицательной! ';
-							}
-						}
-
-						//*** currency - 8
-						if (!isset($currency)) {
-							$error .= 'Не указана валюта! ';
-						}
-
-						//*** procurement - 9
-						if (!isset($procurement)) {
-							$error .= 'Не указано наличие! ';
-						} else {
-							if (!($procurement == 'МРП' || $procurement == 'ТВС')) {
-								$error .= 'Поле Наличие должно иметь значение ТВС - нет, МРП - есть. ';
-							}
-						}
-
-						//*** image - 10
-						if ( !isset($image) ) {
-							$message .= 'Не указана картинка у товара';
-						}
-
-						if ($error) {
-							$errors[] = $row.' строка. '.$error;
-							$messages[] = $row.' строка. '.$message;
-							continue;
-						} else {
-							if ($only_prices == 'only_price') {
-								if ( in_array($code, $codes) ) {
-									// update prices and procurement
-									$fields = [
-										'price'			=> $price,
-										'currency' 		=> $currency,
-										'procurement'	=> $procurement,
-										'code' 			=> $code,
-									];
-									try {
-										$item = Item::where('code', $code)->update($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-									if (!$caught) {
-										// add code to array of codes in price
-										$codes_duplication[] = ($code);
-										$added++;
-									}
-								} else {
-									// add item to DB with all fields
-									$fields = [
-										'item' 			=> $title,
-										'description'   => ($description) ? $description : 'К сожалению, для данного товара описание временно отсутствует.',
-										'producer'		=> $producer,
-										'price'			=> $price,
-										'type'			=> $type,
-										'category'		=> $category,
-										'subcategory'	=> ($subcat) ? $subcat : 'Разное',
-										'currency' 		=> $currency,
-										'procurement' 	=> $procurement,
-										'code' 			=> $code,
-										'photo'			=> ($image) ? $image : 'no_image.png',
-									];
-									try {
-										$item = Item::create($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-									// add code only if no exception thrown
-									if (!$caught) {
-										// add code to an array of codes when item is created
-										$codes[] = $item->code;
-										// add code to array of codes in price
-										$codes_duplication[] = $code;
-										$added++;
-									}
-								}
-							} else {
-								if ( in_array($code, $codes) ) {
-									// update item with all fields
-									$fields = [
-										'item' 			=> $title,
-										'description'   => ($description) ? $description : 'К сожалению, для данного товара описание временно отсутствует.',
-										'producer'		=> $producer,
-										'price'			=> $price,
-										'type'			=> $type,
-										'category'		=> $category,
-										'subcategory'	=> ($subcat) ? $subcat : 'Разное',
-										'currency' 		=> $currency,
-										'procurement' 	=> $procurement,
-										'code' 			=> $code,
-										'photo'			=> ($image) ? $image : 'no_image.png',
-									];
-									try {
-										$item = Item::where('code', $code)->update($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-									if (!$caught) {
-										// add code to array of codes in price
-										$codes_duplication[] =  $code;
-										$added++;
-									}
-								} else {
-									// add item to db
-									$fields = [
-										'item' 			=> $title,
-										'description'   => ($description) ? $description : 'Для данного товара описание отсутствует.',
-										'producer'		=> $producer,
-										'price'			=> $price,
-										'type'			=> $type,
-										'category'		=> $category,
-										'subcategory'	=> ($subcat) ? $subcat : 'Разное',
-										'currency' 		=> $currency,
-										'procurement' 	=> $procurement,
-										'code' 			=> $code,
-										'photo'			=> ($image) ? $image : 'no_image.png',
-									];
-									try {
-										$item = Item::create($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-
-									// add code only if no exception thrown
-									if (!$caught) {
-										// add code to an array of codes when item is created
-										$codes[] = $item->code;
-										// add code to array of codes in price
-										$codes_duplication[] =  $code;
-										$added++;
-									}
-								}
-							}
-						}
-						// Check if there are messages
-						if ($message) {
-							$messages[] = $row.' строка. '.$message;
-						}
-						// increment the number of added items
-						// $added++;
-					}
+		try {
+			$item = Item::where('code', $code)->update($fields);
+			$caught = false;
+		} catch (Exception $e) {
+			$error = 'UNCAUGHT EXCEPTION! ';
+			$this->errors = $this->real_num . ' строка. ' . $error;
+			$caught = true;
+		}
+		if (!$caught) {
+			$this->added++;
+		}
+	}
+	private function _addItems($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image) {
+		$fields = [
+			'item' => $title,
+			'description' => ($description) ? $description : 'К сожалению, для данного товара описание временно отсутствует.',
+			'producer' => $producer,
+			'price' => $price,
+			'type' => $type,
+			'category' => $category,
+			'subcategory' => ($subcat) ? $subcat : 'Разное',
+			'currency' => $currency,
+			'procurement' => $procurement,
+			'code' => $code,
+			'photo' => ($image) ? $image : 'no_image.png',
+		];
+		try {
+			$item = Item::create($fields);
+			$caught = false;
+		} catch (Exception $e) {
+			$error = 'UNCAUGHT EXCEPTION! ';
+			// add error to errors array
+			$this->errors = $this->real_num . ' строка. ' . $error;
+			$caught = true;
+		}
+		if (!$caught) {
+			$this->codes[] = $item->code;
+			$this->added++;
+		}
+	}
+	private function _updateItem($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image) {
+		$fields = [
+			'item' => $title,
+			'description' => ($description) ? $description : 'К сожалению, для данного товара описание временно отсутствует.',
+			'producer' => $producer,
+			'price' => $price,
+			'type' => $type,
+			'category' => $category,
+			'subcategory' => ($subcat) ? $subcat : 'Разное',
+			'currency' => $currency,
+			'procurement' => $procurement,
+			'code' => $code,
+			'photo' => ($image) ? $image : 'no_image.png',
+		];
+		try {
+			$item = Item::where('code', $code)->update($fields);
+			$caught = false;
+		} catch (Exception $e) {
+			$error = 'UNCAUGHT EXCEPTION! ';
+			// add error to errors array
+			$this->errors = $this->real_num . ' строка. ' . $error;
+			$caught = true;
+		}
+		if (!$caught) {
+			$this->added++;
+		}
+	}
+	private function _saveItems($data) {
+		foreach ($data as $row) {
+			foreach ($row as $id => $value) {
+				$row[$id] = addslashes($value);
+			}
+			$code = $row[0];
+			$title = $row[1];
+			$description = $row[2];
+			$type = $row[3];
+			$category = $row[4];
+			$subcat = $row[5];
+			$producer = $row[6];
+			$price = $row[7];
+			$currency = $row[8];
+			$procurement = $row[9];
+			$image = $row[10];
+			if ($this->only_prices === 'only_price') {
+				if (in_array($code, $this->codes)) {
+					$this->updatePrice($price, $currency, $procurement, $code);
+				} else {
+					$this->_addItems($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image);
 				}
 			} else {
-				for ($row=$offset+$SKIP; $row <= $offset+$ONE_ITER; $row++) {
-					//echo "{$row} строка";
-					$code 			= $objWorksheet->getCellByColumnAndRow(0, $row)->getValue();
-					$title 			= $objWorksheet->getCellByColumnAndRow(1, $row)->getValue();
-					$description 	= $objWorksheet->getCellByColumnAndRow(2, $row)->getValue();
-					$type		 	= $objWorksheet->getCellByColumnAndRow(3, $row)->getValue();
-					$category 		= $objWorksheet->getCellByColumnAndRow(4, $row)->getValue();
-					$subcat 		= $objWorksheet->getCellByColumnAndRow(5, $row)->getValue();
-					$producer 		= $objWorksheet->getCellByColumnAndRow(6, $row)->getValue();
-					$price 			= $objWorksheet->getCellByColumnAndRow(7, $row)->getValue();
-					$currency 		= $objWorksheet->getCellByColumnAndRow(8, $row)->getValue();
-					$procurement 	= $objWorksheet->getCellByColumnAndRow(9, $row)->getValue();
-					$image 			= $objWorksheet->getCellByColumnAndRow(10, $row)->getValue();
-					if (isset($code)) {
-						$message = '';
-						$error = '';
-						$rows++;
-						// validation
-						//*** code - 0 not empty because of initial condition
-						if (in_array($code, $codes)) {
-							$message .= 'Товар с кодом '.$code.' существует! ';
-						} else {
-							$message .= 'Товар с кодом '.$code.' добавлен! ';
-						}
-						// check if code was in this price alerady
-						if ( in_array($code, $codes_duplication) ) {
-							$message .= 'Товар с кодом '.$code.' уже встречался в прайсе! ';
-						}
-
-						//*** title - 1
-						if (!isset($title)) {
-							$error .= 'Не указано название! ';
-						}
-
-						//*** type - 3
-						if ( !isset($type) ) {
-							$error .= 'Не указан тип товара(ЗИП или оборудование)! ';
-						} elseif ( !in_array($type, $types) ) {
-							$error .= 'Тип товара указан не верно(ЗИП или оборудование)! ';
-						}
-
-						//*** category - 4 and subcat - can bee null
-						if (!isset($category)) {
-							$error .= 'Не указана категория! ';
-						} else {
-							if (!in_array($category, $categories)) {
-								$error .= 'Вы ввели неверную категорию. ';
-							}
-						}
-
-						//*** price - 7
-						if (!isset($price)) {
-							$error .= 'Не указана цена! ';
-						} else {
-							if (!is_float($price)) {
-								$error .= 'Цена должна быть числом. ';
-							} else if ($price < 0) {
-								$error .= 'Цена не может быть отрицательной! ';
-							}
-						}
-
-						//*** currency - 8
-						if (!isset($currency)) {
-							$error .= 'Не указана валюта! ';
-						}
-
-						//*** procurement - 9
-						if (!isset($procurement)) {
-							$error .= 'Не указано наличие! ';
-						} else {
-							if (!($procurement == 'МРП' || $procurement == 'ТВС')) {
-								$error .= 'Поле Наличие должно иметь значение ТВС - нет, МРП - есть. ';
-							}
-						}
-
-						//*** image - 10
-						if ( !isset($image) ) {
-							$message .= 'Не указана картинка у товара';
-						}
-						if ($error) {
-							$errors[] = $row.' строка. '.$error;
-							$messages[] = $row.' строка. '.$message;
-							continue;
-
-						} else {
-							if ($only_prices = 'only_price') {
-								if ( in_array($code, $codes) ) {
-									// update prices and procurement
-									$fields = [
-										'price'			=> $price,
-										'currency' 		=> $currency,
-										'procurement'	=> $procurement,
-										'code' 			=> $code,
-									];
-									try {
-										$item = Item::where('code', $code)->update($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-									if (!$caught) {
-										// add code to array of codes in price
-										$codes_duplication[] = $code;
-										$added++;
-									}
-								} else {
-									// add item to DB with all fields
-									$fields = [
-										'item' 			=> $title,
-										'description'   => ($description) ? $description : 'К сожалению, для данного товара описание временно отсутствует.',
-										'producer'		=> $producer,
-										'price'			=> $price,
-										'type'			=> $type,
-										'category'		=> $category,
-										'subcategory'	=> ($subcat) ? $subcat : 'Разное',
-										'currency' 		=> $currency,
-										'procurement' 	=> $procurement,
-										'code' 			=> $code,
-										'photo'			=> ($image) ? $image : 'no_image.png',
-									];
-									try {
-										$item = Item::create($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-									// add code only if no exception thrown
-									if (!$caught) {
-										// add code to an array of codes when item is created
-										$codes[] = $item->code;
-										// add code to array of codes in price
-										$codes_duplication[] = $code;
-										$added++;
-									}
-								}
-							} else {
-								if (in_array($code, $codes)) {
-									// update item with all fields
-									$fields = [
-										'item' 			=> $title,
-										'description'   => ($description) ? $description : 'К сожалению, для данного товара описание временно отсутствует.',
-										'producer'		=> $producer,
-										'price'			=> $price,
-										'type'			=> $type,
-										'category'		=> $category,
-										'subcategory'	=> ($subcat) ? $subcat : 'Разное',
-										'currency' 		=> $currency,
-										'procurement' 	=> $procurement,
-										'code' 			=> $code,
-										'photo'			=> ($image) ? $image : 'no_image.png',
-									];
-									try {
-										$item = Item::where('code', $code)->update($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-									if (!$caught) {
-										// add code to array of codes in price
-										$codes_duplication[] = $code;
-										$added++;
-									}
-								} else {
-									// add item to db
-									$fields = [
-										'item' 			=> $title,
-										'description'   => ($description) ? $description : 'Для данного товара описание отсутствует.',
-										'producer'		=> $producer,
-										'price'			=> $price,
-										'type'			=> $type,
-										'category'		=> $category,
-										'subcategory'	=> ($subcat) ? $subcat : 'Разное',
-										'currency' 		=> $currency,
-										'procurement' 	=> $procurement,
-										'code' 			=> $code,
-										'photo'			=> ($image) ? $image : 'no_image.png',
-									];
-									try {
-										$item = Item::create($fields);
-										$caught = false;
-									} catch (Exception $e) {
-										$error .= 'UNCAUGHT EXCEPTION! ';
-										// add error to errors array
-										$errors[] = $row.' строка. '.$error;
-										$caught = true;
-										continue;
-									}
-
-									// add code only if no exception thrown
-									if (!$caught) {
-										// add code to an array of codes when item is created
-										$codes[] = $item->code;
-										// add code to array of codes in price
-										$codes_duplication[] = $code;
-										$added++;
-									}
-								}
-							}
-						}
-					}
+				if (in_array($code, $this->codes)) {
+					$this->_updateItem($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image);
+				} else {
+					$this->_addItems($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image);
 				}
 			}
-			// $objPHPExcel->disconnectWorksheets();
-			// unset($objPHPExcel);
-			timer_stop();
-			mempeak();
-
-			$merged_errors = array_merge($errors_session, $errors);
-			$merged_messages = array_merge($messages_session, $messages);
-			$merged_products_codes = array_merge(Session::get('perser_products_codes', []), $products_codes);
-			$merged_products_duplication = array_merge(Session::get('perser_duplications', []), $products_duplication);
-			Session::put('perser_products_codes', $merged_products_codes);
-			Session::put('perser_duplications', $merged_products_duplication);
-			Session::put('errors', $merged_errors);
-			Session::put('messages', $merged_messages);
-			Session::put('rows', $rows);
-			Session::put('added', $added);
-			// print_r(Session::get('rows'));
-			// echo "<br>";
-			// print_r(Session::get('added'));
-			// exit;
-
-
-
-			if ($offset+$ONE_ITER <= $highestRow) {
-				$offset = $offset + $ONE_ITER;
-				echo $added;
-				return View::make('admin/import_s')->with([
-					'offset' 		=> $offset,
-					// 'errors' 		=> $errors,
-					// 'messages'  	=> $messages,
-					// 'added'			=> $added,
-					'skip'			=> $SKIP,
-					// 'missed'		=> $rows-$added,
-					// 'time'			=> timer_stop(),
-					// 'mempeak'		=> mempeak(),
-					'original_name' => Session::get('original_name'),
-					'iteration'		=> $ONE_ITER,
-					'max_row'		=> $highestRow,
-					// 'codes_duplication' => $codes_duplication,
-
-				]);
-			} elseif ($offset+$ONE_ITER > $highestRow) {
-				$ONE_ITER = $highestRow - $offset;
-				$offset = $offset + $ONE_ITER;
-				echo $added;
-				return View::make('admin/import_s')->with([
-					'offset' 		=> $offset,
-					// 'errors' 		=> $errors,
-					// 'messages'  	=> $messages,
-					// 'added'			=> $added,
-					'skip'			=> $SKIP,
-					// 'missed'		=> $rows-$added,
-					// 'time'			=> timer_stop(),
-					// 'mempeak'		=> mempeak(),
-					'original_name' => Session::get('original_name'),
-					'iteration'		=> $ONE_ITER,
-					'max_row'		=> $highestRow,
-					// 'codes_duplication' => $codes_duplication,
-
-				]);
-			}
-		}elseif ($offset >= $highestRow) {
-			echo "<p>".$rows."</p><p>".$added."</p>";
-			// exit;
+		}
+	}
+	public function index() {
+		set_time_limit(10*60);
+		ini_set('memory_limit', '256M');
+		$this->_prepareData();
+		$this->_validate($this->data);
+		$this->_saveItems($this->data);
+		$this->offset = $this->offset + $this->one_iteration + 1;
+		if ($this->offset > $this->total_rows) {
 			return View::make('admin/admin_import_status')->with([
-				'errors' 	=> $errors_session,
-				'messages'  => $messages_session,
-				'added'		=> Session::get('added'),
-				'SKIP'		=> $SKIP,
-				'missed'	=> Session::get('rows')-Session::get('added'),
-				// 'time'		=> timer_stop(),
-				// 'mempeak'	=> mempeak(),
+				'errors' 		=> $this->errors_session,
+				'added'			=> Session::get('added'),
+				'SKIP'			=> 1,
+				'missed'		=> Session::get('rows')- Session::get('added'),
 				'original_name'	=> Session::get('original_name'),
-				// 'codes_duplications' => Session::get('perser_duplications', ['error!']),
-				// 'original_name' => $_SESSION['original_name'],
-				// 'codes_duplication' => $codes_duplication,
+			]);
+		} else {
+			return View::make('admin/import_s')->with([
+				'offset'		=> $this->offset,
+				'skip' 			=> 1,
+				'original_name' => Session::get('original_name'),
+				'iteration'		=> $this->one_iteration,
+				'max_row' 		=> $this->total_rows,
 			]);
 		}
 	}

@@ -13,6 +13,7 @@
 		<h2 class='error_msg'>{{ Session::get('error_msg') ? Session::get('error_msg') : '' }}</h2>
 		<div class='change_item' ng-app='preview' ng-controller='PreviewController as previewCtrl' ng-cloak>
 			<div class="headers" {{ isset($element->code) ? "ng-init='stat=\"update\"'" : ''}}>
+
 				<h2 class="groups_title_admin">{{ $element->code or 'Добавить товар'}}</h2>
 			</div>
 

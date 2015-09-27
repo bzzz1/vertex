@@ -58,14 +58,24 @@
 							<td class='info_page_item_title'>Вид:&nbsp</td>
 							<td class='info_page_item_text'>{{ $item->subcategory }}</td>
 						</tr>
+						<tr>
+							<td>
+								{{ HTML::link("/admin/changeItem/$item->code", 'Изменить', ['class'=>'submit_field btn btn-default items_button']) }}
+							</td>
+							<td>
+								{{ Form::open(['url'=>['/admin/deleteItem', $item->code], 'method'=>'POST', 'class'=>'submit_form confirm_form']) }}
+									{{ Form::submit('Удалить', ['class'=>'submit_field confirm_delete btn btn-default items_button']) }}
+								{{ Form::close() }}
+							</td>
+						</tr>
 					</table>
 					{{-- NEED FIXES --}}
-					<a href="/order?item_id={{ $item->id }}" class="btn btn-default items_button items_order">Заказать</a>
+					{{--<a href="/order?item_id={{ $item->id }}" class="btn btn-default items_button items_order">Заказать</a>--}}
 
-					<div class='info_page_item_procurement'>
+					<div class='info_page_item_procurement admin_procurement'>
 						@if ($item->procurement == 'МРП') В наличии @else Под заказ @endif 
 					</div>
-					<div class="catalog_item_price">
+					<div class="catalog_item_price admin_price">
 						@if($item->price == 0.00)
 							<p class="catalog_item_price_p" style="float:left;">
 								По запросу
@@ -85,6 +95,7 @@
 			@endforeach
 		</div>
 		{{-- END ITEMS --}}
+
 
 		{{-- PAGINATION --}}
 		<div class="catalog_bottom_pages">

@@ -13,7 +13,7 @@ class Item extends Eloquent {
 		$items = $items->where('type', $type);
 		$items = $items->where('category', $item->category);
 		$items = $items->where('subcategory', $item->subcategory);
-		$items = $items->orderByRaw("RAND()")->take(3)->get();
+		$items = $items->orderByRaw("RAND()")->take(3)->get();//TODO: need to check a random in mysql.
 
 		return $items;
 	}
@@ -103,6 +103,9 @@ class Item extends Eloquent {
 		$element = new Item;
 		$element = $element->where('code', $code);
 		$element = $element->first();
+//		print_r($element);
+//		exit();
+
 		return $element;
 	}
 

@@ -619,6 +619,12 @@ h2.catalog_item_header:hover + .item, .item:hover {
 	margin-left: 0;
 	margin-top: 15px;
 }
+.admin_procurement {
+	display: inline-block;
+	margin-top: 8px;
+	float: right;
+	margin-right: 12px;
+}
 .description_item {
 	background: #eeeeee;
 	border-radius: 15px;
@@ -1439,18 +1445,23 @@ label.small_label {
 	margin-right: 15px;
 }
 .submit_field {
-	width: 55px;
-	height: 20px;
-	padding: 0px 0px;
+	width: 68px;
+	height: 28px;
+	/*padding: 0px 0px;*/
 	font-size: 10px;
-	font-weight: bold;
+	/*font-weight: bold;*/
 	text-decoration: none;
-	padding: 3px;
-	-webkit-appearance: button;
+	padding: 5px;
+	/*-webkit-appearance: button;*/
+	color: #ffffff;
+	background-color: #008ccb;
+
 }
 .submit_field:hover {
 	text-decoration: none;
 	color: inherit;
+	background-color: #31b0d5;
+	color: #fff;
 }
 input[type=text].input_file_name {
 	margin-bottom: 5px;

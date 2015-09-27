@@ -303,14 +303,15 @@
 
 
 
-			var patt = /changeItem\/\d+/;
+			var patt = /changeItem\/\w/;
+
 
 			var sendPost = patt.test(location.href);
+
 
 			if (sendPost) {
 
 				$http.post(location.href).success(function(data) {
-
 					$scope.element = data;
 
 				});
@@ -324,6 +325,7 @@
 				if (localStorage.getItem('form_data')) {
 					var form_data = localStorage.getItem('form_data');
 					$scope.element = JSON.parse(form_data);
+
 				}
 				$scope.$apply(); // !!! with setTimeout needed!
 			}, 0);
@@ -331,6 +333,7 @@
 			setInterval(function() {
 				var form_data = JSON.stringify($scope.element);
 				localStorage['form_data'] = form_data;
+
 			}, 1000);
 
 			$scope.clear_form_data = function() { 
@@ -344,7 +347,7 @@
 				$value = 'vt'+randomstring;
 				console.log($value);
 				$scope.element = {"currency":"РУБ","procurement":"ТВС","type":"оборудование","category":"Барное", "code":$value};
-				// console.log($scope.element)
+				console.log($scope.element)
 				$(".cke_wysiwyg_frame").contents().find(".cke_contents_ltr").html('Описание отсутствует');
 			}
 			/*----------------------------------------------*/
