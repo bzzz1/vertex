@@ -12,7 +12,18 @@
 		<span style="color:blue">Импорт завершен, было изменено {{ $added }} товаров</span>
 		<hr>
 		<span style="color:orange">Дубли:</span></br>
-		{{-- {{HTML::ul($codes_duplications, ['style' => 'color:black'])}} --}}
+		<ul>
+			{{print_r($codes_duplications);}}
+			{{--@foreach ($codes_duplications as $duplication)--}}
+				{{--@foreach($duplication as $code=>$rows)--}}
+					{{--<li>{{$code}} встречается на строке--}}
+						{{--@foreach($rows as $row)--}}
+							{{--{{$row}}--}}
+						{{--@endforeach--}}
+					{{--</li>--}}
+				{{--@endforeach--}}
+			{{--@endforeach--}}
+		</ul>
 		<hr>
 		<span style="color:red">{{ $missed }} товаров не было изменено. Ошибки:</span></br>
 		{{ HTML::ul($errors, ['style' => 'color:red']) }}

@@ -1,13 +1,17 @@
 <?php
+header('Content-Type: text/html; charset=utf-8');
 class Parser extends BaseController {
 	private $offset;
-	private $one_iteration = 300;
+	private $one_iteration = 299;
 	private $total_rows;
 	private $data = [];
+	private $data_correct = [];
 	private $rows;
 	private $added;
 	private $products_codes = [];
+	private $products_codes_session;
 	private $products_duplication = [];
+	private $products_duplication_session;
 	private $errors = [];
 	private $errors_session;
 	private $only_prices;
@@ -24,15 +28,18 @@ class Parser extends BaseController {
 		'Хлебопекарное',
 		'Холодильное'
 	];
+
 	public function __construct() {
 		$this->offset = (array_key_exists('offset', $_GET)) ? $_GET['offset'] : 1;
-		$this->products_codes = Session::get('perser_products_codes', []);
-		$this->products_duplication = Session::get('perser_duplications', []);
+		$this->products_codes_session = Session::get('parser_products_codes', []);
+		$this->products_duplication_session = Session::get('parser_duplications', []);
+//		$this->products_duplication_session = Cache::get('parser_duplications', []);
 		$this->codes = Item::lists('code');
 		$this->errors_session = Session::get('parser_errors', []);
 		$this->only_prices = Session::get('only_prices');
+		$this->rows = Session::get('rows', 0);
+		$this->added = Session::get('added', 0);
 	}
-
 	private function _prepareData(){
 		$csv_file = public_path().DIRECTORY_SEPARATOR.'excel'.DIRECTORY_SEPARATOR.'excel.csv';
 		$document = file($csv_file, FILE_SKIP_EMPTY_LINES);
@@ -43,15 +50,14 @@ class Parser extends BaseController {
 			if (!array_key_exists($offset_parse, $document)) {
 				continue;
 			}
-			if (mb_check_encoding($document[$offset_parse]) === 'Windows-1251' ) {
+//			if (mb_check_encoding($document[$offset_parse]) === 'Windows-1251' ) {
 				$this->data[] = explode(";", iconv('Windows-1251', "utf-8", $document[$offset_parse]));
-			} elseif (mb_check_encoding($document[$offset_parse]) === 'ANSII' ) {
-				$this->data[] = explode(";", iconv('ANSII', "utf-8", $document[$offset_parse]));
-			} else {
-				$this->data[] = explode(";", $document[$offset_parse]);
-			}
+//			} elseif (mb_check_encoding($document[$offset_parse]) === 'ANSII' ) {
+//				$this->data[] = explode(";", iconv('ANSII', "utf-8", $document[$offset_parse]));
+//			} else {
+//				$this->data[] = explode(";", $document[$offset_parse]);
+//			}
 		}
-
 	}
 	private function _validate($data) {
 		if ($this->offset <= $this->one_iteration) {
@@ -60,6 +66,7 @@ class Parser extends BaseController {
 			$i = $this->offset;
 		}
 		foreach ($data as $row) {
+			$this->rows++;
 			$i++;
 			$this->real_num = $i;
 			foreach ($row as $id => $value) {
@@ -76,40 +83,41 @@ class Parser extends BaseController {
 			$currency = $row[8];
 			$procurement = $row[9];
 			$image = $row[10];
-			if (isset($code)) {
-				$this-> _isValid($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image);
-
+			if (mb_strlen($code) !== 0) {
+				if ($this-> _isValid($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image)) {
+					$this->data_correct[] = $row;
+				}
 			}
 		}
 	}
-	private function _isValid($code, $title, $type, $category, $price, $currency, $procurement) {
+	private function _isValid($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image) {
 		$error = '';
 		$code = trim($code);
 		$code = strval($code);
 		if (in_array($code, $this->products_codes)) {
 			if (!array_key_exists($code, $this->products_duplication)) {
-				$products_duplication[$code] = [];
+				$this->products_duplication[$code] = [];
 			}
-			$products_duplication[$code][] = $this->real_num;
+			$this->products_duplication[$code][] = $this->real_num;
 
 		} else {
 			$this->products_codes[] = $code;
 		}
 
 		//*** title - 1
-		if (!isset($title)) {
+		if (mb_strlen($title) === 0) {
 			$error .= 'Не указано название! ';
 		}
 
 		//*** type - 3
-		if (!isset($type)) {
-			$error .= 'Не указан тип товара(ЗИП или оборудование)! ';
+		if (mb_strlen($type) === 0) {
+			$error .= 'Не указан тип товара(ЗИП или оборудование)!';
 		} elseif (!in_array($type, $this->types)) {
 			$error .= 'Тип товара указан не верно(ЗИП или оборудование)! ';
 		}
 
 		//*** category - 4 and subcat - can be null
-		if (!isset($category)) {
+		if (mb_strlen($category) === 0) {
 			$error .= 'Не указана категория! ';
 		} else {
 			if (!in_array($category, $this->categories)) {
@@ -118,10 +126,12 @@ class Parser extends BaseController {
 		}
 
 		//*** price - 7
-		if (!isset($price)) {
+		if (mb_strlen($price) === 0) {
 			$error .= 'Не указана цена! ';
 		} else {
-			if (!is_float($price)) {
+			$price = str_replace(",", ".", $price);
+			$price = floatval($price);
+			if (!is_numeric ($price) ) {
 				$error .= 'Цена должна быть числом. ';
 			} else if ($price < 0) {
 				$error .= 'Цена не может быть отрицательной! ';
@@ -129,12 +139,12 @@ class Parser extends BaseController {
 		}
 
 		//*** currency - 8
-		if (!isset($currency)) {
+		if (mb_strlen($currency) === 0) {
 			$error .= 'Не указана валюта! ';
 		}
 
 		//*** procurement - 9
-		if (!isset($procurement)) {
+		if (mb_strlen($procurement) === 0) {
 			$error .= 'Не указано наличие! ';
 		} else {
 			if (!($procurement == 'МРП' || $procurement == 'ТВС')) {
@@ -143,10 +153,12 @@ class Parser extends BaseController {
 		}
 
 		if ($error) {
-			$this->errors = $this->real_num . ' строка. ' . $error;
+			$this->errors[] = $this->real_num . ' строка. ' . $error;
+		} else {
+			return true;
 		}
 	}
-	private function updatePrice($price, $currency, $procurement, $code) {
+	private function _updatePrice($price, $currency, $procurement, $code) {
 		$fields = [
 			'price' => $price,
 			'currency' => $currency,
@@ -221,6 +233,7 @@ class Parser extends BaseController {
 		}
 	}
 	private function _saveItems($data) {
+		print_r($this->only_prices);
 		foreach ($data as $row) {
 			foreach ($row as $id => $value) {
 				$row[$id] = addslashes($value);
@@ -238,7 +251,7 @@ class Parser extends BaseController {
 			$image = $row[10];
 			if ($this->only_prices === 'only_price') {
 				if (in_array($code, $this->codes)) {
-					$this->updatePrice($price, $currency, $procurement, $code);
+					$this->_updatePrice($price, $currency, $procurement, $code);
 				} else {
 					$this->_addItems($code, $title, $description, $type, $category, $subcat, $producer, $price, $currency, $procurement, $image);
 				}
@@ -251,25 +264,54 @@ class Parser extends BaseController {
 			}
 		}
 	}
+	private function _putInSession() {
+		$merged_errors = array_merge($this->errors_session, $this->errors);
+//		foreach ($this->products_duplication as $code=>$row) {
+//			$this->products_duplication_session[$code][] = $row;
+//		}
+		$merged_duplications = $this->products_duplication_session+$this->products_duplication;//TODO::change it, it adds more arrays
+		$merged_codes = array_merge($this->products_codes_session, $this->products_codes);
+		Session::put('parser_errors', $merged_errors);
+		Session::put('parser_products_codes', $merged_codes);
+//		echo "<p> this is duplications in session before merging</p>";
+//		print_r(Session::get('parser_duplications'));
+//		Cache::put('parser_duplications', $merged_duplications, 60);
+		Session::put('parser_duplications', $merged_duplications);
+		Session::put('rows', $this->rows);
+		Session::put('added', $this->added);
+//		echo "<p>this is all codes in session</p>";
+//		print_r(Session::get('parser_products_codes'));
+//		echo "<p>this is duplications in iteration</p>";
+//		print_r($this->products_duplication);
+//		echo "<p> this is duplications merged</p>";
+//		print_r($merged_duplications);
+//		echo "<p>this is duplications in session </p>";
+//		print_r(Session::get('parser_duplications'));
+//		exit;
+	}
 	public function index() {
 		set_time_limit(10*60);
 		ini_set('memory_limit', '256M');
 		$this->_prepareData();
 		$this->_validate($this->data);
-		$this->_saveItems($this->data);
+		$this->_saveItems($this->data_correct);
+		$this->_putInSession();
 		$this->offset = $this->offset + $this->one_iteration + 1;
+//		print_r($this->products_duplication_session);
 		if ($this->offset > $this->total_rows) {
+//			exit;
 			return View::make('admin/admin_import_status')->with([
-				'errors' 		=> $this->errors_session,
-				'added'			=> Session::get('added'),
-				'SKIP'			=> 1,
-				'missed'		=> Session::get('rows')- Session::get('added'),
-				'original_name'	=> Session::get('original_name'),
+				'errors' 			=>  Session::get('parser_errors'),
+				'added'				=> Session::get('added'),
+				'SKIP'				=> 1,
+				'missed'			=> Session::get('rows')- Session::get('added'),
+				'original_name'		=> Session::get('original_name'),
+				'codes_duplications'=>Session::get('parser_duplications')
 			]);
 		} else {
 			return View::make('admin/import_s')->with([
 				'offset'		=> $this->offset,
-				'skip' 			=> 1,
+				'skip' 			=> 0,
 				'original_name' => Session::get('original_name'),
 				'iteration'		=> $this->one_iteration,
 				'max_row' 		=> $this->total_rows,
